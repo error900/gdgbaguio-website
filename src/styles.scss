@@ -1,0 +1,273 @@
+// @import '~@angular/material/theming';
+// // Plus imports for other components in your app.
+
+// // Include the common styles for Angular Material. We include this here so that you only
+// // have to load a single css file for Angular Material in your app.
+// // Be sure that you only ever include this mixin once!
+// @include mat-core();
+
+// // Define the palettes for your theme using the Material Design palettes available in palette.scss
+// // (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// // hue. Available color palettes: https://material.io/design/color/
+// $gdgbaguio-primary: mat-palette($mat-indigo);
+// $gdgbaguio-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// // The warn palette is optional (defaults to red).
+// $gdgbaguio-warn: mat-palette($mat-red);
+
+// // Create the theme object (a Sass map containing all of the palettes).
+// $gdgbaguio-theme: mat-light-theme($gdgbaguio-primary, $gdgbaguio-accent, $gdgbaguio-warn);
+
+// // Include theme styles for core and each component used in your app.
+// // Alternatively, you can import and @include the theme mixins for each component
+// // that you are using.
+// @include angular-material-theme($gdgbaguio-theme);
+
+// Color Theme
+// https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=FF4081&secondary.text.color=000000
+
+$mdc-theme-primary: #3f51b5;
+$mdc-theme-dark-primary: #002884;
+$mdc-theme-light-primary: #757ce8;
+$mdc-theme-secondary: #ff4081;
+$mdc-theme-dark-secondary: #c60055;
+$mdc-theme-light-secondary: #ff79b0;
+$mdc-theme-error: #b00020;
+$mdc-theme-on-primary: #ffffff;
+$mdc-theme-on-secondary: #000000;
+
+@import 'material-components-web/material-components-web';
+@import "@material/theme/mixins";
+
+// @import "@material/button/mdc-button";
+// @import '@material/card/mdc-card';
+// // @import '@material/chips/mdc-chips';
+// // @import '@material/data-table/mdc-data-table';
+// @import '@material/dialog/mdc-dialog';
+// @import '@material/drawer/mdc-drawer';
+// @import '@material/fab/mdc-fab';
+// // @import '@material/floating-label/mdc-floating-label';
+// // @import '@material/form-field/mdc-form-field';
+// @import '@material/icon-button/mdc-icon-button';
+// @import '@material/layout-grid/mdc-layout-grid';
+// // @import '@material/line-ripple/mdc-line-ripple';
+// // @import '@material/linear-progress/mdc-linear-progress';
+// @import '@material/list/mdc-list';
+// @import '@material/menu/mdc-menu';
+// @import '@material/menu-surface/mdc-menu-surface';
+// // @import '@material/radio/mdc-radio';
+// @import '@material/ripple/mdc-ripple';
+// // @import '@material/select/mdc-select';
+// // @import '@material/slider/mdc-slider';
+// // @import '@material/snackbar/mdc-snackbar';
+// // @import '@material/switch/mdc-switch';
+// // @import '@material/tab/mdc-tab';
+// // @import '@material/tab-bar/mdc-tab-bar';
+// // @import '@material/tab-indicator/mdc-tab-indicator';
+// // @import '@material/tab-scroller/mdc-tab-scroller';
+// @import '@material/textfield/mdc-text-field';
+// @import '@material/theme/mdc-theme';
+// @import '@material/top-app-bar/mdc-top-app-bar';
+// // @import '@material/touch-target/mdc-touch-target';
+// @import '@material/typography/mdc-typography';
+
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: GoogleSansRegular;
+  src: url('assets/fonts/GoogleSans-Regular-v1.27.ttf');
+}
+
+@font-face {
+  font-family: GoogleSansMedium;
+  src: url('assets/fonts/GoogleSans-Medium-v1.27.ttf');
+}
+
+.material-icons {
+  font-family: 'Material Icons' !important;
+}
+
+* {
+  font-family: "GoogleSansRegular", sans-serif !important;
+  color: #676c72;
+}
+
+body,
+div {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+  color: #212121 !important;
+  font-weight: unset;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 2em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 0.5em;
+}
+
+p {
+  margin: 0 0 18px 0;
+}
+
+.spacer {
+  flex: 1;
+}
+
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
+
+img,
+video {
+  border: 0;
+  height: auto;
+  max-width: 100%;
+}
+
+footer {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  line-height: 20px;
+}
+
+footer a {
+  display: flex;
+  align-items: center;
+}
+
+.loading {
+  background-image: url('https://gifimage.net/wp-content/uploads/2018/04/loading-gif-android-12.gif');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 100px;
+}
+
+.dashboard-loading {
+  background-image: url('https://www.monthlybrands.com.pk/wp-content/uploads/2018/03/google-icon-_1__1.gif');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 100px;
+}
+
+.meetup-loading {
+  background-image: url('https://gifimage.net/wp-content/uploads/2018/04/loading-gif-android-12.gif');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+}
+
+/* Layout */
+
+.mdc-layout-grid {
+  padding: 0 40px;
+}
+
+.gdgbaguio {
+  height: 25px;
+  margin-top: 10px;
+}
+
+.landing-row {
+  padding: 100px 40px;
+}
+
+// .landing-row-group {
+//   margin: 0 auto;
+//   max-width: 1520px;
+// }
+
+.row-heading {
+  margin: 0 auto 32px;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+/* Colors */
+
+.background-grey {
+  background: #eceff1;
+}
+
+.background-white {
+  background: #fff;
+}
+
+/* Buttons */
+
+.mdc-button {
+  @include mdc-theme-prop(background-color, $mdc-theme-primary);
+  @include mdc-theme-prop(color, $mdc-theme-on-primary);
+}
+
+/* Text Fields */
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  @include mdc-theme-prop(color, $mdc-theme-primary);
+}
+
+/* Cards */
+
+.meetup-card-draft-ongoing-background {
+  background-image: url('https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg');
+  background-size: 150px;
+}
+
+.meetup-card-draft-ongoing-title {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.mdc-card__media-content {
+  display: flex;
+  align-items: flex-end;
+}
+
+.card__primary,
+.card__secondary {
+  padding: 0.5rem 0.7em;
+}
+
+.card__title,
+.card__subtitle {
+  margin: 0;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 575px) {}

@@ -1,0 +1,25 @@
+.events-landing-row {
+  margin-top: 48px;
+}
+
+.events-landing-row,
+.past-events-landing-row,
+.recent-events-landing-row {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.events-landing-row .mdc-layout-grid,
+.past-events-landing-row .mdc-layout-grid,
+.recent-events-landing-row .mdc-layout-grid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#events-mdc-data-table {
+  width: 100%;
+}
+
+.events-mdc-data-table__row {
+  color: #2196f3;
+}

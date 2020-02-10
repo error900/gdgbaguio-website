@@ -1,0 +1,43 @@
+.team-landing-row {
+  margin-top: 48px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.community-member-photo {
+  position: relative;
+}
+
+.community-member-photo img {
+  display: flex;
+  margin: 0 auto;
+  height: 140px;
+  border-radius: 50%;
+}
+
+.links {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.links a img {
+  padding: 0 2px;
+  height: 32px;
+  border-radius: 0;
+}
+
+.community-member-photo:hover > img {
+  -webkit-filter: blur(1px);
+  /* Chrome, Safari, Opera */
+  filter: blur(1px);
+}
+
+.community-member-photo:hover .links {
+  opacity: 1;
+  top: 50%;
+}

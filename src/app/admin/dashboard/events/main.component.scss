@@ -1,0 +1,48 @@
+.mdc-top-app-bar--fixed-adjust {
+  padding: 0;
+}
+
+.app-drawer-layout {
+  // display: flex;
+  // flex: 1;
+
+  .mdc-drawer--dismissible {
+    top: 64px;
+    height: calc(100% - 64px);
+  }
+}
+
+.mdc-drawer {
+  border-top: 1px solid #bdc1c6;
+}
+
+.main-content {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  // flex: 1;
+}
+
+.demo {
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+    white-space: nowrap;
+  }
+
+  &__title-icon {
+    padding-left: .75rem;
+  }
+
+  &__subtitle {
+    color: #888;
+    font-size: 1rem;
+  }
+}
+
+.dashboard-row {
+  padding: 40px 40px;
+}

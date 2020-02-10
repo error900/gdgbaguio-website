@@ -1,0 +1,21 @@
+<dashboard-top-bar></dashboard-top-bar>
+<div class="app-drawer-layout mdc-top-app-bar--fixed-adjust">
+  <!-- Drawer -->
+  <aside class="mdc-drawer mdc-drawer--dismissible drawer">
+    <dashboard-drawer></dashboard-drawer>
+  </aside>
+  <!-- Content -->
+  <div class="mdc-layout-grid dashboard-row mdc-drawer-app-content main-content">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
+        <ongoing-event-card></ongoing-event-card>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
+        <upcoming-event-card></upcoming-event-card>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
+        <draft-event-card></draft-event-card>
+      </div>
+    </div>
+  </div>
+</div>

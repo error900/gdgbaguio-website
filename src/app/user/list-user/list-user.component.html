@@ -1,0 +1,19 @@
+<!-- <section>
+  <div class="row row-padding-top row-padding-bottom">
+    <h1>User List</h1>
+    <div *ngFor="let user of users">
+      <app-user-details [user]='user'></app-user-details>
+    </div>
+    <div>
+      <button mat-raised-button color="warn" (click)='deleteAllUsers()'>Delete All</button>
+    </div>
+  </div>
+</section> -->
+<app-top-bar></app-top-bar>
+<h1>All Users</h1>
+<div *ngFor="let user of users" style="width: 300px;">
+  <app-user-details [user]='user'></app-user-details>
+</div>
+<div style="margin-top:20px;">
+  <button type="button" class="button btn-danger" (click)='deleteAllUsers()'>Delete All</button>
+</div>

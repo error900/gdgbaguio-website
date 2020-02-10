@@ -1,0 +1,24 @@
+<nav class="mdc-drawer__drawer">
+  <nav class="mdc-drawer__content">
+    <div id="icon-with-text" class="mdc-list">
+      <a class="mdc-list-item mdc-list-item--selected drawer-list-item" [routerLink]="['/meetup-events']">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">event</i>Events
+      </a>
+      <a class="mdc-list-item drawer-list-item" [routerLink]="['/meetup-attendance']">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">explore</i>Meetup
+      </a>
+      <a class="mdc-list-item drawer-list-item" [routerLink]="['/notifications']">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">notifications</i>Notifications
+      </a>
+    </div>
+    <hr class="mdc-list-divider">
+    <div class="mdc-list">
+      <a class="mdc-list-item drawer-list-item" [routerLink]="['/accounts']">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>Accounts
+      </a>
+      <a class="mdc-list-item drawer-list-item" [routerLink]="['/reports']">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">folder</i>Reports
+      </a>
+    </div>
+  </nav>
+</nav>

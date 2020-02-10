@@ -1,0 +1,49 @@
+<section class="landing-row admin-login-row">
+  <div class="mdc-layout-grid row-padding-top row-padding-bottom">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 text-align-center">Login</h1>
+    </div>
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell"></div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--align-middle">
+        <div class="mdc-text-field mdc-text-field--outlined">
+          <input class="mdc-text-field__input first-name-input" id="first-name-input">
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+              <label for="first-name-input" class="mdc-floating-label">Email</label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+        <div class="mdc-text-field mdc-text-field--outlined">
+          <input class="mdc-text-field__input last-name-input" type="password" id="last-name-input">
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+              <label for="last-name-input" class="mdc-floating-label">Password</label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+        <div class="button-container">
+          <button id="admin-reset-button" class="mdc-button"> <span class="mdc-button__ripple"></span> Reset</button>
+          <button id="admin-login-button" class="mdc-button mdc-button--unelevated greet-button"> <span
+              class="mdc-button__ripple"></span> Login</button>
+        </div>
+        <div *ngIf="auth.user$ | async as user; else login"></div>
+        <div class="button-container">
+          <!-- <ng-template #login> -->
+          <button id="google-signin-button" class="mdc-button mdc-button--outlined" (click)="auth.googleLogin()">
+            <span class="mdc-button__ripple"></span> Sign in with google</button>
+          <!-- </ng-template> -->
+        </div>
+        <div class="mdc-typography mdc-typography--overline greet-message"></div>
+      </div>
+      <div class="mdc-layout-grid__cell"></div>
+    </div>
+    <div class="mdc-layout-grid__cell text-align-center">
+      <a [routerLink]="['/']">go back</a>
+    </div>
+  </div>
+</section>

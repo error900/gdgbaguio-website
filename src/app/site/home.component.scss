@@ -1,0 +1,74 @@
+.about-landing-row {
+  margin-top: 48px;
+  padding-top: 75px;
+  padding-bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.65), transparent);
+}
+
+.about-landing-row-content {
+  position: relative;
+  padding: 180px 40px 40px;
+}
+
+.about-landing-row-content h1,
+.about-landing-row-content div div p {
+  color: #fff !important;
+}
+
+.about-landing-row-content div div p {
+  font-size: 18px;
+}
+
+.about-landing-row-background .mdc-layout-grid__cell {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 48px;
+  z-index: -1;
+}
+
+// .about-landing-row-background .mdc-layout-grid__cell img {
+//   // max-width: 100%;
+// }
+
+.gdgbaguio-about-banner {
+  background-image: url('../../assets/images/community/3.jpg');
+  height: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.what-we-do-landing-row {
+  padding: 45px 60px !important;
+}
+
+// .what-we-do-content {}
+
+.item-logo {
+  height: 100px;
+  width: 100px;
+  margin: 0 auto 20px;
+}
+
+.item-logo img {
+  height: 100px;
+  width: 100px;
+}
+
+.item-header {
+  font-size: 24px;
+}
+
+.google-technologies-item {
+  display: flex;
+}
+
+.google-technologies-item .item-logo {
+  flex: 1;
+}
+
+.google-technologies-item .item-text-container {
+  flex: 2;
+}

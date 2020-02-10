@@ -1,0 +1,16 @@
+.mdc-top-app-bar {
+  position: unset;
+  // height: 55px;
+  background-color: #fff;
+  //box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .12);
+  border-bottom: 1px solid #bdc1c6;
+}
+
+.mdc-top-app-bar__section {
+  width: 100%;
+  padding: 0 24px;
+}
+
+.mdc-top-app-bar__navigation-icon {
+  color: inherit;
+}

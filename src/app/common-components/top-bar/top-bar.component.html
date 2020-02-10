@@ -1,0 +1,50 @@
+<header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+  <div class="mdc-top-app-bar__row">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <!-- <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon--unbounded">menu</button> -->
+      <a class="mdc-top-app-bar__title" [routerLink]="['/']">
+        <img class="gdgbaguio" src="{{gdgbaguio_logo}}" alt="gdgbaguio">
+      </a>
+      <div class="top-bar-nav">
+        <div class="nav-link">
+          <a [routerLink]="['/community']">Community</a>
+        </div>
+        <div class="nav-link">
+          <div class="mdc-menu-surface--anchor">
+            <button id="events-menu-surface-button" [routerLink]="['/events']" class="mdc-button">Events<i
+                class="material-icons mdc-button__icon" aria-hidden="true">arrow_drop_down</i></button>
+            <div id="events-mdc-menu" class="mdc-menu mdc-menu-surface">
+              <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+                <li class="mdc-list-item" role="menuitem">
+                  <span class="mdc-list-item__text">DevFest</span>
+                </li>
+                <li class="mdc-list-item" role="menuitem">
+                  <span class="mdc-list-item__text">I/O Extended</span>
+                </li>
+                <li class="mdc-list-item" role="menuitem">
+                  <span class="mdc-list-item__text">Campus Roadshow</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="nav-link">
+          <a [routerLink]="['/team']">Team</a>
+        </div>
+      </div>
+    </section>
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+      <div class="mdc-menu-surface--anchor">
+        <button id="apps-menu-surface-button" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded"
+          aria-label="Bookmark this page" data-mdc-ripple-is-unbounded="true">apps</button>
+        <div id="apps-mdc-menu" class="mdc-menu mdc-menu-surface">
+          <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+            <li class="mdc-list-item" role="menuitem">
+              <span [routerLink]="['/login']" class="mdc-list-item__text">meetup</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</header>

@@ -1,0 +1,76 @@
+<app-top-bar></app-top-bar>
+<section class="landing-row events-landing-row">
+  <div *ngIf="upcomingEvents_count || upcomingEvents_count!=0" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Upcoming events</h1>
+    </div>
+    <div *ngFor="let draftEvent of draftEvents" class="mdc-layout-grid__inner">
+
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+        <img src="https://secure.meetupstatic.com/photos/event/c/6/6/2/highres_468830786.jpeg" alt="">
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
+        <h1 class="mdc-typography--headline4"><a href="">{{draftEvent.name}}</a></h1>
+        <p><i class="material-icons" aria-hidden="true">calendar_today</i>{{draftEvent.local_date}} <i class="material-icons" aria-hidden="true">location_on</i> {{draftEvent.venue.address_1}}, {{draftEvent.venue.city}}
+        </p>
+        <div>{{draftEvent.description}}</div> calendar_today
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!upcomingEvents_count || upcomingEvents_count==0" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Upcoming events</h1>
+    </div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1 loading" style="height: 370px;"></div>
+  </div>
+</section>
+<section class="landing-row recent-events-landing-row">
+  <div *ngIf="recentEvents_count || recentEvents_count!=0" class="mdc-layout-grid">
+
+  </div>
+  <div *ngIf="!recentEvents_count || recentEvents_count==0" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Recent events</h1>
+    </div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1 loading" style="height: 370px;"></div>
+  </div>
+</section>
+<section class="landing-row past-events-landing-row">
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Directory of past events</h1>
+    </div>
+    <div *ngIf="pastEvents_count || pastEvents_count!=0" class="mdc-layout-grid__cell">
+      <div id="events-mdc-data-table" class="mdc-data-table">
+        <table class="mdc-data-table__table" aria-label="GDG Baguio past events">
+          <thead>
+            <tr class="mdc-data-table__header-row">
+              <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
+              <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Venue</th>
+              <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Address</th>
+              <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader"
+                scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody class="mdc-data-table__content">
+            <tr *ngFor="let pastEvent of pastEvents" class="mdc-data-table__row">
+              <td class="mdc-data-table__cell"><a href="{{pastEvent.link}}" target="_blank"
+                  class="events-mdc-data-table__row">{{pastEvent.name}}</a></td>
+              <td class="mdc-data-table__cell">{{pastEvent.venue.name}}</td>
+              <td class="mdc-data-table__cell mdc-data-table-cell-height-56dp">{{pastEvent.venue.address_1}}</td>
+              <td class="mdc-data-table__cell mdc-data-table__cell--numeric">{{pastEvent.local_date}}</td>
+            </tr>
+            <!-- <tr  class="mdc-data-table__row">
+              <td class="mdc-data-table__cell">No events found.</td>
+            </tr>
+            <tr class="mdc-data-table__row">
+              <td class="mdc-data-table__cell">No events found.</td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="!pastEvents_count || pastEvents_count==0"
+      class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1 loading"></div>
+  </div>
+</section>

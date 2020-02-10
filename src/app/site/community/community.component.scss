@@ -1,0 +1,44 @@
+.community-row .mdc-layout-grid {
+  position: relative;
+}
+
+.community-video-background {
+  // height: 100%;
+  object-fit: cover;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.empowerment-landing-row {
+  margin-top: 48px;
+  padding: 40px 40px;
+}
+
+.gdgbaguio-community-banner {
+  background-image: url('../../../assets/images/community/6.jpg');
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gdgbaguio-community-banner2 {
+  background-image: url('../../../assets/images/community/1.jpg');
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gdgbaguio-community-banner3 {
+  background-image: url('../../../assets/images/community/9.jpg');
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

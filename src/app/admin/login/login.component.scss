@@ -1,0 +1,31 @@
+.admin-login-row>.mdc-layout-grid>.mdc-layout-grid__inner>.mdc-layout-grid__cell--align-middle {
+  padding: 0 30px;
+}
+
+.admin-login-row>.mdc-layout-grid>.mdc-layout-grid__inner>.mdc-layout-grid__cell--align-middle>.mdc-text-field {
+  margin: 6px 0;
+  width: 100%;
+}
+
+.admin-login-row>.mdc-layout-grid>.mdc-layout-grid__inner>.mdc-layout-grid__cell--align-middle>.mdc-text-field>.mdc-notched-outline {
+  padding: 5px 0;
+}
+
+#admin-login-button,
+#admin-reset-button {
+  height: 46px;
+}
+
+#admin-reset-button {
+  margin-right: 8px;
+}
+
+#google-signin-button {
+  width: 100%;
+}
+
+.button-container {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
