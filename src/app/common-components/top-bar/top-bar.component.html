@@ -7,26 +7,100 @@
       </a>
       <div class="top-bar-nav">
         <div class="nav-link">
-          <a [routerLink]="['/community']">Community</a>
-        </div>
-        <div class="nav-link">
+          <a id="community-menu-surface-link" [routerLink]="['/community']">Community</a>
+          <a id="community-menu-surface-icon" ><i class="material-icons mdc-button__icon"
+              aria-hidden="true">arrow_drop_down</i></a>
           <div class="mdc-menu-surface--anchor">
-            <button id="events-menu-surface-button" [routerLink]="['/events']" class="mdc-button">Events<i
-                class="material-icons mdc-button__icon" aria-hidden="true">arrow_drop_down</i></button>
-            <div id="events-mdc-menu" class="mdc-menu mdc-menu-surface">
-              <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-                <li class="mdc-list-item" role="menuitem">
-                  <span class="mdc-list-item__text">DevFest</span>
-                </li>
-                <li class="mdc-list-item" role="menuitem">
-                  <span class="mdc-list-item__text">I/O Extended</span>
-                </li>
-                <li class="mdc-list-item" role="menuitem">
-                  <span class="mdc-list-item__text">Campus Roadshow</span>
-                </li>
-              </ul>
+            <!-- <button id="community-menu-surface-button" class="mdc-button"></button> -->
+            <div id="community-mdc-menu" class="mdc-menu mdc-menu-surface">
+              <div class="menu-dropdown-content">
+                <div class="menu-drowpdown-column">
+                  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+                    <li class="mdc-list-item">
+                      <span class="mdc-list-item__text">Develop</span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Android</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Cloud Platform</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Firebase</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Flutter</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Google Assistant</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Maps Platform</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">TensorFlow</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Web</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">YouTube</a></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="menu-drowpdown-column">
+                  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+                    <li class="mdc-list-item">
+                      <span class="mdc-list-item__text">Grow</span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Firebase</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Google Ads</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Google Analytics</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Google Play</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Search</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Web Push and Notification APIs</a></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="menu-drowpdown-column">
+                  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+                    <li class="mdc-list-item">
+                      <span class="mdc-list-item__text">Earn</span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">AdMob</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Google Ads API</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Google Pay</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Google Play Billing</a></span>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem">
+                      <span class="mdc-list-item__text"><a href="">Interactive Media Ads</a></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="nav-link">
+          <a [routerLink]="['/events']">Events</a>
         </div>
         <div class="nav-link">
           <a [routerLink]="['/team']">Team</a>
@@ -35,8 +109,9 @@
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
       <div class="mdc-menu-surface--anchor">
-        <button id="apps-menu-surface-button" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded"
-          aria-label="Bookmark this page" data-mdc-ripple-is-unbounded="true">apps</button>
+        <button id="apps-menu-surface-button"
+          class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Bookmark this page"
+          data-mdc-ripple-is-unbounded="true">apps</button>
         <div id="apps-mdc-menu" class="mdc-menu mdc-menu-surface">
           <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
             <li class="mdc-list-item" role="menuitem">
