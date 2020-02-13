@@ -1,0 +1,50 @@
+<site-top-bar></site-top-bar>
+<section class="landing-row event-details-landing-row">
+  <div *ngIf="eventDetails as eventDetail" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">{{eventDetail.name}}</h1>
+    </div>
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop">
+        <div class="location">
+          <i class="material-icons mdc-button__icon">location_on</i>
+          <div>
+            <span>{{eventDetail.venue.name}}</span> <br>
+            <span>{{eventDetail.venue.address_1}} {{eventDetail.venue.city}},
+              {{eventDetail.venue.localized_country_name}}</span>
+          </div>
+        </div>
+        <div class="meetup-event-link">
+          <a href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--outlined">
+            <span class="mdc-button__ripple"></span> Meetup</a>
+        </div>
+
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop">
+        <div [innerHTML]="eventDetail.description"></div>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop">
+        <h1 class="mdc-typography--headline5 row-heading">Coorganizers</h1>
+        <div class=" mdc-layout-grid__inner">
+          <div *ngFor="let event_host of eventDetails.event_hosts"
+            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <div class="coorganizer">
+              <div class="member-info">
+                <!-- <img src="{{event_host.photo.thumb_link}}" alt="coorganizer-photo"> -->
+                <div [ngStyle]="{'background-image': 'url(' + event_host.photo.thumb_link + ')'}" class="member-photo">
+                </div>
+                <p class="member-name">{{event_host.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop">
+        <h1 class="mdc-typography--headline5 row-heading">Speakers</h1>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!eventDetails as eventDetail" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1 loading" style="height: 370px;"></div>
+  </div>
+</section>

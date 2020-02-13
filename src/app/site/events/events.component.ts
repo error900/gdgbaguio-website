@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MeetupService } from '../../core/services/meetup.service';
-import { sitePastMeetupEvents, dashboardDraftMeetupEvents, siteRecentMeetupEvents } from '../../core/model/events.model';
+import { siteOngoingUpcomingMeetupEvent, siteRecentMeetupEvent, sitePastMeetupEvent } from '../../core/model/events.model';
 import { meetupApiURL } from 'src/app/core/config/meetup-api-url';
 
 @Component({
@@ -11,43 +11,42 @@ import { meetupApiURL } from 'src/app/core/config/meetup-api-url';
   providers: [MeetupService]
 })
 export class EventsComponent implements OnInit {
-  pastEvents: sitePastMeetupEvents[];
-  draftEvents: dashboardDraftMeetupEvents[];
-  recentEvents: siteRecentMeetupEvents[];
-  pastEvents_count = 0;
-  upcomingEvents_count = 0;
+  ongoingAndUpcomingEvents: siteOngoingUpcomingMeetupEvent[];
+  recentEvents: siteRecentMeetupEvent[];
+  pastEvents: sitePastMeetupEvent[];
+  ongoingAndUpcmingEvents_count = 0;
   recentEvents_count = 0;
+  pastEvents_count = 0;
 
   constructor(private meetupService: MeetupService) { }
 
   ngOnInit() {
+    this.getOngoingAndUpcomingGDGEvents();
+    this.getRecentGDGEvents();
     this.getPastGDGEvents();
-    this.getDratGDGEvents();
-    console.log(meetupApiURL.eventDraft);
-
+    // this.getDratGDGEvents();
+    console.log('api_url');
   }
 
-  getDratGDGEvents(): void {
-    this.meetupService.dashboardDraftMeetupEvents()
+  getOngoingAndUpcomingGDGEvents(): void {
+    this.meetupService.siteOngoingAndUpcomingMeetupEvents()
       .subscribe(
-        draftEvents => (
-          this.draftEvents = draftEvents,
-          this.upcomingEvents_count = this.draftEvents.length
-          // console.log(this.pastEvents)
+        ongoingAndUpcmingEvents => (
+          this.ongoingAndUpcomingEvents = ongoingAndUpcmingEvents,
+          this.ongoingAndUpcmingEvents_count = ongoingAndUpcmingEvents.length,
+          console.log(this.ongoingAndUpcomingEvents)
         )
       );
   }
 
   getRecentGDGEvents(): void {
     this.meetupService.siteRecentMeetupEvents()
-    .subscribe(
-      recentEvents => {
-        this.recentEvents = recentEvents,
-        this.recentEvents_count = recentEvents.length,
-        console.log(this.recentEvents)
-        
-      }
-    )
+      .subscribe(
+        recentEvents => {
+          this.recentEvents = recentEvents,
+            this.recentEvents_count = recentEvents.length
+        }
+      );
   }
 
   getPastGDGEvents(): void {
@@ -88,7 +87,15 @@ export class EventsComponent implements OnInit {
       );
   }
 
-
-
+  // getDratGDGEvents(): void {
+  //   this.meetupService.dashboardDraftMeetupEvents()
+  //     .subscribe(
+  //       draftEvents => (
+  //         this.draftEvents = draftEvents,
+  //         this.upcomingEvents_count = this.draftEvents.length
+  //         // console.log(this.pastEvents)
+  //       )
+  //     );
+  // }
 
 }

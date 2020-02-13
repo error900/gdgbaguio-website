@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { dashboardDraftMeetupEvents } from 'src/app/core/model/events.model';
+import { dashboardDraftMeetupEvent } from 'src/app/core/model/events.model';
 import { MeetupService } from 'src/app/core/services/meetup.service';
 import { MDCRipple } from '@material/ripple';
 import { MDCDialog } from '@material/dialog';
@@ -13,7 +13,7 @@ import { MDCList } from '@material/list';
   styleUrls: ['./draft-event.component.scss']
 })
 export class DraftEventComponent implements OnInit {
-  draftEvents: dashboardDraftMeetupEvents[];
+  draftEvents: dashboardDraftMeetupEvent[];
   draftEvents_count = 0;
 
   constructor(private meetupService: MeetupService) { }

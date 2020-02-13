@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { EventsService } from '../../../core/services/events.service';
 
-import { GDGBaguioEvents, dashboardPastMeetupEvents } from 'src/app/core/model/events.model';
+import { GDGBaguioEvent } from 'src/app/core/model/events.model';
 import { MeetupService } from '../../../core/services/meetup.service';
 import { meetupApiURL } from '../../../core/config/meetup-api-url';
 
@@ -16,7 +16,7 @@ import { meetupApiURL } from '../../../core/config/meetup-api-url';
 })
 export class EventsDashboardComponent implements OnInit {
   events: any;
-  event: GDGBaguioEvents = new GDGBaguioEvents();
+  event: GDGBaguioEvent = new GDGBaguioEvent();
   eventSubmitted = false;
 
   // pastEvents: dashboardPastGDGEvents[];
@@ -51,12 +51,12 @@ export class EventsDashboardComponent implements OnInit {
 
   newEvent(): void {
     this.eventSubmitted = false;
-    this.event = new GDGBaguioEvents();
+    this.event = new GDGBaguioEvent();
   }
 
   saveEvent() {
     this.eventService.createEvent(this.event);
-    this.event = new GDGBaguioEvents();
+    this.event = new GDGBaguioEvent();
   }
 
   onEventSubmit() {

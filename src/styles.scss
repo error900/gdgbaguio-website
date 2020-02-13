@@ -73,22 +73,23 @@ $mdc-theme-on-secondary: #000000;
 
 /* You can add global styles to this file, and also import other style files */
 
-@font-face {
-  font-family: GoogleSansRegular;
-  src: url('assets/fonts/GoogleSans-Regular-v1.27.ttf');
-}
+// @font-face {
+//   font-family: GoogleSansRegular;
+//   src: url('assets/fonts/GoogleSans-Regular-v1.27.ttf');
+// }
 
-@font-face {
-  font-family: GoogleSansMedium;
-  src: url('assets/fonts/GoogleSans-Medium-v1.27.ttf');
-}
+// @font-face {
+//   font-family: GoogleSansMedium;
+//   src: url('assets/fonts/GoogleSans-Medium-v1.27.ttf');
+// }
 
 .material-icons {
   font-family: 'Material Icons' !important;
 }
 
 * {
-  font-family: "GoogleSansRegular", sans-serif !important;
+  // font-family: "GoogleSansRegular", sans-serif !important;
+  font-family: "Google Sans", sans-serif !important;
   color: #676c72;
 }
 
@@ -145,6 +146,10 @@ a,
 a:visited,
 a:hover {
   text-decoration: none;
+}
+
+a {
+  color: #1a73e8;
 }
 
 img,
@@ -242,9 +247,10 @@ footer a {
 
 /* Cards */
 
-.meetup-card-draft-ongoing-background {
+.meetup-card-background {
   background-image: url('https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg');
   background-size: 150px;
+  background-position-y: 38%;
 }
 
 .meetup-card-draft-ongoing-title {
@@ -260,6 +266,11 @@ footer a {
 .card__primary,
 .card__secondary {
   padding: 0.5rem 0.7em;
+}
+
+.card__primary>h2,
+.card__primary>h3 {
+  font-weight: unset;
 }
 
 .card__title,

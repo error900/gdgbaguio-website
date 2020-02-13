@@ -25,18 +25,18 @@
 
 <div *ngIf="user">
   <div>
-    <label>First Name: </label> {{user.fullname}}
+    <!-- <label>First Name: </label> {{user.fullname}} -->
   </div>
   <div>
     <label>email: </label> {{user.email}}
   </div>
-  <div>
+  <!-- <div>
     <label>Active: </label> {{user.active}}
-  </div>
+  </div> -->
 
-  <span class="button is-small btn-primary" *ngIf='user.active' (click)='updateActive(false)'>Inactive</span>
+  <!-- <span class="button is-small btn-primary" *ngIf='user.active' (click)='updateActive(false)'>Inactive</span>
 
-  <span class="button is-small btn-primary" *ngIf='!user.active' (click)='updateActive(true)'>Active</span>
+  <span class="button is-small btn-primary" *ngIf='!user.active' (click)='updateActive(true)'>Active</span> -->
 
   <span class="button is-small btn-danger" (click)='deleteUser()'>Delete</span>
 

@@ -1,4 +1,4 @@
-export class GDGBaguioEvents {
+export class GDGBaguioEvent {
   description: string;
   start_time_stamp: string;
   title: string;
@@ -7,20 +7,24 @@ export class GDGBaguioEvents {
 
 // PUBLIC
 
-export interface sitePastMeetupEvents {
+export interface siteOngoingUpcomingMeetupEvent {
   id: string,
   name: string,
+  status: string,
   local_date: string,
+  local_time: string,
+  waitlist_count: number,
+  yes_rsvp_count: number,
   venue: {
     name: string,
-    address_1: string
+    address_1: string,
+    city: string,
+    localized_country_name: string
   },
-  link: string,
-  description: string,
-  how_to_find_us: string
+  description: string
 }
 
-export interface siteRecentMeetupEvents {
+export interface siteRecentMeetupEvent {
   id: string,
   name: string,
   local_date: string,
@@ -29,23 +33,58 @@ export interface siteRecentMeetupEvents {
     name: string,
     address_1: string,
     city: string,
-    country: string
+    localized_country_name: string
   }
+}
+
+export interface sitePastMeetupEvent {
+  id: string,
+  name: string,
+  rsvp_limit: number,
+  locate_date: string,
+  waitlist_count: number,
+  yes_rsvp_count: number,
+  venue: {
+    name: string,
+    address_1: string
+  },
+  link: string,
+  manual_attendance_count: number
+}
+
+export interface siteMeetupEventInfo {
+  id: string;
+  name: string;
+  rsvp_limit: number;
+  local_date: string;
+  waitlist_count: number;
+  yes_rsvp_count: number;
+  venue: {
+    name: string;
+    address_1: string;
+    city: string;
+    localized_country_name: string;
+  };
+  link: string;
+  manual_attendance_count: number;
+  description: string;
+  event_hosts: {
+    name: string;
+    photo: {
+      thumb_link: string;
+    };
+  }[];
+
 }
 
 // ADMIN DASHBOARD
 
-export interface dashboardOngoingMeetupEvents {
+export interface dashboardOngoingUpcomingMeetupEvent {
   id: string,
   name: string
 }
 
-export interface dashboardUpcomingMeetupEvents {
-  id: string,
-  name: string
-}
-
-export interface dashboardDraftMeetupEvents {
+export interface dashboardDraftMeetupEvent {
   id: string,
   created: number,
   duration: number,
@@ -61,21 +100,4 @@ export interface dashboardDraftMeetupEvents {
     city: string
   },
   description
-}
-
-export interface dashboardPastMeetupEvents {
-  created: number,
-  // duration: number,
-  id: string,
-  name: string,
-  rsvp_limit: number,
-  locate_date: string,
-  local_time: string,
-  waitlist_count: number,
-  yes_rsvp_count: number,
-  venue: {
-    name: string,
-    address_1: string
-  },
-  manual_attendance_count: number
 }

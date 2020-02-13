@@ -3,8 +3,14 @@ import { HttpClient, HttpErrorResponse, HttpResponse, HttpParams, HttpHeaders } 
 import { throwError, Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { meetupApiURL } from '../config/meetup-api-url';
-import { sitePastMeetupEvents, dashboardPastMeetupEvents, dashboardDraftMeetupEvents, siteRecentMeetupEvents } from '../model/events.model';
+import { meetupApiURL, conf } from '../config/meetup-api-url';
+import {
+  siteOngoingUpcomingMeetupEvent,
+  siteRecentMeetupEvent,
+  sitePastMeetupEvent,
+  dashboardDraftMeetupEvent,
+  siteMeetupEventInfo
+} from '../model/events.model';
 
 import { MeetupAuthService } from './meetup-auth.service';
 
@@ -34,35 +40,43 @@ export class MeetupService {
 
   // GET
 
-  sitePastMeetupEvents(): Observable<sitePastMeetupEvents[]> {
+  siteOngoingAndUpcomingMeetupEvents(): Observable<siteOngoingUpcomingMeetupEvent[]> {
+    return this.http.get<siteOngoingUpcomingMeetupEvent[]>(meetupApiURL.eventOngoingUpcoming)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  siteRecentMeetupEvents(): Observable<siteRecentMeetupEvent[]> {
+    return this.http.get<siteRecentMeetupEvent[]>(meetupApiURL.eventRecent)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  sitePastMeetupEvents(): Observable<sitePastMeetupEvent[]> {
     const datetime = this.getDate();
-    return this.http.get<sitePastMeetupEvents[]>(meetupApiURL.websitePastEvents + datetime)
+    return this.http.get<sitePastMeetupEvent[]>(meetupApiURL.websitePastEvents + datetime)
       .pipe(
-        retry(3),
+        retry(1),
         catchError(this.handleError)
       );
   }
 
-  siteRecentMeetupEvents(): Observable<siteRecentMeetupEvents[]> {
-    return this.http.get<siteRecentMeetupEvents[]>(meetupApiURL.eventRecent)
+  dashboardDraftMeetupEvents(): Observable<dashboardDraftMeetupEvent[]> {
+    return this.http.get<dashboardDraftMeetupEvent[]>(meetupApiURL.eventDraft + this.access_token)
       .pipe(
-        retry(3),
+        retry(1),
         catchError(this.handleError)
       );
   }
 
-  dashboardDraftMeetupEvents(): Observable<dashboardDraftMeetupEvents[]> {
-    return this.http.get<dashboardDraftMeetupEvents[]>(meetupApiURL.eventDraft + this.access_token)
+  siteMeetupEventDetails(event_id: string): Observable<siteMeetupEventInfo> {
+    return this.http.get<siteMeetupEventInfo>(conf.event + '/' + event_id + meetupApiURL.eventDetailsParams + this.access_token)
       .pipe(
-        retry(3),
-        catchError(this.handleError)
-      );
-  }
-
-  dashboardPastMeetupEvents(): Observable<dashboardPastMeetupEvents[]> {
-    return this.http.get<dashboardPastMeetupEvents[]>(meetupApiURL.eventPast, httpOptions)
-      .pipe(
-        retry(3),
+        retry(1),
         catchError(this.handleError)
       );
   }
@@ -71,7 +85,7 @@ export class MeetupService {
 
   attendanceTaking(event_id: number, member_id: number, status: string) {
     // attendanceTaking: '/gdgbaguio/events/:id/attendance?member=&status=',
-    const url = meetupApiURL.attendanceTaking + '/' + event_id + '/attendance?member=' + member_id + '&status=' + status;
+    const url = conf.event + '/' + event_id + '/attendance?member=' + member_id + '&status=' + status;
     return url;
   }
 

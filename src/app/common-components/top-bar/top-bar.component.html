@@ -6,9 +6,9 @@
         <img class="gdgbaguio" src="{{gdgbaguio_logo}}" alt="gdgbaguio">
       </a>
       <div class="top-bar-nav">
-        <div class="nav-link">
-          <a id="community-menu-surface-link" [routerLink]="['/community']">Community</a>
-          <a id="community-menu-surface-icon" ><i class="material-icons mdc-button__icon"
+        <div id="community-menu-surface-link" class="nav-link">
+          <a [routerLink]="['/community']">Community</a>
+          <a id="community-menu-surface-icon"><i class="material-icons mdc-button__icon"
               aria-hidden="true">arrow_drop_down</i></a>
           <div class="mdc-menu-surface--anchor">
             <!-- <button id="community-menu-surface-button" class="mdc-button"></button> -->
@@ -108,10 +108,11 @@
       </div>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+      <button class="mdc-button"> <span class="mdc-button__ripple"></span> Sign in</button>
       <div class="mdc-menu-surface--anchor">
         <button id="apps-menu-surface-button"
-          class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Bookmark this page"
-          data-mdc-ripple-is-unbounded="true">apps</button>
+          class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Account photo"
+          data-mdc-ripple-is-unbounded="true"></button>
         <div id="apps-mdc-menu" class="mdc-menu mdc-menu-surface">
           <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
             <li class="mdc-list-item" role="menuitem">

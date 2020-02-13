@@ -1,4 +1,5 @@
-<app-top-bar></app-top-bar>
+<site-top-bar></site-top-bar>
+
 <h3>Create User</h3>
 <div [hidden]="submitted" style="width: 300px;">
   <form (ngSubmit)="onSubmit()">
@@ -16,7 +17,7 @@
       <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
     </div>
 
-    <input type="hidden" class="form-control" id="admin" required [(ngModel)]="user.admin" name="admin" value="true">
+    <!-- <input type="hidden" class="form-control" id="admin" required [(ngModel)]="user.admin" name="admin" value="true"> -->
     <!-- <input type="hidden" class="form-control" id="active" required [(ngModel)]="user.active" name="active" value="true"> -->
 
     <button type="submit" class="btn btn-success">Submit</button>

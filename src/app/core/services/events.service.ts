@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { GDGBaguioEvents } from 'src/app/core/model/events.model'
+import { GDGBaguioEvent } from 'src/app/core/model/events.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
   private collectionEventsPath = '/events';
-  eventRef: AngularFirestoreCollection<GDGBaguioEvents> = null;
+  eventRef: AngularFirestoreCollection<GDGBaguioEvent> = null;
   
   constructor(private db: AngularFirestore) {
     this.eventRef = db.collection(this.collectionEventsPath);
   }
 
-  createEvent(event: GDGBaguioEvents): void {
+  createEvent(event: GDGBaguioEvent): void {
     this.eventRef.add({...event});
   }
 
-  getEvents(): AngularFirestoreCollection<GDGBaguioEvents> {
+  getEvents(): AngularFirestoreCollection<GDGBaguioEvent> {
     return this.eventRef;
   }
 

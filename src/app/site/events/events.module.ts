@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { TopBarModule } from '../../common-components/top-bar/top-bar.module';
 import { EventsComponent } from './events.component';
 
@@ -10,6 +11,7 @@ import { EventsComponent } from './events.component';
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     TopBarModule
   ],
   exports: [

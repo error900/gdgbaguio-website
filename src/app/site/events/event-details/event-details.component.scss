@@ -1,0 +1,39 @@
+@import '../events.component.scss';
+
+.location {
+  display: flex;
+  line-height: 1.4em;
+}
+
+.meetup-event-link {
+  margin: 20px 0;
+}
+
+.location>i {
+  font-size: 2.5em;
+}
+
+.coorganizer {
+  // display: flex;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-photo {
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.member-name {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+  text-align: center;
+}

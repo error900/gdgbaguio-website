@@ -7,7 +7,7 @@ import { MDCRipple } from '@material/ripple';
 
 
 @Component({
-  selector: 'app-top-bar',
+  selector: 'site-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
@@ -29,16 +29,22 @@ export class TopBarComponent implements OnInit {
     const communityLinkIcon = document.querySelector('#community-menu-surface-icon');
     const menuEl = document.querySelector('#community-mdc-menu');
     const menu = new mdc.menu.MDCMenu(menuEl);
-    communityLink.addEventListener('mouseenter', (event) => {
+    communityLink.addEventListener('mouseenter ', (event) => {
       menu.open = !menu.open;
       menu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
       menu.setAnchorElement(communityLink);
     });
-    communityLinkIcon.addEventListener('mouseenter', (event) => {
-      menu.open = !menu.open;
-      menu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
-      menu.setAnchorElement(communityLinkIcon);
-    });
+    // communityLink.addEventListener('mouseout', (event) => {
+    //   menu.open = !menu.open;
+    // });
+    // communityLinkIcon.addEventListener('mouseenter', (event) => {
+    //   menu.open = !menu.open;
+    //   menu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
+    //   menu.setAnchorElement(communityLinkIcon);
+    // });
+    // communityLinkIcon.addEventListener('mouseout', (event) => {
+    //   menu.open = !menu.open;
+    // });
     // buttonEl.addEventListener('mouseout', (event) => {
     //   menuEl.addEventListener('mouseout', (event) => {
     //     menu.open = false;
