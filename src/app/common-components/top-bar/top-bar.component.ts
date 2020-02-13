@@ -21,7 +21,7 @@ export class TopBarComponent implements OnInit {
 
 
     // Instantiation
-    const topAppBarElement = document.querySelector('.mdc-top-app-bar');
+    const topAppBarElement = document.querySelector('#site-top-bar');
     const topAppBar = new MDCTopAppBar(topAppBarElement);
 
     // const rootEl = document.querySelector('.root');
@@ -29,11 +29,12 @@ export class TopBarComponent implements OnInit {
     const communityLinkIcon = document.querySelector('#community-menu-surface-icon');
     const menuEl = document.querySelector('#community-mdc-menu');
     const menu = new mdc.menu.MDCMenu(menuEl);
-    communityLink.addEventListener('mouseenter ', (event) => {
+    communityLink.addEventListener('mouseover', (event) => {
       menu.open = !menu.open;
       menu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
       menu.setAnchorElement(communityLink);
     });
+
     // communityLink.addEventListener('mouseout', (event) => {
     //   menu.open = !menu.open;
     // });
@@ -54,7 +55,7 @@ export class TopBarComponent implements OnInit {
     const buttonEl2 = document.querySelector('#apps-menu-surface-button');
     const menuEl2 = document.querySelector('#apps-mdc-menu');
     const menu2 = new mdc.menu.MDCMenu(menuEl2);
-    buttonEl2.addEventListener('click', (event) => {
+    buttonEl2.addEventListener('click', (event) => {    
       menu2.open = !menu2.open;
       menu2.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
       menu2.setAnchorElement(buttonEl2);

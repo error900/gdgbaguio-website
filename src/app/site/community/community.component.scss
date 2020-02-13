@@ -1,44 +1,88 @@
-.community-row .mdc-layout-grid {
-  position: relative;
+.community-row {
+  position: absolute;
+  height: 70%;
+  top: 48px;
+}
+
+.community-row .mdc-layout-grid:first-child {
+  padding: 0;
 }
 
 .community-video-background {
-  // height: 100%;
+  z-index: -1;
   object-fit: cover;
-  left: 0;
+}
+
+.community-video-background-screen {
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), transparent);
+}
+
+.community-video-background,
+.community-video-background-screen {
   position: absolute;
+  height: 100%;
+  left: 0;
   top: 0;
   width: 100%;
 }
 
+.community-video-content {
+  position: relative;
+  bottom: 0;
+  padding: 300px 100px 0 100px !important;
+}
+
+.community-video-content h1,
+.community-video-content p,
+.empowerment-row-item h1,
+.empowerment-row-item p{
+  color: #fff !important;
+}
+
+.community-video-content p {
+  font-size: 18px;
+}
+
 .empowerment-landing-row {
-  margin-top: 48px;
+  position: absolute;
+  top: 75%;
   padding: 40px 40px;
 }
 
+.empowerment-landing-row,
+.empowerment-landing-row>.mdc-layout-grid:first-child {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.empowerment-landing-row .row-heading {
+  margin: 80px;
+}
+
+.empowerment-landing-row .row-heading:first-child {
+  padding-bottom: 40px;
+}
+
 .gdgbaguio-community-banner {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gdgbaguio-community-banner .mdc-layout-grid__inner {
+  padding: 100px 40px;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), transparent);
+}
+.background-row-connect {
   background-image: url('https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/6.jpg');
-  height: 500px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
-.gdgbaguio-community-banner2 {
+.background-row-learn {
   background-image: url('https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/1.jpg');
-  height: 500px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
-.gdgbaguio-community-banner3 {
+.background-row-grow {
   background-image: url('https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/9.jpg');
-  height: 500px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
+

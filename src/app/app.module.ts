@@ -11,10 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { HomeModule } from './site/home.module';
 // Components
 import { AppComponent } from './app.component';
+import { TopBarModule } from './common-components/top-bar/top-bar.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
     ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     ConfigModule,
     FormsModule,
+    TopBarModule,
     HomeModule
   ],
   bootstrap: [AppComponent]

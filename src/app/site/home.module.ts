@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home.component';
 
-import { TopBarModule } from '../common-components/top-bar/top-bar.module';
 import { LoginModule } from '../admin/login/login.module';
 import { MeetupDashboardModule } from '../admin/dashboard/events/main.module';
 import { CommunityModule } from './community/community.module';
@@ -18,7 +17,6 @@ import { Error400Module } from './error404/error400.module';
   ],
   imports: [
     CommonModule,
-    TopBarModule,
     LoginModule,
     MeetupDashboardModule,
     CommunityModule,
