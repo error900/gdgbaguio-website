@@ -9,7 +9,7 @@ import { MDCTextField } from '@material/textfield';
 import { MDCRipple } from '@material/ripple';
 
 @Component({
-  selector: 'app-login',
+  selector: 'site-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.auth.user$ != null) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/meetup-events']);
     } else {
       this.router.navigate(['/login']);
     }

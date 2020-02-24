@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from '../../app-routing.module';
+import { TopBarModule } from 'src/app/common-components/top-bar/top-bar.module';
 import { Error404Component } from './error404.component';
 
 @NgModule({
@@ -10,7 +11,8 @@ import { Error404Component } from './error404.component';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    RouterModule,
+    TopBarModule
   ],
   exports: [
     Error404Component

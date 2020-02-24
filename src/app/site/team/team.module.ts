@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from '../../app-routing.module';
 import { FormsModule } from '@angular/forms';
 
+import { TopBarModule } from 'src/app/common-components/top-bar/top-bar.module';
 import { TeamComponent } from './team.component';
 import { CreateUserComponent } from '../../user/create-user/create-user.component';
 import { DetailsComponent } from '../../user/details/details.component';
@@ -19,9 +17,8 @@ import { ListUserComponent } from '../../user/list-user/list-user.component';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
+    FormsModule,
+    TopBarModule
   ],
   exports: [
     TeamComponent

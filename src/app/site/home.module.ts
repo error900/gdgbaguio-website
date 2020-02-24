@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeComponent } from './home.component';
-
+import { TopBarModule } from '../common-components/top-bar/top-bar.module';
 import { LoginModule } from '../admin/login/login.module';
 import { MeetupDashboardModule } from '../admin/dashboard/events/main.module';
 import { CommunityModule } from './community/community.module';
@@ -11,12 +10,15 @@ import { EventDetailsModule } from './events/event-details/event-details.module'
 import { TeamModule } from './team/team.module';
 import { Error400Module } from './error404/error400.module';
 
+import { HomeComponent } from './home.component';
+
 @NgModule({
   declarations: [
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
+    TopBarModule,
     LoginModule,
     MeetupDashboardModule,
     CommunityModule,
@@ -26,7 +28,7 @@ import { Error400Module } from './error404/error400.module';
     Error400Module
   ],
   exports: [
-    HomeComponent,
+    HomeComponent
   ]
 })
 export class HomeModule { }

@@ -24,25 +24,97 @@
   // flex: 1;
 }
 
-.demo {
-  &__title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 18px;
-    white-space: nowrap;
-  }
+// .demo {
+//   &__title {
+//     display: flex;
+//     align-items: center;
+//     margin-bottom: 10px;
+//     font-size: 18px;
+//     white-space: nowrap;
+//   }
 
-  &__title-icon {
-    padding-left: .75rem;
-  }
+//   &__title-icon {
+//     padding-left: .75rem;
+//   }
 
-  &__subtitle {
-    color: #888;
-    font-size: 1rem;
-  }
-}
+//   &__subtitle {
+//     color: #888;
+//     font-size: 1rem;
+//   }
+// }
 
 .dashboard-row {
   padding: 40px 40px;
+}
+
+.event-numbers-chips {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  .mdc-chip {
+    margin-left: 5px;
+  }
+}
+
+.event-numbers-chips {
+  .rsvp-count-chip {
+    background: #E91E63;
+  }
+
+  .waitlist-count-chip {
+    background: #607D8B;
+  }
+
+  .limit-count-chip {
+    background: #9E9E9E;
+  }
+
+  .mdc-chip {
+    .mdc-chip__text {
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+}
+
+.event-chip {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.event-chip {
+  left: 10px;
+}
+
+// .rsvp-count-chip {
+//   right: 10px;
+// }
+
+// .waitlist-count-chip {
+//   right: 20px;
+// }
+
+// .limit-count-chip {
+//   right: 30px;
+// }
+
+.rsvp-search-bar {
+  width: 100%;
+}
+
+.rsvp-list {
+  overflow-y: auto;
+  height: 350px;
+}
+
+.rsvp-avatar {
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  align-self: center;
 }

@@ -5,11 +5,12 @@ import { catchError, retry } from 'rxjs/operators';
 
 import { meetupApiURL, conf } from '../config/meetup-api-url';
 import {
-  siteOngoingUpcomingMeetupEvent,
-  siteRecentMeetupEvent,
-  sitePastMeetupEvent,
-  dashboardDraftMeetupEvent,
-  siteMeetupEventInfo
+  plannedEvent,
+  recentEvent,
+  pastEvent,
+  draftEvent,
+  eventInfo,
+  memberRSVP
 } from '../model/events.model';
 
 import { MeetupAuthService } from './meetup-auth.service';
@@ -26,7 +27,7 @@ const httpOptions = {
 })
 export class MeetupService {
   oauthResponse: MeetupAuthService;
-  access_token = '&access_token=a4c8f42439806d48f874ebe10908f1c2&';
+  access_token = '&access_token=bfe2bcd58e13abcbfbeb4999f8053083&';
 
   constructor(private http: HttpClient) { }
 
@@ -40,45 +41,53 @@ export class MeetupService {
 
   // GET
 
-  siteOngoingAndUpcomingMeetupEvents(): Observable<siteOngoingUpcomingMeetupEvent[]> {
-    return this.http.get<siteOngoingUpcomingMeetupEvent[]>(meetupApiURL.eventOngoingUpcoming)
+  sitePlannedMeetupEvents(): Observable<plannedEvent[]> {
+    return this.http.get<plannedEvent[]>(meetupApiURL.eventOngoingUpcoming)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  siteRecentMeetupEvents(): Observable<siteRecentMeetupEvent[]> {
-    return this.http.get<siteRecentMeetupEvent[]>(meetupApiURL.eventRecent)
+  siteRecentMeetupEvents(): Observable<recentEvent[]> {
+    return this.http.get<recentEvent[]>(meetupApiURL.eventRecent)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  sitePastMeetupEvents(): Observable<sitePastMeetupEvent[]> {
+  sitePastMeetupEvents(): Observable<pastEvent[]> {
     const datetime = this.getDate();
-    return this.http.get<sitePastMeetupEvent[]>(meetupApiURL.websitePastEvents + datetime)
+    return this.http.get<pastEvent[]>(meetupApiURL.pastEvents + datetime)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+  
+  siteMeetupEventDetails(event_id: string): Observable<eventInfo> {
+    return this.http.get<eventInfo>(conf.event + '/' + event_id + meetupApiURL.eventDetailsParams + this.access_token)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  dashboardDraftMeetupEvents(): Observable<dashboardDraftMeetupEvent[]> {
-    return this.http.get<dashboardDraftMeetupEvent[]>(meetupApiURL.eventDraft + this.access_token)
+  dashboardDraftMeetupEvents(): Observable<draftEvent[]> {
+    return this.http.get<draftEvent[]>(meetupApiURL.eventDraft + this.access_token)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  siteMeetupEventDetails(event_id: string): Observable<siteMeetupEventInfo> {
-    return this.http.get<siteMeetupEventInfo>(conf.event + '/' + event_id + meetupApiURL.eventDetailsParams + this.access_token)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
+  meetupRSVP(event_id: string): Observable<memberRSVP[]> {
+    return this.http.get<memberRSVP[]>(conf.event + '/' + event_id + meetupApiURL.memberRSVP)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
   }
 
   // POST

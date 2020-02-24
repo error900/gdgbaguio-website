@@ -7,15 +7,243 @@
   <!-- Content -->
   <div class="mdc-layout-grid dashboard-row mdc-drawer-app-content main-content">
     <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
-        <ongoing-event-card></ongoing-event-card>
+      <!-- ONGOING EVENT -->
+      <ng-container *ngIf="ongoingEvents_count || ongoingEvents_count!=0">
+        <div *ngFor="let ongoingEvent of ongoingEvents" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+          <div class="mdc-card basic-with-text-over-media">
+            <div class="mdc-card__primary-action card__primary-action" tabindex="0">
+              <div class="mdc-card__media mdc-card__media--16-9 card__media meetup-card-background">
+                <div class="mdc-card__media-content card__media-content">
+                  <div class="card__primary">
+                    <h2 class="card__title mdc-typography mdc-typography--headline6 meetup-card-event-title">
+                      Ongoing event name</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card__secondary mdc-typography mdc-typography--body2">{{ongoingEvent.local_date}}</div>
+              <div class="mdc-chip event-chip" role="row">
+                <div class="mdc-chip__ripple"></div>
+                <span role="gridcell">
+                  <span role="button" tabindex="0" class="mdc-chip__text">Ongoing</span>
+                </span>
+              </div>
+              <div class="event-numbers-chips">
+                <div class="mdc-chip rsvp-count-chip" role="row">
+                  <div class="mdc-chip__ripple"></div>
+                  <span role="gridcell">
+                    <span role="button" tabindex="0" class="mdc-chip__text">{{ongoingEvent.yes_rsvp_count}}</span>
+                  </span>
+                </div>
+                <div class="mdc-chip waitlist-count-chip" role="row">
+                  <div class="mdc-chip__ripple"></div>
+                  <span role="gridcell">
+                    <span role="button" tabindex="0" class="mdc-chip__text">{{ongoingEvent.waitlist_count}}</span>
+                  </span>
+                </div>
+                <div class="mdc-chip limit-count-chip" role="row">
+                  <div class="mdc-chip__ripple"></div>
+                  <span role="gridcell">
+                    <span role="button" tabindex="0" class="mdc-chip__text">{{ongoingEvent.rsvp_limit}}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="mdc-card__actions">
+              <div class="mdc-card__action-buttons">
+                <button class="mdc-button mdc-card__action--button mdc-button--unelevated"> <span
+                    class="mdc-button__ripple"></span> Attendance
+                  taking</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!ongoingEvents_count || ongoingEvents_count==0">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+          <div class="mdc-card basic-with-text-over-media">
+            <div class="mdc-card__primary-action card__primary-action" tabindex="0">
+              <div class="mdc-card__media mdc-card__media--16-9 card__media meetup-loading">
+                <div class="mdc-card__media-content card__media-content">
+                  <div class="card__primary">
+                    <h2 class="card__title mdc-typography mdc-typography--headline6">
+                      Nothing planned for today</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card__secondary mdc-typography mdc-typography--body2">Try creating a new event</div>
+            </div>
+            <div class="mdc-card__actions">
+              <div class="mdc-card__action-buttons">
+                <button class="mdc-button mdc-card__action--button mdc-button--unelevated"> <span
+                    class="mdc-button__ripple"></span>
+                  Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- ONGOING EVENT -->
+
+      <!-- UPCOMING EVENT -->
+      <ng-container *ngIf="upcomingEvents_count || upcomingEvents_count!=0">
+        <div *ngFor="let upcomingEvent of upcomingEvents" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+          <div class="mdc-card basic-with-text-over-media">
+            <div class="mdc-card__primary-action card__primary-action" tabindex="0">
+              <div class="mdc-card__media mdc-card__media--16-9 card__media event-featured-photo"
+                [ngStyle]="{'background-image': 'url(' + upcomingEvent.featured_photo.highres_link + ')'}">
+                <div class="mdc-card__media-content card__media-content">
+                  <div class="card__primary">
+                    <h2 class="card__title mdc-typography mdc-typography--headline6 meetup-card-event-title">
+                      {{upcomingEvent.name}}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card__secondary mdc-typography mdc-typography--body2">{{upcomingEvent.local_date}}</div>
+              <div class="mdc-chip event-chip" role="row">
+                <div class="mdc-chip__ripple"></div>
+                <span role="gridcell">
+                  <span role="button" tabindex="0" class="mdc-chip__text">Upcoming</span>
+                </span>
+              </div>
+              <div class="event-numbers-chips">
+                <div class="mdc-chip rsvp-count-chip" role="row">
+                  <div class="mdc-chip__ripple"></div>
+                  <span role="gridcell">
+                    <span role="button" tabindex="0" class="mdc-chip__text">{{upcomingEvent.yes_rsvp_count}}</span>
+                  </span>
+                </div>
+                <div class="mdc-chip waitlist-count-chip" role="row">
+                  <div class="mdc-chip__ripple"></div>
+                  <span role="gridcell">
+                    <span role="button" tabindex="0" class="mdc-chip__text">{{upcomingEvent.waitlist_count}}</span>
+                  </span>
+                </div>
+                <div class="mdc-chip limit-count-chip" role="row">
+                  <div class="mdc-chip__ripple"></div>
+                  <span role="gridcell">
+                    <span role="button" tabindex="0" class="mdc-chip__text">{{upcomingEvent.rsvp_limit}}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="mdc-card__actions">
+              <div class="mdc-card__action-buttons">
+                <button class="mdc-button mdc-card__action--button"> <span class="mdc-button__ripple"></span>
+                  Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!upcomingEvents_count || upcomingEvents_count==0">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+          <div class="mdc-card basic-with-text-over-media">
+            <div class="mdc-card__primary-action card__primary-action" tabindex="0">
+              <div class="mdc-card__media mdc-card__media--16-9 card__media meetup-loading">
+                <div class="mdc-card__media-content card__media-content">
+                  <div class="card__primary">
+                    <h2 class="card__title mdc-typography mdc-typography--headline6">
+                      Nothing published</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card__secondary mdc-typography mdc-typography--body2">Try publishing a drafted event</div>
+            </div>
+            <div class="mdc-card__actions">
+              <div class="mdc-card__action-buttons">
+                <button class="mdc-button mdc-card__action--button" disabled> <span class="mdc-button__ripple"></span>
+                  Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- UPCOMING EVENT -->
+
+      <!-- EVENT DRAFT -->
+      <ng-container *ngIf="draftEvents_count || draftEvents_count!=0">
+        <div *ngFor="let draftEvent of draftEvents" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+          <div class="mdc-card basic-with-text-over-media">
+            <div class="mdc-card__primary-action card__primary-action" tabindex="0">
+              <div class="mdc-card__media mdc-card__media--16-9 card__media meetup-card-background">
+                <div class="mdc-card__media-content card__media-content">
+                  <div class="card__primary">
+                    <h2 class="card__title mdc-typography mdc-typography--headline6 meetup-card-event-title">
+                      {{draftEvent.name}}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card__secondary mdc-typography mdc-typography--body2">
+                {{draftEvent.local_date}}
+              </div>
+              <div class="mdc-chip event-chip" role="row">
+                <div class="mdc-chip__ripple"></div>
+                <span role="gridcell">
+                  <span role="button" tabindex="0" class="mdc-chip__text">Draft</span>
+                </span>
+              </div>
+            </div>
+            <div class="mdc-card__actions">
+              <div class="mdc-card__action-buttons">
+                <button id="draft-view-button" class="mdc-button mdc-card__action--button"> <span
+                    class="mdc-button__ripple"></span>
+                  Edit</button>
+                <button class="mdc-button mdc-card__action--button mdc-button--unelevated"> <span
+                    class="mdc-button__ripple"></span>
+                  Publish</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!draftEvents_count || draftEvents_count==0">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+          <div class="mdc-card basic-with-text-over-media">
+            <div class="mdc-card__primary-action card__primary-action" tabindex="0">
+              <div class="mdc-card__media mdc-card__media--16-9 card__media meetup-loading">
+                <div class="mdc-card__media-content card__media-content">
+                  <div class="card__primary">
+                    <h2 class="card__title mdc-typography mdc-typography--headline6">
+                      Nothing drafted</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card__secondary mdc-typography mdc-typography--body2">
+                Try creating a new event
+              </div>
+            </div>
+            <div class="mdc-card__actions">
+              <button class="mdc-button mdc-card__action--button mdc-button--unelevated"> <span
+                  class="mdc-button__ripple"></span>
+                Create</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <div id="draft-view-dialog" class="mdc-dialog" role="alertdialog" aria-modal="true"
+        aria-labelledby="my-dialog-title" aria-describedby="my-dialog-content">
+        <div class="mdc-dialog__container">
+          <div class="mdc-dialog__surface">
+            <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+            <h2 class="mdc-dialog__title" id="my-dialog-title">Dialog Title</h2>
+            <div class="mdc-dialog__content" id="my-dialog-content">
+              Dialog body text goes here.
+            </div>
+            <footer class="mdc-dialog__actions">
+              <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
+                <span class="mdc-button__label">No</span>
+              </button>
+              <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+                <span class="mdc-button__label">Yes</span>
+              </button>
+            </footer>
+          </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
-        <upcoming-event-card></upcoming-event-card>
-      </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
-        <draft-event-card></draft-event-card>
-      </div>
+      <!-- EVENT DRAFT -->
+
     </div>
   </div>
 </div>

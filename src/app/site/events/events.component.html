@@ -1,20 +1,38 @@
-<section class="landing-row events-landing-row">
+<site-top-bar></site-top-bar>
+<section class="landing-row events-landing-row background-grey">
   <div *ngIf="ongoingAndUpcmingEvents_count || ongoingAndUpcmingEvents_count!=0" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Upcoming events</h1>
     </div>
-    <div *ngFor="let ongoingAndUpcomingEvent of ongoingAndUpcomingEvents" class="mdc-layout-grid__inner">
+    <div *ngFor="let plannedEvent of plannedEvents" class="mdc-layout-grid__inner">
 
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-        <img src="https://secure.meetupstatic.com/photos/event/c/6/6/2/highres_468830786.jpeg" alt="">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
+        <img src="{{plannedEvent.featured_photo.highres_link}}" alt="featured photo">
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
-        <h1 class="mdc-typography--headline5"><a href="">{{ongoingAndUpcomingEvent.name}}</a></h1>
-        <p><i class="material-icons" aria-hidden="true">calendar_today</i>{{ongoingAndUpcomingEvent.local_date}} <i
-            class="material-icons" aria-hidden="true">location_on</i> {{ongoingAndUpcomingEvent.venue.address_1}},
-          {{ongoingAndUpcomingEvent.venue.city}}
-        </p>
-        <div>{{ongoingAndUpcomingEvent.description}}</div> calendar_today
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7">
+        <h1 class="mdc-typography--headline5"><a
+            href="events/{{plannedEvent.id}}">{{plannedEvent.name}}</a></h1>
+        <div class="location">
+          <i class="material-icons mdc-button__icon">location_on</i>
+          <div>
+            <span>{{plannedEvent.venue.name}}</span> <br>
+            <span>{{plannedEvent.venue.address_1}} {{plannedEvent.venue.city}},
+              {{plannedEvent.venue.localized_country_name}}</span>
+          </div>
+        </div>
+        <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
+          <span>{{plannedEvent.local_date}}</span></div>
+        <div class="event-description" [innerHTML]="plannedEvent.description"></div>
+        <div class="meetup-event-link">
+          <a href="{{plannedEvent.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Register now</a>
+          <a href="{{plannedEvent.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Request an invitation</a>
+          <a href="events/{{plannedEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
+              more</span></a>
+        </div>
       </div>
     </div>
   </div>
@@ -32,7 +50,7 @@
       <h1 class="mdc-typography--headline4 row-heading">Recent events</h1>
     </div>
     <div class="mdc-layout-grid__inner">
-      <div *ngFor="let recentEvent of recentEvents" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
+      <div *ngFor="let recentEvent of recentEvents" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
         <div class="mdc-card">
           <div class="mdc-card__primary-action" tabindex="0">
             <div class="mdc-card__media mdc-card__media--16-9 meetup-card-background">
@@ -51,8 +69,8 @@
             <div class="mdc-card__action-buttons">
               <a href="events/{{recentEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button"> <span
                   class="mdc-button__ripple"></span>
-                <i class="material-icons mdc-button__icon">more_horiz</i> <span
-                  class="mdc-button__label">Read more</span></a>
+                <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
+                  more</span></a>
             </div>
           </div>
         </div>

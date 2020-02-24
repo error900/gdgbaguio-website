@@ -235,8 +235,19 @@ footer a {
 /* Buttons */
 
 .mdc-button {
+  padding: 0 24px;
   @include mdc-theme-prop(background-color, $mdc-theme-primary);
   @include mdc-theme-prop(color, $mdc-theme-on-primary);
+}
+
+.mdc-card__action--button {
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+.publish-icon-button {
+  @include mdc-theme-prop(background-color, $mdc-theme-secondary);
+  @include mdc-theme-prop(color, $mdc-theme-on-secondary);
 }
 
 /* Text Fields */
@@ -247,13 +258,22 @@ footer a {
 
 /* Cards */
 
+.event-featured-photo {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .meetup-card-background {
   background-image: url('https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg');
   background-size: 150px;
   background-position-y: 38%;
 }
 
-.meetup-card-draft-ongoing-title {
+.meetup-card-event-title {
+  background: #3F51B5;
+  color: #fff !important;
+  padding: 5px 15px;
   font-size: 18px;
   text-transform: uppercase;
 }

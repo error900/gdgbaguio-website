@@ -31,4 +31,60 @@
   max-height: 120px;
   overflow: hidden;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.03), transparent);
+  border-bottom: 1px solid #dadce0;
+}
+
+.meetup-event-link {
+  margin: 20px 0;
+}
+
+.meetup-event-link>a {
+  margin-right: 5px;
+}
+
+.event-date,
+.location {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.event-date>i {
+  font-size: 18px;
+  margin: 0 11px;
+}
+
+.location>i {
+  font-size: 22px;
+  margin: 0 9px;
+}
+
+.event-description {
+  margin-top: 10px;
+
+  p {
+    margin-bottom: 8px !important;
+  }
+}
+
+.coorganizer {}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-photo {
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.member-name {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+  text-align: center;
 }

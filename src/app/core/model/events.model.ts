@@ -5,9 +5,9 @@ export class GDGBaguioEvent {
   upcoming: boolean;
 }
 
-// PUBLIC
+// MEETUP
 
-export interface siteOngoingUpcomingMeetupEvent {
+export interface plannedEvent {
   id: string,
   name: string,
   status: string,
@@ -15,16 +15,20 @@ export interface siteOngoingUpcomingMeetupEvent {
   local_time: string,
   waitlist_count: number,
   yes_rsvp_count: number,
+  link: string,
   venue: {
     name: string,
     address_1: string,
     city: string,
     localized_country_name: string
   },
-  description: string
+  description: string,
+  featured_photo: {
+    highres_link: string
+  }
 }
 
-export interface siteRecentMeetupEvent {
+export interface recentEvent {
   id: string,
   name: string,
   local_date: string,
@@ -37,7 +41,7 @@ export interface siteRecentMeetupEvent {
   }
 }
 
-export interface sitePastMeetupEvent {
+export interface pastEvent {
   id: string,
   name: string,
   rsvp_limit: number,
@@ -52,10 +56,11 @@ export interface sitePastMeetupEvent {
   manual_attendance_count: number
 }
 
-export interface siteMeetupEventInfo {
+export interface eventInfo {
   id: string;
   name: string;
   rsvp_limit: number;
+  status: string;
   local_date: string;
   waitlist_count: number;
   yes_rsvp_count: number;
@@ -68,23 +73,18 @@ export interface siteMeetupEventInfo {
   link: string;
   manual_attendance_count: number;
   description: string;
+  featured_photo: {
+    highres_link: string;
+  };
   event_hosts: {
     name: string;
     photo: {
       thumb_link: string;
     };
   }[];
-
 }
 
-// ADMIN DASHBOARD
-
-export interface dashboardOngoingUpcomingMeetupEvent {
-  id: string,
-  name: string
-}
-
-export interface dashboardDraftMeetupEvent {
+export interface draftEvent {
   id: string,
   created: number,
   duration: number,
@@ -100,4 +100,20 @@ export interface dashboardDraftMeetupEvent {
     city: string
   },
   description
+}
+
+export interface memberRSVP {
+  member: {
+    id: string,
+    name: string,
+    photo: {
+      photo_link: string
+    }
+  },
+  status: string
+}
+
+export interface memberAttendance {
+  id: string,
+
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { TopBarComponent } from './top-bar.component';
 
 @NgModule({
@@ -10,7 +10,7 @@ import { TopBarComponent } from './top-bar.component';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    RouterModule
   ],
   exports: [
     TopBarComponent

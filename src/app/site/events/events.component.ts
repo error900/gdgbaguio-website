@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MeetupService } from '../../core/services/meetup.service';
-import { siteOngoingUpcomingMeetupEvent, siteRecentMeetupEvent, sitePastMeetupEvent } from '../../core/model/events.model';
+import { plannedEvent, recentEvent, pastEvent } from '../../core/model/events.model';
 import { meetupApiURL } from 'src/app/core/config/meetup-api-url';
 
 @Component({
-  selector: 'app-events',
+  selector: 'site-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
   providers: [MeetupService]
 })
 export class EventsComponent implements OnInit {
-  ongoingAndUpcomingEvents: siteOngoingUpcomingMeetupEvent[];
-  recentEvents: siteRecentMeetupEvent[];
-  pastEvents: sitePastMeetupEvent[];
+  plannedEvents: plannedEvent[];
+  recentEvents: recentEvent[];
+  pastEvents: pastEvent[];
   ongoingAndUpcmingEvents_count = 0;
   recentEvents_count = 0;
   pastEvents_count = 0;
@@ -29,12 +29,12 @@ export class EventsComponent implements OnInit {
   }
 
   getOngoingAndUpcomingGDGEvents(): void {
-    this.meetupService.siteOngoingAndUpcomingMeetupEvents()
+    this.meetupService.sitePlannedMeetupEvents()
       .subscribe(
         ongoingAndUpcmingEvents => (
-          this.ongoingAndUpcomingEvents = ongoingAndUpcmingEvents,
+          this.plannedEvents = ongoingAndUpcmingEvents,
           this.ongoingAndUpcmingEvents_count = ongoingAndUpcmingEvents.length,
-          console.log(this.ongoingAndUpcomingEvents)
+          console.log(this.plannedEvents)
         )
       );
   }

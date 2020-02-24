@@ -9,43 +9,44 @@
     <section class="dashboard-row">
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
-          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
-            RÉPONDEZ S’IL VOUS PLAÎT</div>
-          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
-            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon">
-              <i class="material-icons mdc-text-field__icon">search</i>
-              <input class="mdc-text-field__input" id="text-field-hero-input">
-              <div class="mdc-notched-outline">
-                <div class="mdc-notched-outline__leading"></div>
-                <div class="mdc-notched-outline__notch">
-                  <label for="text-field-hero-input" class="mdc-floating-label">Search</label>
+          <ng-container *ngIf="rsvp_count || rsvp_count!=0">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+              <h1 class="mdc-typography--headline5 row-heading text-align-center">RÉPONDEZ S’IL VOUS PLAÎT (RSVP)</h1>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+              <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon rsvp-search-bar">
+                <i class="material-icons mdc-text-field__icon">search</i>
+                <input class="mdc-text-field__input" id="text-field-hero-input">
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="text-field-hero-input" class="mdc-floating-label">Search</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
                 </div>
-                <div class="mdc-notched-outline__trailing"></div>
               </div>
             </div>
-          </div>
-          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
-            <ul class="mdc-list mdc-list--two-line">
-              <li class="mdc-list-item" tabindex="0">
-                <span class="mdc-list-item__text">
-                  <span class="mdc-list-item__primary-text">Two-line item</span>
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
-                </span>
-              </li>
-              <li class="mdc-list-item">
-                <span class="mdc-list-item__text">
-                  <span class="mdc-list-item__primary-text">Two-line item</span>
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
-                </span>
-              </li>
-              <li class="mdc-list-item">
-                <span class="mdc-list-item__text">
-                  <span class="mdc-list-item__primary-text">Two-line item</span>
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
-                </span>
-              </li>
-            </ul>
-          </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+              <ul class="mdc-list mdc-list--two-line rsvp-list">
+                <li *ngFor="let rsvp of rsvps" class="mdc-list-item" tabindex="0">
+                  <span class="mdc-list-item__graphic rsvp-avatar" aria-hidden="true" [ngStyle]="{'background-image': 'url(' + rsvp.member.photo.photo_link + ')'}">
+                  </span>
+                  <span class="mdc-list-item__text">
+                    <span class="mdc-list-item__primary-text">{{rsvp.member.name}}</span>
+                    <span class="mdc-list-item__secondary-text">{{rsvp.status}}</span>
+                  </span>
+                  <span class="mdc-list-item__meta material-icons" aria-hidden="true">info</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit veritatis sapiente quis incidunt
+              expedita magnam temporibus tenetur error architecto nobis non quod in quae, nemo quos eligendi quo earum
+              quisquam?
+            </div>
+
+          </ng-container>
+
         </div>
       </div>
     </section>
