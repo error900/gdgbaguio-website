@@ -81,8 +81,8 @@ export class EventsComponent implements OnInit {
           this.pastEvents[5].venue = venue.bsu,
           this.pastEvents[7].venue = venue.slu,
           this.pastEvents[8].venue = venue.slu,
-          this.pastEvents.reverse()
-          // console.log(this.pastEvents)
+          this.pastEvents.reverse(),
+          console.log(this.pastEvents)
         )
       );
   }

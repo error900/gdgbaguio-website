@@ -34,7 +34,7 @@
         <div *ngIf="auth.user$ | async as user"></div>
         <div class="button-container">
           <!-- <ng-template #login> -->
-          <button id="google-signin-button" class="mdc-button mdc-button--outlined" (click)="auth.googleLogin()">
+          <button id="google-signin-button" (click)=auth.googleAdminLogin() class="mdc-button mdc-button--outlined">
             <span class="mdc-button__ripple"></span> Sign in with google</button>
           <!-- </ng-template> -->
         </div>

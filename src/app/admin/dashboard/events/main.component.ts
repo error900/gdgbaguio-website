@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { EventsService } from '../../../core/services/events.service';
 import { MeetupService } from '../../../core/services/meetup.service';
-import { GDGBaguioEvent, draftEvent, plannedEvent } from 'src/app/core/model/events.model';
+import { draftEvent, plannedEvent, FirebaseEvent, FirebaseEventDocumentI, FirebaseEventDocument } from 'src/app/core/model/events.model';
 
 import { MDCDialog } from '@material/dialog';
 
@@ -15,7 +15,7 @@ import { MDCDialog } from '@material/dialog';
 })
 export class EventsDashboardComponent implements OnInit {
   events: any;
-  event: GDGBaguioEvent = new GDGBaguioEvent();
+  event: FirebaseEvent = new FirebaseEvent();
   eventSubmitted = false;
 
   plannedEvents: plannedEvent[];
@@ -27,28 +27,31 @@ export class EventsDashboardComponent implements OnInit {
   upcomingEvents_count = 0;
   draftEvents_count = 0;
 
-  // constructor(public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService) { }
-  constructor(public meetupService: MeetupService, private eventService: EventsService) {
+  meetupEvents: FirebaseEventDocumentI[];
+
+  constructor(public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService) {
+  // constructor(public meetupService: MeetupService, private eventService: EventsService) {
   }
 
   ngOnInit() {
     // MEETUP
     this.getPlannedEvents();
     this.getDratGDGEvents();
+    this.getFirebaseEvents();
     console.log(this.meetupService.attendanceTaking(0, 0, 'status'));
 
-    const dialog = new MDCDialog(document.querySelector('#draft-view-dialog'));
-    // const list = new MDCList(document.querySelector('.#draft-view-dialog .mdc-list'));
+    // const dialog = new MDCDialog(document.querySelector('#draft-view-dialog'));
+    // // const list = new MDCList(document.querySelector('.#draft-view-dialog .mdc-list'));
 
-    dialog.listen('MDCDialog:opened', () => {
-      // list.layout();
-    });
+    // dialog.listen('MDCDialog:opened', () => {
+    //   // list.layout();
+    // });
 
-    const buttonEl2 = document.querySelector('#draft-view-button');
-    buttonEl2.addEventListener('click', (event) => {
-      dialog.open();
-      console.log('DRAFT BUTTON');
-    });
+    // const buttonEl2 = document.querySelector('#draft-view-button');
+    // buttonEl2.addEventListener('click', (event) => {
+    //   dialog.open();
+    //   console.log('DRAFT BUTTON');
+    // });
 
   }
 
@@ -108,30 +111,92 @@ export class EventsDashboardComponent implements OnInit {
       );
   }
 
+  getFirebaseEvents() {
+    let venue = {
+      slu: {
+        name: 'Saint Louis University',
+        address_1: 'Mary Heights, Bakakeng, Baguio City',
+        city: 'Baguio City'
+      },
+      uc: {
+        name: 'University of the Cordilleras',
+        address_1: 'University of the Cordilleras, Baguio City',
+        city: 'Baguio City'
+      },
+      ub: {
+        name: 'University of Baguio',
+        address_1: 'University of Baguio, Baguio City',
+        city: 'Baguio City'
+      },
+      bsu: {
+        name: 'Benguet State University',
+        address_1: 'La Trinidad, Benguet',
+        city: 'Baguio City'
+      }
+    }
+
+    this.meetupService.meetupEvent()
+      .subscribe(
+        meetupEvents => (
+          this.meetupEvents = meetupEvents,
+          // FIX events with NO locations
+          // this.meetupEvents.reverse(),
+          // this.meetupEvents[0].venue = venue.uc,
+          // this.meetupEvents[3].venue = venue.ub,
+          // this.meetupEvents[5].venue = venue.bsu,
+          // this.meetupEvents[7].venue = venue.slu,
+          // this.meetupEvents[8].venue = venue.slu,
+          // this.meetupEvents.reverse(),
+          this.meetupEvents = this.getMeetupEvents(this.meetupEvents),
+          console.log('FINAL', this.meetupEvents)
+        )
+      );
+  }
 
 
   // FIREBASE
 
-  getEvents() {
-    this.eventService.getEvents().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(events => {
-      this.events = events;
-    });
+  getMeetupEvents(arr: FirebaseEventDocumentI[]) {
+    let featured_photo_placeholder = { highres_link: 'https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg' }
+    let finalEvents = [];
+    var obj = {} as FirebaseEventDocument;
+    for (let index = 0; index < arr.length; index++) {
+      obj = arr[index];
+      // if (!obj.hasOwnProperty('featured_photo')) {
+      //   obj.featured_photo = featured_photo_placeholder
+      // }
+      if (!obj.hasOwnProperty('manual_attendance_count')) {
+        obj.manual_attendance_count = 0;
+      }
+      if (!obj.hasOwnProperty('description')) {
+        obj.description = 'No description';
+      }
+      finalEvents.push(obj);
+      // this.eventService.createEvent(obj);
+    }
+    return finalEvents;
   }
+
+  // getEvents() {
+  //   this.eventService.getEvents().snapshotChanges().pipe(
+  //     map(changes =>
+  //       changes.map(c =>
+  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+  //       )
+  //     )
+  //   ).subscribe(events => {
+  //     this.events = events;
+  //   });
+  // }
 
   newEvent(): void {
     this.eventSubmitted = false;
-    this.event = new GDGBaguioEvent();
+    this.event = new FirebaseEvent();
   }
 
   saveEvent() {
     this.eventService.createEvent(this.event);
-    this.event = new GDGBaguioEvent();
+    this.event = new FirebaseEvent();
   }
 
   onEventSubmit() {

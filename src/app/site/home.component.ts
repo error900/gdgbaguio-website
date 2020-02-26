@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
 @Component({
   selector: 'site-home',
   templateUrl: './home.component.html',
@@ -24,8 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   public sanitizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);

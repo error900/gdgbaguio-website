@@ -108,15 +108,27 @@
       </div>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-      <button class="mdc-button"> <span class="mdc-button__ripple"></span> Sign in</button>
+      <div *ngIf="auth.user$ | async as user; else showSignInButton">
+        <button id="account-button"
+          class="mdc-icon-button mdc-icon-button--on google-account-icon-button mdc-top-app-bar__action-item--unbounded"
+          aria-label="Google account" aria-pressed="true">
+          <img src="{{user.photoURL}}" class="mdc-icon-button__icon" />
+          <img src="{{user.photoURL}}" class="mdc-icon-button__icon mdc-icon-button__icon--on" />
+        </button>
+      </div>
+      <ng-template #showSignInButton>
+        <button class="mdc-button" (click)=auth.googleLogin()> <span class="mdc-button__ripple"></span> Sign in</button>
+      </ng-template>
+
       <div class="mdc-menu-surface--anchor">
-        <button id="apps-menu-surface-button"
-          class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Account photo"
-          data-mdc-ripple-is-unbounded="true"></button>
-        <div id="apps-mdc-menu" class="mdc-menu mdc-menu-surface">
+        <div id="account-mdc-menu" class="mdc-menu mdc-menu-surface">
           <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
             <li class="mdc-list-item" role="menuitem">
-              <span [routerLink]="['/login']" class="mdc-list-item__text">meetup</span>
+              <span [routerLink]="['/dashboard/meetup-events']" class="mdc-list-item__text">Meeup</span>
+            </li>
+            <li class="mdc-list-item" role="menuitem">
+              <button id="signout-button" class="mdc-button mdc-button--outlined" (click)="auth.signOut()">
+                <span class="mdc-button__ripple"></span> Sign out</button>
             </li>
           </ul>
         </div>

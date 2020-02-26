@@ -14,8 +14,8 @@ import { MDCDrawer } from '@material/drawer';
 })
 export class DashboardTopBarComponent implements OnInit {
 
-  // constructor(public auth: AuthenticationService) { }
-  constructor() { }
+  constructor(public auth: AuthenticationService) { }
+  // constructor() { }
 
   ngOnInit() {
     /** Initialize MDC Web components. */
@@ -53,6 +53,15 @@ export class DashboardTopBarComponent implements OnInit {
     // const list = [].map.call(document.querySelectorAll(list_selector), function (el) {
     //   return new MDCList(el);
     // });
+
+    const buttonEl2 = document.querySelector('#apps-menu-surface-button');
+    const menuEl2 = document.querySelector('#apps-mdc-menu');
+    const menu2 = new mdc.menu.MDCMenu(menuEl2);
+    buttonEl2.addEventListener('click', (event) => {    
+      menu2.open = !menu2.open;
+      menu2.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
+      menu2.setAnchorElement(buttonEl2);
+    });
 
     const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-list-item';
     const ripples = [].map.call(document.querySelectorAll(selector), function (el) {

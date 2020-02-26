@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -10,7 +10,8 @@ import {
   pastEvent,
   draftEvent,
   eventInfo,
-  memberRSVP
+  memberRSVP,
+  FirebaseEventInterface
 } from '../model/events.model';
 
 import { MeetupAuthService } from './meetup-auth.service';
@@ -59,7 +60,16 @@ export class MeetupService {
 
   sitePastMeetupEvents(): Observable<pastEvent[]> {
     const datetime = this.getDate();
-    return this.http.get<pastEvent[]>(meetupApiURL.pastEvents + datetime)
+    return this.http.get<pastEvent[]>(meetupApiURL.eventPast)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  meetupEvent(): Observable<FirebaseEventInterface[]> {
+    const datetime = this.getDate();
+    return this.http.get<FirebaseEventInterface[]>(conf.event + meetupApiURL.events + '&status=past')
       .pipe(
         retry(1),
         catchError(this.handleError)

@@ -250,6 +250,19 @@ footer a {
   @include mdc-theme-prop(color, $mdc-theme-on-secondary);
 }
 
+.google-account-icon-button {
+  padding: 4px;
+  height: 40px;
+  width: 40px;
+}
+
+.google-account-icon-button>img {
+  height: auto;
+  width: auto;
+  border-radius: 50%;
+}
+
+
 /* Text Fields */
 
 .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {

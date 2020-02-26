@@ -5,6 +5,75 @@ export class GDGBaguioEvent {
   upcoming: boolean;
 }
 
+export class FirebaseEvent {
+  id: string;
+  name: string;
+  rsvp_limit: number;
+  status: string;
+  local_date: string;
+  waitlist_count: number;
+  yes_rsvp_count: number;
+  venue: {
+    name: string;
+    address_1: string;
+    city: string;
+  };
+  link: string;
+  manual_attendance_count: number;
+  description: string;
+  featured_photo: {
+    highres_link: string;
+  };
+}
+
+export interface FirebaseEventDocument {
+  id: string;
+  name: string;
+  rsvp_limit: number;
+  status: string;
+  local_date: string;
+  waitlist_count: number;
+  yes_rsvp_count: number;
+  link: string;
+  manual_attendance_count: number;
+  description: string;
+}
+
+export interface FirebaseEventDocumentI {
+  id: string,
+  name: string,
+  rsvp_limit: number,
+  status: string,
+  local_date: string,
+  waitlist_count: number,
+  yes_rsvp_count: number,
+  link: string,
+  manual_attendance_count: number,
+  description: string,
+}
+
+
+export interface FirebaseEventInterface {
+  id: string,
+  name: string,
+  rsvp_limit: number,
+  status: string,
+  local_date: string,
+  waitlist_count: number,
+  yes_rsvp_count: number,
+  venue: {
+    name: string,
+    address_1: string,
+    city: string,
+  },
+  link: string,
+  manual_attendance_count: number,
+  description: string,
+  featured_photo: {
+    highres_link: string,
+  }
+}
+
 // MEETUP
 
 export interface plannedEvent {

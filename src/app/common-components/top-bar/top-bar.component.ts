@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+
 import * as mdc from 'material-components-web';
 import { MDCTopAppBar } from '@material/top-app-bar';
 import { MDCTextField } from '@material/textfield';
 import { MDCRipple } from '@material/ripple';
-
+import { $ } from 'protractor';
 
 @Component({
   selector: 'site-top-bar',
@@ -14,12 +16,12 @@ import { MDCRipple } from '@material/ripple';
 export class TopBarComponent implements OnInit {
   gdgbaguio_logo = '../../assets/images/gdgbaguio-logo.png';
 
-  constructor() { }
+  constructor(public auth: AuthenticationService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  initializeMDCcomponents() {
     /** Initialize MDC Web components. */
-
-
     // Instantiation
     const topAppBarElement = document.querySelector('#site-top-bar');
     const topAppBar = new MDCTopAppBar(topAppBarElement);
@@ -35,30 +37,19 @@ export class TopBarComponent implements OnInit {
       menu.setAnchorElement(communityLink);
     });
 
-    // communityLink.addEventListener('mouseout', (event) => {
-    //   menu.open = !menu.open;
-    // });
-    // communityLinkIcon.addEventListener('mouseenter', (event) => {
-    //   menu.open = !menu.open;
-    //   menu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
-    //   menu.setAnchorElement(communityLinkIcon);
-    // });
-    // communityLinkIcon.addEventListener('mouseout', (event) => {
-    //   menu.open = !menu.open;
-    // });
-    // buttonEl.addEventListener('mouseout', (event) => {
-    //   menuEl.addEventListener('mouseout', (event) => {
-    //     menu.open = false;
-    //   });
-    // });
+    const accountButton = document.getElementById('account-button');
+    console.log(accountButton);
 
-    const buttonEl2 = document.querySelector('#apps-menu-surface-button');
-    const menuEl2 = document.querySelector('#apps-mdc-menu');
-    const menu2 = new mdc.menu.MDCMenu(menuEl2);
-    buttonEl2.addEventListener('click', (event) => {    
+    const accountMenu = document.getElementById('account-mdc-menu');
+    console.log(accountMenu);
+
+    const menu2 = new mdc.menu.MDCMenu(accountMenu);
+    accountButton.addEventListener('click', (event) => {
+      console.log('Account button click');
+
       menu2.open = !menu2.open;
       menu2.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
-      menu2.setAnchorElement(buttonEl2);
+      menu2.setAnchorElement(accountButton);
     });
 
     // TEXT FIELDS
@@ -76,7 +67,7 @@ export class TopBarComponent implements OnInit {
     // const iconButtonRipple = new MDCRipple(document.querySelector('.mdc-icon-button'));
     // iconButtonRipple.unbounded = true;
 
-    const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-list-item';
+    const selector = '.mdc-card__primary-action, .mdc-list-item';
     const ripples = [].map.call(document.querySelectorAll(selector), function (el) {
       return new MDCRipple(el);
     });
@@ -99,5 +90,7 @@ export class TopBarComponent implements OnInit {
     //   greetMessageEl.textContent = `Hello, ${name}!`;
     // });
   }
+
+
 
 }

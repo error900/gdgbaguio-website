@@ -24,7 +24,7 @@ export class AuthenticationService {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`google-user/${user.uid}`).valueChanges()
+          return this.afs.doc<User>(`google-accounts/${user.uid}`).valueChanges()
         } else {
           return of(null)
         }
@@ -35,29 +35,32 @@ export class AuthenticationService {
   async googleLogin() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return (this.updateUserData(credential.user), this.router.navigate(['/admin']));
 
+    return this.updateUserData(credential.user);
+  }
+
+  async googleAdminLogin() {
+    const provider = new auth.GoogleAuthProvider();
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
+
+    return (this.updateUserData(credential.user), this.router.navigate(['/dashboard/meetup-events']));
     // return this.updateUserData(credential.user);
   }
 
   async signOut() {
     await this.afAuth.auth.signOut();
-    return this.router.navigate(['/login']);
+    return this.router.navigate(['/']);
   }
 
   private updateUserData(user) {
     // Sets user data to firestore on login
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`google-user/${user.uid}`);
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`google-accounts/${user.uid}`);
 
     const data = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL,
-      administrator: false,
-      primary_volunteer: false,
-      secondary_volunteer: false,
-      participant: true,
+      photoURL: user.photoURL
     };
     
     return userRef.set(data, {merge: true});

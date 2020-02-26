@@ -25,8 +25,7 @@ const routes: Routes = [
   { path: 'dashboard/users', component: ListUserComponent },
   { path: 'dashboard/adduser', component: CreateUserComponent },
   { path: 'login', component: LoginComponent },
-  // { path: 'dashboard', component: AdminComponent, canActivate: [AuthenticationGuard] },
-  { path: 'dashboard/meetup-events', component: EventsDashboardComponent },
+  { path: 'dashboard/meetup-events', component: EventsDashboardComponent,canActivate: [AuthenticationGuard] },
   { path: 'dashboard/meetup-attendance', component: AttendanceDashboardComponent },
 
   // otherwise redirect to 404 page /
