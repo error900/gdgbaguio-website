@@ -1,4 +1,4 @@
-<site-top-bar></site-top-bar>
+<!-- <site-top-bar></site-top-bar> -->
 <section class="landing-row event-details-landing-row">
   <div *ngIf="eventDetails as eventDetail" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
@@ -13,7 +13,7 @@
           <i class="material-icons mdc-button__icon">location_on</i>
           <div>
             <span>{{eventDetail.venue.name}}</span> <br>
-            <span>{{eventDetail.venue.address_1}} {{eventDetail.venue.city}},
+            <span>{{eventDetail.venue.address_1}}, {{eventDetail.venue.city}},
               {{eventDetail.venue.localized_country_name}}</span>
           </div>
         </div>
@@ -23,10 +23,10 @@
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7">
         <div [innerHTML]="eventDetail.description"></div>
         <div *ngIf="eventDetail.status=='upcoming' || eventDetail.status=='ongoing'" class="meetup-event-link">
-          <a href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+          <a *ngIf="showRegisterButton" href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
-          <a href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
-            <span class="mdc-button__ripple"></span> Request an invitation</a>
+          <a *ngIf="showWaitlistButton" href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Join the waitlist</a>
         </div>
         <div *ngIf="eventDetail.status=='past'" class="meetup-event-link">
           <a href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--outlined">

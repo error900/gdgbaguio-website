@@ -1,3 +1,5 @@
+@import './events/events.component.scss';
+
 .about-landing-row {
   margin-top: 48px;
   padding-top: 75px;
@@ -71,4 +73,26 @@
 
 .google-technologies-item .item-text-container {
   flex: 2;
+}
+
+.events-landing-row {
+  margin-top: 0 !important;
+}
+
+.mdc-card {
+  border-radius: 8px;
+  border: 1px solid #dadce0;
+}
+
+.meetup-card-background {
+  background-size: 100%;
+  background-position-y: unset;
+}
+
+.event-name {
+  font-size: 26px !important;
+}
+
+.recent-event-description {
+  font-size: 16px !important;
 }

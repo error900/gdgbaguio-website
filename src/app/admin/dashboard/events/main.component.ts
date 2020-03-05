@@ -4,7 +4,8 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { EventsService } from '../../../core/services/events.service';
 import { MeetupService } from '../../../core/services/meetup.service';
-import { draftEvent, plannedEvent, FirebaseEvent, FirebaseEventDocumentI, FirebaseEventDocument } from 'src/app/core/model/events.model';
+import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { draftEvent, plannedEvent, FirebaseEvent, FirebaseEventInterface, FirebaseEventHost, eventInfo } from 'src/app/core/model/events.model';
 
 import { MDCDialog } from '@material/dialog';
 
@@ -27,17 +28,24 @@ export class EventsDashboardComponent implements OnInit {
   upcomingEvents_count = 0;
   draftEvents_count = 0;
 
-  meetupEvents: FirebaseEventDocumentI[];
+  meetupEvents: FirebaseEventInterface[];
+  meetupOngoingEvents: FirebaseEventInterface[];
+  meetupUpcomingEvents: FirebaseEventInterface[];
 
-  constructor(public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService) {
-  // constructor(public meetupService: MeetupService, private eventService: EventsService) {
+  eventDetails: eventInfo;
+
+  eventids: string[];
+
+  constructor(public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService, private firestoreService: FirestoreService) {
+    // constructor(public meetupService: MeetupService, private eventService: EventsService) {
   }
 
   ngOnInit() {
     // MEETUP
-    this.getPlannedEvents();
-    this.getDratGDGEvents();
-    this.getFirebaseEvents();
+    this.getPlannedEvents(); // meetup events
+    this.getDratGDGEvents(); // meetup events
+    this.getFirebaseEvents(); // merge meetup events to firestore
+
     console.log(this.meetupService.attendanceTaking(0, 0, 'status'));
 
     // const dialog = new MDCDialog(document.querySelector('#draft-view-dialog'));
@@ -65,11 +73,11 @@ export class EventsDashboardComponent implements OnInit {
           this.plannedEvents_count = plannedEvents.length,
           console.log('PLANNED', this.plannedEvents),
           console.log('PLANNED', this.plannedEvents_count),
-          this.ongoingEvents = this.getOngoingEvents(this.plannedEvents),
+          this.ongoingEvents = this.getOngoingEvents(this.plannedEvents).reverse(),
           this.ongoingEvents_count = this.ongoingEvents.length,
           console.log('ONGOING', this.ongoingEvents),
           console.log('ONGOING', this.ongoingEvents_count),
-          this.upcomingEvents = this.getUpcomingEvents(this.plannedEvents),
+          this.upcomingEvents = this.getUpcomingEvents(this.plannedEvents).reverse(),
           this.upcomingEvents_count = this.upcomingEvents.length,
           console.log('UPCOMING', this.upcomingEvents),
           console.log('UPCOMING', this.upcomingEvents_count)
@@ -78,10 +86,14 @@ export class EventsDashboardComponent implements OnInit {
   }
 
   getOngoingEvents(arr: plannedEvent[]) {
+    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' }
     let ongoingEvents = [];
     var obj = {} as plannedEvent;
     for (let index = 0; index < arr.length; index++) {
       obj = arr[index];
+      if (!obj.hasOwnProperty('featured_photo')) {
+        obj.featured_photo = featured_photo_placeholder
+      }
       if (obj.status == 'ongoing') {
         ongoingEvents.push(obj);
       }
@@ -90,10 +102,14 @@ export class EventsDashboardComponent implements OnInit {
   }
 
   getUpcomingEvents(arr: plannedEvent[]) {
+    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' }
     let upcomingEvents = [];
     var obj = {} as plannedEvent;
     for (let index = 0; index < arr.length; index++) {
       obj = arr[index];
+      if (!obj.hasOwnProperty('featured_photo')) {
+        obj.featured_photo = featured_photo_placeholder
+      }
       if (obj.status == 'upcoming') {
         upcomingEvents.push(obj);
       }
@@ -116,22 +132,26 @@ export class EventsDashboardComponent implements OnInit {
       slu: {
         name: 'Saint Louis University',
         address_1: 'Mary Heights, Bakakeng, Baguio City',
-        city: 'Baguio City'
+        city: 'Baguio City',
+        localized_country_name: 'Philippines'
       },
       uc: {
         name: 'University of the Cordilleras',
         address_1: 'University of the Cordilleras, Baguio City',
-        city: 'Baguio City'
+        city: 'Baguio City',
+        localized_country_name: 'Philippines'
       },
       ub: {
         name: 'University of Baguio',
         address_1: 'University of Baguio, Baguio City',
-        city: 'Baguio City'
+        city: 'Baguio City',
+        localized_country_name: 'Philippines'
       },
       bsu: {
         name: 'Benguet State University',
         address_1: 'La Trinidad, Benguet',
-        city: 'Baguio City'
+        city: 'Baguio City',
+        localized_country_name: 'Philippines'
       }
     }
 
@@ -147,34 +167,58 @@ export class EventsDashboardComponent implements OnInit {
           // this.meetupEvents[7].venue = venue.slu,
           // this.meetupEvents[8].venue = venue.slu,
           // this.meetupEvents.reverse(),
-          this.meetupEvents = this.getMeetupEvents(this.meetupEvents),
-          console.log('FINAL', this.meetupEvents)
+          console.log('FINAL', this.meetupEvents),
+          this.eventids = this.getMeetupEvents(this.meetupEvents),
+          console.log('IDS', this.eventids),
+          this.getMeetupEventHosts(this.eventids)
         )
       );
   }
 
-
   // FIREBASE
 
-  getMeetupEvents(arr: FirebaseEventDocumentI[]) {
-    let featured_photo_placeholder = { highres_link: 'https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg' }
-    let finalEvents = [];
-    var obj = {} as FirebaseEventDocument;
+  getMeetupEvents(arr: FirebaseEventInterface[]) {
+    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' };
+    var obj = {} as FirebaseEvent;
+    var ids = [];
+
     for (let index = 0; index < arr.length; index++) {
       obj = arr[index];
-      // if (!obj.hasOwnProperty('featured_photo')) {
-      //   obj.featured_photo = featured_photo_placeholder
-      // }
+
+      if (!obj.hasOwnProperty('featured_photo')) {
+        obj.featured_photo = featured_photo_placeholder
+      }
       if (!obj.hasOwnProperty('manual_attendance_count')) {
         obj.manual_attendance_count = 0;
       }
       if (!obj.hasOwnProperty('description')) {
         obj.description = 'No description';
       }
-      finalEvents.push(obj);
-      // this.eventService.createEvent(obj);
+      ids.push(arr[index].id);
+      this.firestoreService.mergeMeetupEventsToFirestore(obj);
     }
-    return finalEvents;
+    return ids;
+  }
+
+  getMeetupEventHosts(arr: string[]) {
+    for (let index = 0; index < arr.length; index++) {
+      this.meetupService.siteMeetupEventDetails(arr[index])
+        .subscribe(
+          eventDetails => (
+            this.eventDetails = eventDetails,
+            this.getEventHosts(this.eventDetails)
+          )
+        );
+    }
+  }
+
+  getEventHosts(e: eventInfo) {
+    var obj = {} as FirebaseEventHost;
+    obj.id = e.id;
+    obj.event_hosts = e.event_hosts;
+
+    console.log('HOSTS', obj);
+    this.firestoreService.mergeMeetupEventHostsToFirestore(obj);
   }
 
   // getEvents() {

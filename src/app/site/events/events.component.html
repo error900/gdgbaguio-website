@@ -1,34 +1,34 @@
-<site-top-bar></site-top-bar>
+<!-- <site-top-bar></site-top-bar> -->
 <section class="landing-row events-landing-row background-grey">
-  <div *ngIf="ongoingAndUpcmingEvents_count || ongoingAndUpcmingEvents_count!=0" class="mdc-layout-grid">
+  <div *ngIf="firestoreOngoingEvents && ongoingEvents_count!=0" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
-      <h1 class="mdc-typography--headline4 row-heading">Upcoming events</h1>
+      <h1 class="mdc-typography--headline4 row-heading">Ongoing events</h1>
     </div>
-    <div *ngFor="let plannedEvent of plannedEvents" class="mdc-layout-grid__inner">
-
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
-        <img src="{{plannedEvent.featured_photo.highres_link}}" alt="featured photo">
+    <div *ngFor="let firestoreOngoingEvents of firestoreOngoingEvents"
+      class="mdc-layout-grid__inner planned-events-row">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+        <img src="{{firestoreOngoingEvents.featured_photo.highres_link}}" alt="featured photo">
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
         <h1 class="mdc-typography--headline5"><a
-            href="events/{{plannedEvent.id}}">{{plannedEvent.name}}</a></h1>
+            href="events/{{firestoreOngoingEvents.id}}">{{firestoreOngoingEvents.name}}</a></h1>
         <div class="location">
           <i class="material-icons mdc-button__icon">location_on</i>
           <div>
-            <span>{{plannedEvent.venue.name}}</span> <br>
-            <span>{{plannedEvent.venue.address_1}} {{plannedEvent.venue.city}},
-              {{plannedEvent.venue.localized_country_name}}</span>
+            <span>{{firestoreOngoingEvents.venue.name}}</span> <br>
+            <span>{{firestoreOngoingEvents.venue.address_1}} {{firestoreOngoingEvents.venue.city}},
+              {{firestoreOngoingEvents.venue.localized_country_name}}</span>
           </div>
         </div>
         <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
-          <span>{{plannedEvent.local_date}}</span></div>
-        <div class="event-description" [innerHTML]="plannedEvent.description"></div>
+          <span>{{firestoreOngoingEvents.local_date}}</span></div>
+        <div class="event-description" [innerHTML]="firestoreOngoingEvents.description"></div>
         <div class="meetup-event-link">
-          <a href="{{plannedEvent.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+          <a href="{{firestoreOngoingEvents.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
-          <a href="{{plannedEvent.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
-            <span class="mdc-button__ripple"></span> Request an invitation</a>
-          <a href="events/{{plannedEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
+          <a href="{{firestoreOngoingEvents.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Join the waitlist</a>
+          <a href="events/{{firestoreOngoingEvents.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
             <span class="mdc-button__ripple"></span>
             <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
               more</span></a>
@@ -36,7 +36,45 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!ongoingAndUpcmingEvents_count || ongoingAndUpcmingEvents_count==0" class="mdc-layout-grid">
+  <div *ngIf="firestoreUpcomingEvents" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Upcoming events</h1>
+    </div>
+    <div *ngFor="let firestoreUpcomingEvent of firestoreUpcomingEvents"
+      class="mdc-layout-grid__inner planned-events-row">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+        <img src="{{firestoreUpcomingEvent.featured_photo.highres_link}}" alt="featured photo">
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
+        <h1 class="mdc-typography--headline5"><a
+            href="events/{{firestoreUpcomingEvent.id}}">{{firestoreUpcomingEvent.name}}</a></h1>
+        <div class="location">
+          <i class="material-icons mdc-button__icon">location_on</i>
+          <div>
+            <span>{{firestoreUpcomingEvent.venue.name}}</span> <br>
+            <span>{{firestoreUpcomingEvent.venue.address_1}} {{firestoreUpcomingEvent.venue.city}},
+              {{firestoreUpcomingEvent.venue.localized_country_name}}</span>
+          </div>
+        </div>
+        <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
+          <span>{{firestoreUpcomingEvent.local_date}}</span></div>
+        <div class="event-description" [innerHTML]="firestoreUpcomingEvent.description"></div>
+        <div class="meetup-event-link">
+          <a *ngIf="showRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+            class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Register now</a>
+          <a *ngIf="showWaitlistButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+            class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Join the waitlist</a>
+          <a href="events/{{firestoreUpcomingEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
+              more</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!firestoreUpcomingEvents && !firestoreOngoingEvents" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Upcoming events</h1>
       <p>No ongoing or upcoming events</p>
@@ -45,30 +83,33 @@
 </section>
 
 <section class="landing-row recent-events-landing-row">
-  <div *ngIf="recentEvents_count || recentEvents_count!=0" class="mdc-layout-grid">
+  <div *ngIf="firestoreRecentEvents" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Recent events</h1>
     </div>
     <div class="mdc-layout-grid__inner">
-      <div *ngFor="let recentEvent of recentEvents" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div *ngFor="let firestoreRecentEvent of firestoreRecentEvents"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
         <div class="mdc-card">
-          <div class="mdc-card__primary-action" tabindex="0">
-            <div class="mdc-card__media mdc-card__media--16-9 meetup-card-background">
-              <div class="mdc-card__media-content card__media-content">
-                <div class="card__primary">
-                  <h2 class="card__title mdc-typography mdc-typography--headline6">{{recentEvent.name}}</h2>
-                  <h3 class="card__subtitle mdc-typography mdc-typography--subtitle2">{{recentEvent.local_date}}</h3>
-                </div>
+          <!-- <div class="mdc-card__primary-action" tabindex="0"> -->
+          <div class="mdc-card__media mdc-card__media--16-9 meetup-card-background"
+            [ngStyle]="{'background-image': 'url(' + firestoreRecentEvent.featured_photo.highres_link + ')'}">
+            <div class="mdc-card__media-content card__media-content">
+              <div class="card__primary">
+                <h2 class="card__title mdc-typography mdc-typography--headline6">{{firestoreRecentEvent.name}}</h2>
+                <h3 class="card__subtitle mdc-typography mdc-typography--subtitle2">{{firestoreRecentEvent.local_date}}
+                </h3>
               </div>
             </div>
           </div>
-          <div [innerHTML]="recentEvent.description"
+          <!-- </div> -->
+          <div [innerHTML]="firestoreRecentEvent.description"
             class="card__secondary mdc-typography mdc-typography--body2 recent-event-description">
           </div>
           <div class="mdc-card__actions">
             <div class="mdc-card__action-buttons">
-              <a href="events/{{recentEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button"> <span
-                  class="mdc-button__ripple"></span>
+              <a href="events/{{firestoreRecentEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
+                <span class="mdc-button__ripple"></span>
                 <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
                   more</span></a>
             </div>
@@ -77,7 +118,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!recentEvents_count || recentEvents_count==0" class="mdc-layout-grid">
+  <div *ngIf="!firestoreRecentEvents" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Recent events</h1>
     </div>
@@ -90,7 +131,7 @@
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Directory of past events</h1>
     </div>
-    <div *ngIf="pastEvents_count || pastEvents_count!=0" class="mdc-layout-grid__cell">
+    <div *ngIf="firestorePastEvents" class="mdc-layout-grid__cell">
       <div id="events-mdc-data-table" class="mdc-data-table">
         <table class="mdc-data-table__table" aria-label="GDG Baguio past events">
           <thead style="display: none;">
@@ -103,24 +144,19 @@
             </tr>
           </thead>
           <tbody class="mdc-data-table__content">
-            <tr *ngFor="let pastEvent of pastEvents" class="mdc-data-table__row">
-              <td class="mdc-data-table__cell">{{pastEvent.local_date}}</td>
-              <td class="mdc-data-table__cell"><a href="events/{{pastEvent.id}}"
-                  class="events-mdc-data-table__row">{{pastEvent.name}}</a></td>
-              <td class="mdc-data-table__cell">{{pastEvent.venue.name}}</td>
-              <td class="mdc-data-table__cell mdc-data-table-cell-height-56dp">{{pastEvent.venue.address_1}}</td>
+            <tr *ngFor="let firestorePastEvents of firestorePastEvents" class="mdc-data-table__row">
+              <td class="mdc-data-table__cell">{{firestorePastEvents.local_date}}</td>
+              <td class="mdc-data-table__cell"><a href="events/{{firestorePastEvents.id}}"
+                  class="events-mdc-data-table__row">{{firestorePastEvents.name}}</a></td>
+              <td class="mdc-data-table__cell">{{firestorePastEvents.venue.name}}</td>
+              <td class="mdc-data-table__cell mdc-data-table-cell-height-56dp">{{firestorePastEvents.venue.address_1}}
+              </td>
             </tr>
-            <!-- <tr  class="mdc-data-table__row">
-              <td class="mdc-data-table__cell">No events found.</td>
-            </tr>
-            <tr class="mdc-data-table__row">
-              <td class="mdc-data-table__cell">No events found.</td>
-            </tr> -->
           </tbody>
         </table>
       </div>
     </div>
-    <div *ngIf="!pastEvents_count || pastEvents_count==0"
-      class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1 loading"></div>
+    <div *ngIf="!firestorePastEvents" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1 loading">
+    </div>
   </div>
 </section>

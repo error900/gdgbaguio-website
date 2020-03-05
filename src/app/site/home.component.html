@@ -1,4 +1,4 @@
-<site-top-bar></site-top-bar>
+<!-- <site-top-bar></site-top-bar> -->
 <section class="landing-row about-landing-row">
   <div class="mdc-layout-grid about-landing-row-background">
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 gdgbaguio-about-banner">
@@ -17,7 +17,8 @@
           way be linked to Google, the corporation. To learn more about the GDG program, visit
         </p>
         <p>
-          <button onclick="window.open('https://developers.google.com/community/gdg', '_blank');" class="mdc-button mdc-button--unelevated"> <span class="mdc-button__ripple"></span>
+          <button onclick="window.open('https://developers.google.com/community/gdg', '_blank');"
+            class="mdc-button mdc-button--unelevated"> <span class="mdc-button__ripple"></span>
             developers.google.com/groups</button>
         </p>
       </div>
@@ -83,9 +84,163 @@
     </div>
   </div>
 </section>
+<section class="landing-row events-landing-row">
+  <div *ngIf="firestoreOngoingEvents && ongoingEvents_count!=0" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Today</h1>
+    </div>
+    <div *ngFor="let firestoreOngoingEvents of firestoreOngoingEvents"
+      class="mdc-layout-grid__inner planned-events-row">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+        <img src="{{firestoreOngoingEvents.featured_photo.highres_link}}" alt="featured photo">
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
+        <h1 class="mdc-typography--headline5"><a
+            href="events/{{firestoreOngoingEvents.id}}">{{firestoreOngoingEvents.name}}</a></h1>
+        <div class="location">
+          <i class="material-icons mdc-button__icon">location_on</i>
+          <div>
+            <span>{{firestoreOngoingEvents.venue.name}}</span> <br>
+            <span>{{firestoreOngoingEvents.venue.address_1}} {{firestoreOngoingEvents.venue.city}},
+              {{firestoreOngoingEvents.venue.localized_country_name}}</span>
+          </div>
+        </div>
+        <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
+          <span>{{firestoreOngoingEvents.local_date}}</span></div>
+        <div class="event-description" [innerHTML]="firestoreOngoingEvents.description"></div>
+        <div class="meetup-event-link">
+          <a href="{{firestoreOngoingEvents.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Register now</a>
+          <a href="{{firestoreOngoingEvents.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Join the waitlist</a>
+          <a href="events/{{firestoreOngoingEvents.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
+              more</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="firestoreUpcomingEvents" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Events</h1>
+    </div>
+    <div class="mdc-layout-grid__inner">
+      <div *ngFor="let firestoreUpcomingEvent of firestoreUpcomingEvents"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        <div class="mdc-card">
+          <!-- <div class="mdc-card__primary-action card__primary-action" tabindex="0"> -->
+          <div class="mdc-card__media mdc-card__media--16-9 meetup-card-background"
+            [ngStyle]="{'background-image': 'url(' + firestoreUpcomingEvent.featured_photo.highres_link + ')'}">
+          </div>
+          <div class="card__primary">
+            <h2 class="card__title mdc-typography mdc-typography--headline6 event-name">
+              <a href="events/{{firestoreUpcomingEvent.id}}">{{firestoreUpcomingEvent.name}}</a>
+            </h2>
+          </div>
+          <div [innerHTML]="firestoreUpcomingEvent.description"
+            class="card__secondary mdc-typography mdc-typography--body2 recent-event-description"></div>
+          <!-- </div> -->
+          <div class="mdc-card__actions">
+            <div class="mdc-card__action-buttons">
+              <a *ngIf="showRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+                class="mdc-button mdc-button--unelevated">
+                <span class="mdc-button__ripple"></span> Register now</a>
+              <a *ngIf="showWaitlistButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+                class="mdc-button mdc-button--unelevated">
+                <span class="mdc-button__ripple"></span> Join the waitlist</a>
+              <a href="events/{{firestoreUpcomingEvent.id}}"
+                class="mdc-button mdc-card__action mdc-card__action--button">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
+                  more</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+
+    <div class="mdc-layout-grid__inner planned-events-row">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+        
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
+        <h1 class="mdc-typography--headline5"><a
+            href="events/{{firestoreUpcomingEvent.id}}"></a></h1>
+        <div class="location">
+          <i class="material-icons mdc-button__icon">location_on</i>
+          <div>
+            <span>{{firestoreUpcomingEvent.venue.name}}</span> <br>
+            <span>{{firestoreUpcomingEvent.venue.address_1}} {{firestoreUpcomingEvent.venue.city}},
+              {{firestoreUpcomingEvent.venue.localized_country_name}}</span>
+          </div>
+        </div>
+        <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
+          <span>{{firestoreUpcomingEvent.local_date}}</span></div>
+        <div class="event-description" [innerHTML]="firestoreUpcomingEvent.description"></div>
+        <div class="meetup-event-link">
+          <a *ngIf="showRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+            class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Register now</a>
+          <a *ngIf="showWaitlistButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+            class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Join the waitlist</a>
+          <a href="events/{{firestoreUpcomingEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
+              more</span></a>
+        </div>
+      </div>
+    </div> -->
+  </div>
+  <div *ngIf="!firestoreUpcomingEvents && !firestoreOngoingEvents" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Events</h1>
+      <p>No ongoing or upcoming events</p>
+    </div>
+  </div>
+</section>
+<section class="landing-row">
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        <img src="https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/2.jpg" alt="">
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        <h2 class="mdc-typography--headline4">Meet the Team</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
+          maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
+        </p>
+        <br>
+        <button class="mdc-button mdc-button--unelevated"> <span class="mdc-button__ripple"></span> Become a
+          Speaker</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="landing-row">
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        <img src="https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/2.jpg" alt="">
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        <h2 class="mdc-typography--headline4">Be part of the growing community</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
+          maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
+        </p>
+        <br>
+        <button class="mdc-button mdc-button--unelevated"> <span class="mdc-button__ripple"></span> Become a
+          Volunteer</button>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="landing-row google-technologies-landing-row background-white">
   <div class="mdc-layout-grid">
-    <h2 class="row-heading text-align-center">Google Technologies</h2>
+    <h2 class="row-heading mdc-typography--headline4 text-align-center">Google Technologies</h2>
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
         <div class="google-technologies-content">
@@ -187,7 +342,7 @@
   </div>
 </section>
 
-
+<!-- 
 <div class="mdc-layout-grid">
   <div class="mdc-layout-grid__inner">
     <div class="mdc-layout-grid__cell">
@@ -203,20 +358,26 @@
     <div class="mdc-layout-grid__cell">
       <div class="mdc-text-field">
         <input type="text" id="my-text-field1" class="mdc-text-field__input first-name-input">
-        <label class="mdc-floating-label" for="my-text-field">First name</label>
         <div class="mdc-line-ripple"></div>
+        <label class="mdc-floating-label" for="my-text-field">First name</label>
       </div>
       <div class="mdc-text-field">
         <input type="text" id="my-text-field2" class="mdc-text-field__input last-name-input">
-        <label class="mdc-floating-label" for="my-text-field">Last name</label>
         <div class="mdc-line-ripple"></div>
+        <label class="mdc-floating-label" for="my-text-field">Last name</label>
       </div>
+      <label class="mdc-text-field">
+        <div class="mdc-text-field__ripple"></div>
+        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+        <span class="mdc-floating-label" id="my-label-id">Hint text</span>
+        <div class="mdc-line-ripple"></div>
+      </label>
       <br>
-      <button class="mdc-button mdc-button--raised greet-button"> <span class="mdc-button__ripple"></span>
+      <button id="greet-button" class="mdc-button mdc-button--raised"> <span class="mdc-button__ripple"></span>
         Greet</button>
       <div class="mdc-typography mdc-typography--overline greet-message"></div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- <footer-bar>sdfsahdg</footer-bar> -->

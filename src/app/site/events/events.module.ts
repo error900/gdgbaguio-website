@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TopBarModule } from 'src/app/common-components/top-bar/top-bar.module';
+// import { TopBarModule } from 'src/app/common-components/top-bar/top-bar.module';
 import { EventsComponent } from './events.component';
 
 @NgModule({
@@ -9,8 +9,9 @@ import { EventsComponent } from './events.component';
     EventsComponent
   ],
   imports: [
-    CommonModule,
-    TopBarModule
+    CommonModule
+    // ,
+    // TopBarModule
   ],
   exports: [
     EventsComponent

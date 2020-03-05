@@ -311,6 +311,79 @@ footer a {
   margin: 0;
 }
 
+// Google accoung icon and menu
+
+#account-mdc-menu {
+  top: 20px;
+  width: 354px;
+}
+
+.menu-container {
+  margin: 20px 33px;
+}
+
+.account-photo {
+  height: 80px;
+  width: 80px;
+  margin: 0 auto 5px auto;
+}
+
+.account-photo>img {
+  border-radius: 50%;
+}
+
+#account-mdc-menu>.mdc-list {
+  padding: 0;
+}
+
+#account-mdc-menu>.mdc-list>li {
+  padding: 0 40px;
+}
+
+.account-details {
+  text-align: center;
+}
+
+.account-details>.displayname {
+  font-weight: 500;
+}
+
+.account-menu-buttons {
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-menu-buttons>button {
+  margin: 25px 85px;
+}
+
+/* Footer */
+
+footer {
+  display: block !important;
+}
+
+.footer {
+  padding: 30px 24px;
+}
+
+.footer-bar {
+  padding: 30px 40px;
+}
+
+.copyright {
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+}
+
+.copyright>span {
+  padding-right: 3px;
+  font-size: 19px;
+  margin-top: 3px;
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 767px) {}
 

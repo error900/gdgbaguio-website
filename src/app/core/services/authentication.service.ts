@@ -8,7 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from 'src/app/core/model/user.model';
- 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +43,7 @@ export class AuthenticationService {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
 
+    // return (this.updateUserData(credential.user), this.router.navigate(['/']));
     return (this.updateUserData(credential.user), this.router.navigate(['/dashboard/meetup-events']));
     // return this.updateUserData(credential.user);
   }
@@ -62,7 +63,7 @@ export class AuthenticationService {
       displayName: user.displayName,
       photoURL: user.photoURL
     };
-    
-    return userRef.set(data, {merge: true});
+
+    return userRef.set(data, { merge: true });
   }
 }

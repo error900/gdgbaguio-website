@@ -60,6 +60,8 @@
 
 .event-description {
   margin-top: 10px;
+  height: 96px;
+  overflow-y: hidden;
 
   p {
     margin-bottom: 8px !important;
@@ -87,4 +89,8 @@
   margin: 10px 0 0 0;
   font-size: 14px;
   text-align: center;
+}
+
+.planned-events-row {
+  padding-bottom: 30px;
 }

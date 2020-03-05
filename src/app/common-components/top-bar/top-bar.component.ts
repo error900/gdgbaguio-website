@@ -4,9 +4,8 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 
 import * as mdc from 'material-components-web';
 import { MDCTopAppBar } from '@material/top-app-bar';
-import { MDCTextField } from '@material/textfield';
 import { MDCRipple } from '@material/ripple';
-import { $ } from 'protractor';
+import { MDCTextField } from '@material/textfield';
 
 @Component({
   selector: 'site-top-bar',
@@ -15,82 +14,87 @@ import { $ } from 'protractor';
 })
 export class TopBarComponent implements OnInit {
   gdgbaguio_logo = '../../assets/images/gdgbaguio-logo.png';
+  // showSignInbutton: boolean;
+  // c: any;
 
   constructor(public auth: AuthenticationService) { }
 
-  ngOnInit() { }
-
-  initializeMDCcomponents() {
-    /** Initialize MDC Web components. */
-    // Instantiation
-    const topAppBarElement = document.querySelector('#site-top-bar');
-    const topAppBar = new MDCTopAppBar(topAppBarElement);
-
-    // const rootEl = document.querySelector('.root');
-    const communityLink = document.querySelector('#community-menu-surface-link');
-    const communityLinkIcon = document.querySelector('#community-menu-surface-icon');
-    const menuEl = document.querySelector('#community-mdc-menu');
-    const menu = new mdc.menu.MDCMenu(menuEl);
-    communityLink.addEventListener('mouseover', (event) => {
-      menu.open = !menu.open;
-      menu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
-      menu.setAnchorElement(communityLink);
-    });
-
-    const accountButton = document.getElementById('account-button');
-    console.log(accountButton);
-
-    const accountMenu = document.getElementById('account-mdc-menu');
-    console.log(accountMenu);
-
-    const menu2 = new mdc.menu.MDCMenu(accountMenu);
-    accountButton.addEventListener('click', (event) => {
-      console.log('Account button click');
-
-      menu2.open = !menu2.open;
-      menu2.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
-      menu2.setAnchorElement(accountButton);
-    });
-
-    // TEXT FIELDS
-    const textFields = Array.from(document.querySelectorAll('.mdc-text-field'));
-    for (const textField of textFields) {
-      MDCTextField.attachTo(textField);
-    }
-
-    // BUTTONS
-    // const buttons = Array.from(document.querySelectorAll('.mdc-button'));
-    // for (const button of buttons) {
-    //   MDCRipple.attachTo(button);
-    // }
-
-    // const iconButtonRipple = new MDCRipple(document.querySelector('.mdc-icon-button'));
-    // iconButtonRipple.unbounded = true;
-
-    const selector = '.mdc-card__primary-action, .mdc-list-item';
-    const ripples = [].map.call(document.querySelectorAll(selector), function (el) {
-      return new MDCRipple(el);
-    });
-
-    // const surface = document.querySelector('.my-surface');
-    // const ripple = new MDCRipple(surface);
-
-    // // /** Custom javascript code. */
-    // const greetMessageEl = document.querySelector('.greet-message');
-    // const greetButton = document.querySelector('.greet-button');
-    // greetButton.addEventListener('click', () => {
-    //   const firstNameInput = (<HTMLInputElement>document.querySelector('.first-name-input')).value;
-    //   const lastNameInput = (<HTMLInputElement>document.querySelector('.last-name-input')).value;
-    //   let name;
-    //   if (firstNameInput || lastNameInput) {
-    //     name = firstNameInput + ' ' + lastNameInput;
-    //   } else {
-    //     name = 'Anonymous';
-    //   }
-    //   greetMessageEl.textContent = `Hello, ${name}!`;
-    // });
+  ngOnInit() {
+    this.initializeMDCcomponents()
   }
 
+  initializeMDCcomponents() {
+    window.onload = () => {
+      /** Initialize MDC Web components. */
+      // Instantiation
+      // RIPPLE
+      const selector = '.mdc-button, .mdc-list-item, .mdc-card__primary-action';
+      const ripples = [].map.call(document.querySelectorAll(selector), function (el) {
+        return new MDCRipple(el);
+      });
+      // console.log('RIPPLES', ripples);
 
+      const topAppBarElement = document.querySelector('#site-top-bar');
+      const topAppBar = new MDCTopAppBar(topAppBarElement);
+      // console.log('TOPBAR', topAppBar);
+
+      // ACCOUNT ICON BUTTON
+      const htmlElementTypeSelector = new MDCRipple(<HTMLButtonElement>document.querySelector('.mdc-button'));
+      console.log('SIGNIN', htmlElementTypeSelector);
+
+      const accountIconButton = <HTMLButtonElement>document.querySelector('#account-button');
+      console.log('ACCOUNT ICON BUTTON', accountIconButton);
+      const accountMenu = <HTMLDivElement>document.querySelector('#account-mdc-menu');
+      console.log('ACCOUNT DIV', accountMenu);
+      const accounMDCMenu = new mdc.menu.MDCMenu(accountMenu);
+      accountIconButton.addEventListener('click', (event) => {
+        accounMDCMenu.open = !accounMDCMenu.open;
+        accounMDCMenu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
+        accounMDCMenu.setAnchorElement(accountIconButton);
+      });
+
+      // TEXT FIELDS
+      const textFields = Array.from(document.querySelectorAll('.mdc-text-field'));
+      // console.log('TEXT FIELDS SELECTOR', textFields);
+      for (const textField of textFields) {
+        new MDCTextField(textField);
+      }
+
+      // const rootEl = document.querySelector('.root');
+      const communityLink = document.querySelector('#community-menu-surface-link');
+      const menuEl = document.querySelector('#community-mdc-menu');
+      // const menu = new MDCMenu(menuEl);
+      // communityLink.addEventListener('mouseover', (event) => {
+      //   menu.open = !menu.open;
+      //   menu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
+      //   menu.setAnchorElement(communityLink);
+      // });
+
+
+
+
+
+      // const iconButtonRipple = new MDCRipple(document.querySelector('.mdc-icon-button'));
+      // iconButtonRipple.unbounded = true;
+
+      // const surface = document.querySelector('.my-surface');
+      // const ripple = new MDCRipple(surface);
+
+      /** Custom javascript code. */
+      // const greetMessageEl = document.querySelector('.greet-message');
+      // const greetButton = document.querySelector('.greet-button');
+      // greetButton.addEventListener('click', () => {
+      //   const firstNameInput = (<HTMLInputElement>document.querySelector('.first-name-input')).value;
+      //   const lastNameInput = (<HTMLInputElement>document.querySelector('.last-name-input')).value;
+      //   let name;
+      //   if (firstNameInput || lastNameInput) {
+      //     name = firstNameInput + ' ' + lastNameInput;
+      //   } else {
+      //     name = 'Anonymous';
+      //   }
+      //   greetMessageEl.textContent = `Hello, ${name}!`;
+      // });
+    }
+  }
 
 }

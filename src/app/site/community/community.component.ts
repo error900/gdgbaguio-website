@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./community.component.scss']
 })
 export class CommunityComponent implements OnInit {
-  community_loop = '../../assets/community_loop.mp4';
+  // community_loop = '../../assets/community_loop.mp4';
+  community_loop = '../../assets/community.mp4';
   constructor() { }
 
   ngOnInit() {

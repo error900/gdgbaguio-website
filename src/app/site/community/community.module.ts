@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TopBarModule } from 'src/app/common-components/top-bar/top-bar.module';
+// import { TopBarModule } from 'src/app/common-components/top-bar/top-bar.module';
 import { CommunityComponent } from './community.component';
 
 @NgModule({
@@ -9,8 +9,9 @@ import { CommunityComponent } from './community.component';
     CommunityComponent
   ],
   imports: [
-    CommonModule,
-    TopBarModule
+    CommonModule
+    // ,
+    // TopBarModule
   ],
   exports: [
     CommunityComponent

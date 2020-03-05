@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 import * as mdc from 'material-components-web';
+import { MDCTopAppBar } from '@material/top-app-bar';
 import { MDCTextField } from '@material/textfield';
 import { MDCRipple } from '@material/ripple';
 import { MDCDrawer } from '@material/drawer';
@@ -15,66 +16,56 @@ import { MDCDrawer } from '@material/drawer';
 export class DashboardTopBarComponent implements OnInit {
 
   constructor(public auth: AuthenticationService) { }
-  // constructor() { }
 
   ngOnInit() {
-    /** Initialize MDC Web components. */
+    this.initializeMDCcomponents();
+  }
 
-    // Instantiate MDC Drawer
-    const drawerEl = document.querySelector('.mdc-drawer');
-    const drawer = MDCDrawer.attachTo(drawerEl);
+  initializeMDCcomponents() {
+    // window.onload = () => {
+      /** Initialize MDC Web components. */
+      // Instantiation
+      // RIPPLE
+      const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-list-item';
+      const ripples = [].map.call(document.querySelectorAll(selector), function (el) {
+        return new MDCRipple(el);
+      });
 
-    // Instantiate MDC Top App Bar (required)
-    const topAppBarEl = document.querySelector('#admin-top-app-bar');
-    const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(topAppBarEl);
+      // Instantiate MDC Drawer
+      const drawerEl = document.querySelector('.mdc-drawer');
+      console.log('asjfghdsjdag', drawerEl);
+      
+      const drawer = MDCDrawer.attachTo(drawerEl);
 
-    topAppBar.setScrollTarget(document.querySelector('.main-content'));
-    topAppBar.listen('MDCTopAppBar:nav', () => {
-      drawer.open = !drawer.open;
-    });
+      // Instantiate MDC Top App Bar (required)
+      const topAppBarEl = <HTMLDivElement>document.querySelector('#admin-top-app-bar');
+      console.log('ASDASGFGFDg', topAppBarEl);
+      
+      const topAppBar = new MDCTopAppBar(topAppBarEl);
 
-    // TEXT FIELDS
-    const textFields = Array.from(document.querySelectorAll('.mdc-text-field'));
-    for (const textField of textFields) {
-      MDCTextField.attachTo(textField);
-    }
+      topAppBar.setScrollTarget(document.querySelector('.main-content'));
+      topAppBar.listen('MDCTopAppBar:nav', () => {
+        drawer.open = !drawer.open;
+      });
 
-    // BUTTONS
-    // const buttons = Array.from(document.querySelectorAll('.mdc-button'));
-    // for (const button of buttons) {
-    //   MDCRipple.attachTo(button);
+      // ACCOUNT ICON BUTTON
+      const accountIconButton = <HTMLButtonElement>document.querySelector('#account-button');
+      console.log('ACCOUNT ICON BUTTON', accountIconButton);
+      const accountMenu = <HTMLDivElement>document.querySelector('#account-mdc-menu');
+      console.log('ACCOUNT DIV', accountMenu);
+      const accounMDCMenu = new mdc.menu.MDCMenu(accountMenu);
+      accountIconButton.addEventListener('click', (event) => {
+        accounMDCMenu.open = !accounMDCMenu.open;
+        accounMDCMenu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
+        accounMDCMenu.setAnchorElement(accountIconButton);
+      });
+
+      // TEXT FIELDS
+      const textFields = Array.from(document.querySelectorAll('.mdc-text-field'));
+      console.log('TEXT FIELDS SELECTOR', textFields);
+      for (const textField of textFields) {
+        new MDCTextField(textField);
+      }
     // }
-    // const iconbutton = document.querySelector('.mdc-icon-button');
-    // const iconButtonRipple = new MDCRipple(iconbutton);
-    // iconButtonRipple.unbounded = true;
-    
-    // const list = new MDCList(document.querySelector('.mdc-list'));
-    // const list_selector = '.mdc-list';
-    // const list = [].map.call(document.querySelectorAll(list_selector), function (el) {
-    //   return new MDCList(el);
-    // });
-
-    const buttonEl2 = document.querySelector('#apps-menu-surface-button');
-    const menuEl2 = document.querySelector('#apps-mdc-menu');
-    const menu2 = new mdc.menu.MDCMenu(menuEl2);
-    buttonEl2.addEventListener('click', (event) => {    
-      menu2.open = !menu2.open;
-      menu2.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
-      menu2.setAnchorElement(buttonEl2);
-    });
-
-    const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-list-item';
-    const ripples = [].map.call(document.querySelectorAll(selector), function (el) {
-      return new MDCRipple(el);
-    });
-    // const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));
   }
-
-  public ripple() {
-    const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-list-item';
-    const ripples = [].map.call(document.querySelectorAll(selector), function (el) {
-      return new MDCRipple(el);
-    });
-  }
-
 }

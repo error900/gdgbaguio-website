@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MeetupService } from 'src/app/core/services/meetup.service';
-import { eventInfo } from '../../../core/model/events.model';
+import { eventInfo, FirebaseEvent } from '../../../core/model/events.model';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-
+import { FirestoreService } from 'src/app/core/services/firestore.service';
 
 @Component({
   selector: 'site-event-details',
@@ -12,12 +11,33 @@ import { switchMap } from 'rxjs/operators';
 })
 export class EventDetailsComponent implements OnInit {
   eventDetails: eventInfo;
-  eventid;
-  constructor(private meetupService: MeetupService, private route: ActivatedRoute) { }
+  firestoreEventDetail: FirebaseEvent;
+  eventid: string;
+  showRegisterButton = false;
+  showWaitlistButton = false;
+
+  constructor(private meetupService: MeetupService, private firestoreService: FirestoreService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.eventid = this.route.snapshot.params.eventId;
-    this.getGDGEventDetails(this.eventid);
+    this.getGDGEventDetails(this.eventid); // meetup api
+    // this.getFirestoreMeetupEvents(this.eventid); // get meetup events from firestore
+  }
+
+  getFirestoreMeetupEvents(event_id: string) {
+    this.firestoreService.getFirestoreEventsDetails(event_id).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(
+          c => ({
+            key: c.payload.doc.id, ...c.payload.doc.data()
+          })
+        )
+      )
+    ).subscribe(
+      firestoreEventDetail => {
+        // this.firestoreEventDetail = firestoreEventDetail
+      }
+    );
   }
 
   getGDGEventDetails(event_id: string): void {
@@ -25,7 +45,9 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(
         eventDetails => (
           this.eventDetails = eventDetails,
+          (this.eventDetails.rsvp_limit >= this.eventDetails.yes_rsvp_count) ? this.showRegisterButton = true : this.showWaitlistButton = true,
           console.log(this.eventDetails)
+          
         )
       );
   }

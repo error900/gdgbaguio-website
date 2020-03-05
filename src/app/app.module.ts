@@ -2,13 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
 // Config
 import { ConfigModule } from './core/config/config.module';
 // Modules
-import { HomeModule } from './site/home.module';
+import { TopBarModule } from './common-components/top-bar/top-bar.module';
+import { SiteModule } from './site/site.module';
+import { FooterModule } from './common-components/footer/footer.module';
+
 // Components
 import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [
@@ -18,9 +21,10 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     ConfigModule,
-    HomeModule
+    TopBarModule,
+    SiteModule,
+    FooterModule,
   ],
   bootstrap: [AppComponent]
 })

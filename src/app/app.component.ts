@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor() { }
+  showSiteTopBar = true;
+  showFooter = true;
+  url: any;
 
-  ngOnInit() { }
+  constructor(private router: Router) {
+    // console.log(route.pathFromRoot[1].snapshot.url[0].path);
+    this.router.events.subscribe(
+      event => {
+        if (event instanceof NavigationStart) {
+          this.url = event.url
+          console.log('ROUTE', this.url)
+        }
+        if (this.url.search('dashboard') == -1) {
+          this.showSiteTopBar = true;
+          this.showFooter = true;
+        } else {
+          this.showSiteTopBar = false;
+          this.showFooter = false;
+        }
+        if (this.url.search('community') == 1) {
+          this.showFooter = false;
+        }
+      }
+    );
+  }
+
+  ngOnInit(): void { }
 }

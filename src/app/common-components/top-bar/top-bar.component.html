@@ -6,12 +6,14 @@
         <img class="gdgbaguio" src="{{gdgbaguio_logo}}" alt="gdgbaguio">
       </a>
       <div class="top-bar-nav">
-        <div id="community-menu-surface-link" class="nav-link">
+        <div class="nav-link">
+          <a [routerLink]="['/community']">Community</a>
+        </div>
+        <!-- <div id="community-menu-surface-link" class="nav-link">
           <a [routerLink]="['/community']">Community</a>
           <a id="community-menu-surface-icon"><i class="material-icons mdc-button__icon"
               aria-hidden="true">arrow_drop_down</i></a>
           <div class="mdc-menu-surface--anchor">
-            <!-- <button id="community-menu-surface-button" class="mdc-button"></button> -->
             <div id="community-mdc-menu" class="mdc-menu mdc-menu-surface">
               <div class="menu-dropdown-content">
                 <div class="menu-drowpdown-column">
@@ -98,7 +100,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="nav-link">
           <a [routerLink]="['/events']">Events</a>
         </div>
@@ -109,30 +111,41 @@
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
       <div *ngIf="auth.user$ | async as user; else showSignInButton">
-        <button id="account-button"
-          class="mdc-icon-button mdc-icon-button--on google-account-icon-button mdc-top-app-bar__action-item--unbounded"
+        <button id="account-button" class="mdc-icon-button mdc-icon-button--on google-account-icon-button mdc-top-app-bar__action-item--unbounded"
           aria-label="Google account" aria-pressed="true">
           <img src="{{user.photoURL}}" class="mdc-icon-button__icon" />
           <img src="{{user.photoURL}}" class="mdc-icon-button__icon mdc-icon-button__icon--on" />
         </button>
-      </div>
-      <ng-template #showSignInButton>
-        <button class="mdc-button" (click)=auth.googleLogin()> <span class="mdc-button__ripple"></span> Sign in</button>
-      </ng-template>
-
-      <div class="mdc-menu-surface--anchor">
-        <div id="account-mdc-menu" class="mdc-menu mdc-menu-surface">
-          <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-            <li class="mdc-list-item" role="menuitem">
-              <span [routerLink]="['/dashboard/meetup-events']" class="mdc-list-item__text">Meeup</span>
-            </li>
-            <li class="mdc-list-item" role="menuitem">
+        <div class="mdc-menu-surface--anchor">
+          <div id="account-mdc-menu" *ngIf="auth.user$ | async as user" class="mdc-menu mdc-menu-surface">
+            <div class="menu-container">
+              <div class="account-photo">
+                <img src="{{user.photoURL}}" alt="Account Photo">
+              </div>
+              <div class="account-details">
+                <span class="displayname">{{user.displayName}}</span> <br>
+                <span>{{user.email}}</span>
+              </div>
+            </div>
+            <div style="border-top: 1px solid #e8eaed;"></div>
+            <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+              <li class="mdc-list-item" role="menuitem">
+                <span [routerLink]="['/dashboard/meetup-events']" class="mdc-list-item__text"> Dashboard</span>
+              </li>
+            </ul>
+            <div style="border-top: 1px solid #e8eaed;"></div>
+            <div class="account-menu-buttons">
               <button id="signout-button" class="mdc-button mdc-button--outlined" (click)="auth.signOut()">
                 <span class="mdc-button__ripple"></span> Sign out</button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
+
+      <ng-template #showSignInButton>
+        <button id="signin-button" class="mdc-button" (click)=auth.googleLogin()> <span
+            class="mdc-button__ripple"></span> Sign in</button>
+      </ng-template>
     </section>
   </div>
 </header>

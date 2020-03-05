@@ -17,6 +17,7 @@ export class FirebaseEvent {
     name: string;
     address_1: string;
     city: string;
+    localized_country_name: string;
   };
   link: string;
   manual_attendance_count: number;
@@ -25,33 +26,6 @@ export class FirebaseEvent {
     highres_link: string;
   };
 }
-
-export interface FirebaseEventDocument {
-  id: string;
-  name: string;
-  rsvp_limit: number;
-  status: string;
-  local_date: string;
-  waitlist_count: number;
-  yes_rsvp_count: number;
-  link: string;
-  manual_attendance_count: number;
-  description: string;
-}
-
-export interface FirebaseEventDocumentI {
-  id: string,
-  name: string,
-  rsvp_limit: number,
-  status: string,
-  local_date: string,
-  waitlist_count: number,
-  yes_rsvp_count: number,
-  link: string,
-  manual_attendance_count: number,
-  description: string,
-}
-
 
 export interface FirebaseEventInterface {
   id: string,
@@ -65,6 +39,7 @@ export interface FirebaseEventInterface {
     name: string,
     address_1: string,
     city: string,
+    localized_country_name: string,
   },
   link: string,
   manual_attendance_count: number,
@@ -72,6 +47,22 @@ export interface FirebaseEventInterface {
   featured_photo: {
     highres_link: string,
   }
+}
+
+export interface event {
+  id: string,
+  name: string,
+  local_date: string,
+  rsvp_limit: number,
+  waitlist_count: number,
+  yes_rsvp_count: number,
+  venue: {
+    name: string,
+    address_1: string,
+    city: string,
+    localized_country_name: string,
+  },
+  link: string,
 }
 
 // MEETUP
@@ -82,6 +73,7 @@ export interface plannedEvent {
   status: string,
   local_date: string,
   local_time: string,
+  rsvp_limit: number,
   waitlist_count: number,
   yes_rsvp_count: number,
   link: string,
@@ -113,8 +105,8 @@ export interface recentEvent {
 export interface pastEvent {
   id: string,
   name: string,
+  local_date: string,
   rsvp_limit: number,
-  locate_date: string,
   waitlist_count: number,
   yes_rsvp_count: number,
   venue: {
@@ -123,6 +115,17 @@ export interface pastEvent {
   },
   link: string,
   manual_attendance_count: number
+}
+
+export class FirebaseEventHost {
+  id: string;
+  event_hosts: {
+    id: string;
+    name: string;
+    photo: {
+      thumb_link: string;
+    };
+  }[];
 }
 
 export interface eventInfo {
@@ -146,6 +149,7 @@ export interface eventInfo {
     highres_link: string;
   };
   event_hosts: {
+    id: string;
     name: string;
     photo: {
       thumb_link: string;
