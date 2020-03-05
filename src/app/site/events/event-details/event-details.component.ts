@@ -3,6 +3,7 @@ import { MeetupService } from 'src/app/core/services/meetup.service';
 import { eventInfo, FirebaseEvent } from '../../../core/model/events.model';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'site-event-details',
@@ -26,12 +27,10 @@ export class EventDetailsComponent implements OnInit {
 
   getFirestoreMeetupEvents(event_id: string) {
     this.firestoreService.getFirestoreEventsDetails(event_id).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(
-          c => ({
-            key: c.payload.doc.id, ...c.payload.doc.data()
-          })
-        )
+      map(
+        c => ({
+          key: c.payload, ...c.payload.data()
+        })
       )
     ).subscribe(
       firestoreEventDetail => {
@@ -47,7 +46,7 @@ export class EventDetailsComponent implements OnInit {
           this.eventDetails = eventDetails,
           (this.eventDetails.rsvp_limit >= this.eventDetails.yes_rsvp_count) ? this.showRegisterButton = true : this.showWaitlistButton = true,
           console.log(this.eventDetails)
-          
+
         )
       );
   }
