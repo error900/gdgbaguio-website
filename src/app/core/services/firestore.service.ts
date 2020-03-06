@@ -35,7 +35,11 @@ export class FirestoreService {
     return this.eventRef;
   }
 
-  getFirestoreEventsDetails(event_id: string): AngularFirestoreDocument<FirebaseEvent> {
+  getFirestoreEventDetails(event_id: string): AngularFirestoreDocument<FirebaseEvent> {
     return this.eventRef.doc(event_id);
+  }
+
+  getFirestoreEventHosts(event_id: string): AngularFirestoreDocument<FirebaseEventHost> {
+    return this.hostRef.doc(event_id);
   }
 }

@@ -8,7 +8,8 @@
   <div class="mdc-layout-grid about-landing-row-content">
     <h1 class="mdc-typography--headline3 row-heading">what we're about</h1>
     <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-mobile">
         <p>GDG Baguio is a group of diverse developers who are very much interested in learning and experimenting on
           different and powerful Google Technologies. We are spreading our love and support for Google Technologies by
           conducting different events, seminars, and codelabs to help fellow developers kickstart their journey in
@@ -18,8 +19,11 @@
         </p>
         <p>
           <button onclick="window.open('https://developers.google.com/community/gdg', '_blank');"
-            class="mdc-button mdc-button--unelevated"> <span class="mdc-button__ripple"></span>
+            class="mdc-button mdc-button--unelevated desktop-only"> <span class="mdc-button__ripple"></span>
             developers.google.com/groups</button>
+          <button onclick="window.open('https://developers.google.com/community/gdg', '_blank');"
+            class="mdc-button mdc-button--unelevated mobile-only"> <span class="mdc-button__ripple"></span>
+            gdg/groups</button>
         </p>
       </div>
     </div>
@@ -29,7 +33,8 @@
   <div class="mdc-layout-grid">
     <!-- <h2 class="row-heading text-align-center">what we do</h2> -->
     <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-mobile">
         <div class="what-we-do-content">
           <div class="what-we-do-item">
             <div class="item-logo">
@@ -42,7 +47,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-mobile">
         <div class="what-we-do-content">
           <div class="what-we-do-item">
             <div class="item-logo">
@@ -55,7 +61,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-mobile">
         <div class="what-we-do-content">
           <div class="what-we-do-item">
             <div class="item-logo">
@@ -68,7 +75,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-mobile">
         <div class="what-we-do-content">
           <div class="what-we-do-item">
             <div class="item-logo">
@@ -84,20 +92,62 @@
     </div>
   </div>
 </section>
-<section class="landing-row events-landing-row">
+<section class="landing-row events-landing-row background-white">
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <h1 class="mdc-typography--headline4 row-heading">Today</h1>
+    </div>
+    <div class="mdc-layout-grid__inner planned-events-row">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
+        <img src="https://i.giphy.com/media/lJuKVbIA2dYqc/giphy.webp" alt="featured photo">
+      </div>
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h1 class="mdc-typography--headline5"><a href="events/firestoreOngoingEvents.id">firestoreOngoingEvents.name</a>
+        </h1>
+        <div class="location desktop-only">
+          <i class="material-icons mdc-button__icon">location_on</i>
+          <div>
+            <span>firestoreOngoingEvents.venue.name</span> <br>
+            <span>firestoreOngoingEvents.venue.address_1</span>
+          </div>
+        </div>
+        <div class="event-date desktop-only"><i class="material-icons mdc-button__icon">calendar_today</i>
+          <span>firestoreOngoingEvents.local_date</span></div>
+        <div class="event-description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis incidunt laborum adipisci veritatis porro,
+          deleniti magnam distinctio eum ipsa. Reprehenderit nulla sapiente itaque labore sint dignissimos nesciunt
+          fugit neque aliquam!
+        </div>
+        <div class="meetup-event-link">
+          <a href="firestoreOngoingEvents.link" target="_blank" class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Register now</a>
+          <a href="firestoreOngoingEvents.link" target="_blank" class="mdc-button mdc-button--unelevated">
+            <span class="mdc-button__ripple"></span> Join the waitlist</a>
+          <a href="events/firestoreOngoingEvents.id" class="mdc-button mdc-card__action mdc-card__action--button">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
+              more</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div *ngIf="firestoreOngoingEvents && ongoingEvents_count!=0" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Today</h1>
     </div>
     <div *ngFor="let firestoreOngoingEvents of firestoreOngoingEvents"
       class="mdc-layout-grid__inner planned-events-row">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
         <img src="{{firestoreOngoingEvents.featured_photo.highres_link}}" alt="featured photo">
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
         <h1 class="mdc-typography--headline5"><a
             href="events/{{firestoreOngoingEvents.id}}">{{firestoreOngoingEvents.name}}</a></h1>
-        <div class="location">
+        <div class="location desktop-only">
           <i class="material-icons mdc-button__icon">location_on</i>
           <div>
             <span>{{firestoreOngoingEvents.venue.name}}</span> <br>
@@ -105,7 +155,7 @@
               {{firestoreOngoingEvents.venue.localized_country_name}}</span>
           </div>
         </div>
-        <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
+        <div class="event-date desktop-only"><i class="material-icons mdc-button__icon">calendar_today</i>
           <span>{{firestoreOngoingEvents.local_date}}</span></div>
         <div class="event-description" [innerHTML]="firestoreOngoingEvents.description"></div>
         <div class="meetup-event-link">
@@ -127,7 +177,7 @@
     </div>
     <div class="mdc-layout-grid__inner">
       <div *ngFor="let firestoreUpcomingEvent of firestoreUpcomingEvents"
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="mdc-card">
           <!-- <div class="mdc-card__primary-action card__primary-action" tabindex="0"> -->
           <div class="mdc-card__media mdc-card__media--16-9 meetup-card-background"
@@ -152,48 +202,14 @@
               <a href="events/{{firestoreUpcomingEvent.id}}"
                 class="mdc-button mdc-card__action mdc-card__action--button">
                 <span class="mdc-button__ripple"></span>
-                <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
+                <i class="material-icons mdc-button__icon desktop-only">more_horiz</i> <span
+                  class="mdc-button__label">Read
                   more</span></a>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- 
-
-    <div class="mdc-layout-grid__inner planned-events-row">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-        
-      </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
-        <h1 class="mdc-typography--headline5"><a
-            href="events/{{firestoreUpcomingEvent.id}}"></a></h1>
-        <div class="location">
-          <i class="material-icons mdc-button__icon">location_on</i>
-          <div>
-            <span>{{firestoreUpcomingEvent.venue.name}}</span> <br>
-            <span>{{firestoreUpcomingEvent.venue.address_1}} {{firestoreUpcomingEvent.venue.city}},
-              {{firestoreUpcomingEvent.venue.localized_country_name}}</span>
-          </div>
-        </div>
-        <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
-          <span>{{firestoreUpcomingEvent.local_date}}</span></div>
-        <div class="event-description" [innerHTML]="firestoreUpcomingEvent.description"></div>
-        <div class="meetup-event-link">
-          <a *ngIf="showRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
-            class="mdc-button mdc-button--unelevated">
-            <span class="mdc-button__ripple"></span> Register now</a>
-          <a *ngIf="showWaitlistButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
-            class="mdc-button mdc-button--unelevated">
-            <span class="mdc-button__ripple"></span> Join the waitlist</a>
-          <a href="events/{{firestoreUpcomingEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
-            <span class="mdc-button__ripple"></span>
-            <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
-              more</span></a>
-        </div>
-      </div>
-    </div> -->
   </div>
   <div *ngIf="!firestoreUpcomingEvents && !firestoreOngoingEvents" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
@@ -202,37 +218,65 @@
     </div>
   </div>
 </section>
-<section class="landing-row">
+<section class="landing-row background-grey">
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
         <img src="https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/2.jpg" alt="">
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
         <h2 class="mdc-typography--headline4">Meet the Team</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
           maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
         </p>
         <br>
-        <button class="mdc-button mdc-button--unelevated"> <span class="mdc-button__ripple"></span> Become a
+        <button class="mdc-button mdc-button--unelevated button-lg"> <span class="mdc-button__ripple"></span> Become a
           Speaker</button>
       </div>
     </div>
   </div>
 </section>
-<section class="landing-row">
+<section class="landing-row background-white">
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-        <img src="https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/2.jpg" alt="">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="wtm">
+          <img src="{{wtm}}" alt="">
+          <br>
+          <p>Join the global conversation of women in technology.</p>
+          <br>
+          <button class="mdc-button mdc-button--unelevated wtm-button button-lg"> <span
+              class="mdc-button__ripple"></span> Apply to
+            join</button>
+        </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="wtm-ambassador-photo">
+          <img src="{{womentechmakers_ambassador_photo}}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="landing-row volunteer-row background-dark">
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
         <h2 class="mdc-typography--headline4">Be part of the growing community</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
           maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
         </p>
-        <br>
-        <button class="mdc-button mdc-button--unelevated"> <span class="mdc-button__ripple"></span> Become a
+      </div>
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--align-middle mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
+        <button class="mdc-button mdc-button--unelevated volunteer-button button-lg"> <span
+            class="mdc-button__ripple"></span>
+          Become a
           Volunteer</button>
       </div>
     </div>
@@ -242,7 +286,8 @@
   <div class="mdc-layout-grid">
     <h2 class="row-heading mdc-typography--headline4 text-align-center">Google Technologies</h2>
     <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="google-technologies-content">
           <div class="google-technologies-item">
             <div class="item-logo">
@@ -255,7 +300,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-dekstop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="google-technologies-content">
           <div class="google-technologies-item">
             <div class="item-logo">
@@ -269,7 +315,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="google-technologies-content">
           <div class="google-technologies-item">
             <div class="item-logo">
@@ -282,7 +329,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="google-technologies-content">
           <div class="google-technologies-item">
             <div class="item-logo">
@@ -296,7 +344,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="google-technologies-content">
           <div class="google-technologies-item">
             <div class="item-logo">
@@ -311,7 +360,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="google-technologies-content">
           <div class="google-technologies-item">
             <div class="item-logo">
@@ -325,7 +375,8 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="google-technologies-content">
           <div class="google-technologies-item">
             <div class="item-logo">

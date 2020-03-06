@@ -96,3 +96,38 @@
 .recent-event-description {
   font-size: 16px !important;
 }
+
+.background-dark h2,
+.background-dark p {
+  color: #fff !important;
+}
+
+.wtm-ambassador-container {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.wtm img {
+  padding-bottom: 30px;
+  height: 66px;
+}
+
+.wtm p {
+  font-size: 20px;
+}
+
+.wtm-ambassador-photo {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.wtm-ambassador-photo img {
+  height: 270px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 575px) {
+  .button-lg {
+    width: 100%;
+  }
+}

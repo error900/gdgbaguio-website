@@ -39,6 +39,9 @@ export class HomeComponent implements OnInit {
   wtm_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/Women Techmakers-01.png';
   cardboard_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/VR-01.png';
 
+  womentechmakers_ambassador_photo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/account-photo/kim.jpg';
+  wtm = '../../assets/images/wtm-logo-horiz-rgb.svg';
+
   constructor(private firestoreService: FirestoreService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {

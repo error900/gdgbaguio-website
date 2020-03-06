@@ -12,7 +12,8 @@ import { map } from 'rxjs/operators';
 })
 export class EventDetailsComponent implements OnInit {
   eventDetails: eventInfo;
-  firestoreEventDetail: FirebaseEvent;
+  firestoreEventDetails: any;
+  firestoreEventHosts: any;
   eventid: string;
   showRegisterButton = false;
   showWaitlistButton = false;
@@ -21,22 +22,30 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.eventid = this.route.snapshot.params.eventId;
-    this.getGDGEventDetails(this.eventid); // meetup api
-    // this.getFirestoreMeetupEvents(this.eventid); // get meetup events from firestore
+    // this.getGDGEventDetails(this.eventid); // meetup api
+    this.getFirestoreMeetupEvents(this.eventid); // get meetup events from firestore
+    this.getFirestoreMeetupEventHosts(this.eventid); // get meetup event hosts from firestore
   }
 
   getFirestoreMeetupEvents(event_id: string) {
-    this.firestoreService.getFirestoreEventsDetails(event_id).snapshotChanges().pipe(
-      map(
-        c => ({
-          key: c.payload, ...c.payload.data()
-        })
-      )
-    ).subscribe(
-      firestoreEventDetail => {
-        // this.firestoreEventDetail = firestoreEventDetail
-      }
-    );
+    this.firestoreService.getFirestoreEventDetails(event_id).get()
+      .subscribe(
+        firestoreEventDetails => {
+          this.firestoreEventDetails = firestoreEventDetails.data();
+          (this.firestoreEventDetails.rsvp_limit >= this.firestoreEventDetails.yes_rsvp_count) ? this.showRegisterButton = true : this.showWaitlistButton = true;
+          console.log('this.firestoreEventDetails', firestoreEventDetails.data());
+        }
+      );
+  }
+
+  getFirestoreMeetupEventHosts(event_id: string) {
+    this.firestoreService.getFirestoreEventHosts(event_id).get()
+      .subscribe(
+        firestoreEventHosts => {
+          this.firestoreEventHosts = firestoreEventHosts.data();
+          console.log('this.firestoreEventDetails', firestoreEventHosts.data());
+        }
+      );
   }
 
   getGDGEventDetails(event_id: string): void {

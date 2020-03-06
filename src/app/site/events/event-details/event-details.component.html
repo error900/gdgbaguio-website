@@ -1,43 +1,42 @@
 <!-- <site-top-bar></site-top-bar> -->
 <section class="landing-row event-details-landing-row">
-  <div *ngIf="eventDetails as eventDetail" class="mdc-layout-grid">
+  <div *ngIf="firestoreEventDetails as firestoreEventDetail" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
-      <h1 class="mdc-typography--headline4 row-heading">{{eventDetail.name}}</h1>
+      <h1 class="mdc-typography--headline4 row-heading">{{firestoreEventDetail.name}}</h1>
     </div>
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
-        <div *ngIf="eventDetail.featured_photo">
-          <img src="{{eventDetail.featured_photo.highres_link}}" alt="featured photo">
+        <div>
+          <img src="{{firestoreEventDetail.featured_photo.highres_link}}" alt="featured photo">
         </div>
         <div class="location">
           <i class="material-icons mdc-button__icon">location_on</i>
           <div>
-            <span>{{eventDetail.venue.name}}</span> <br>
-            <span>{{eventDetail.venue.address_1}}, {{eventDetail.venue.city}},
-              {{eventDetail.venue.localized_country_name}}</span>
+            <span>{{firestoreEventDetail.venue.name}}</span> <br>
+            <span>{{firestoreEventDetail.venue.address_1}}, {{firestoreEventDetail.venue.city}},
+              {{firestoreEventDetail.venue.localized_country_name}}</span>
           </div>
         </div>
         <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
-          <span>{{eventDetail.local_date}}</span></div>
+          <span>{{firestoreEventDetail.local_date}}</span></div>
       </div>
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7">
-        <div [innerHTML]="eventDetail.description"></div>
-        <div *ngIf="eventDetail.status=='upcoming' || eventDetail.status=='ongoing'" class="meetup-event-link">
-          <a *ngIf="showRegisterButton" href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+        <div [innerHTML]="firestoreEventDetail.description"></div>
+        <div *ngIf="firestoreEventDetail.status=='upcoming' || firestoreEventDetail.status=='ongoing'" class="meetup-event-link">
+          <a *ngIf="showRegisterButton" href="{{firestoreEventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
-          <a *ngIf="showWaitlistButton" href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+          <a *ngIf="showWaitlistButton" href="{{firestoreEventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Join the waitlist</a>
         </div>
-        <div *ngIf="eventDetail.status=='past'" class="meetup-event-link">
-          <a href="{{eventDetail.link}}" target="_blank" class="mdc-button mdc-button--outlined">
+        <div *ngIf="firestoreEventDetail.status=='past'" class="meetup-event-link">
+          <a href="{{firestoreEventDetail.link}}" target="_blank" class="mdc-button mdc-button--outlined">
             <span class="mdc-button__ripple"></span> Meetup</a>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
+      <div *ngIf="firestoreEventHosts as firestoreEventHost" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
         <h1 class="mdc-typography--headline5 row-heading">Coorganizers</h1>
         <div class=" mdc-layout-grid__inner">
-          <div *ngFor="let event_host of eventDetails.event_hosts"
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+          <div *ngFor="let event_host of firestoreEventHost.event_hosts" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
             <div class="coorganizer">
               <div class="member-info">
                 <div [ngStyle]="{'background-image': 'url(' + event_host.photo.thumb_link + ')'}" class="member-photo">
@@ -53,7 +52,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!eventDetails as eventDetail" class="mdc-layout-grid">
+  <div *ngIf="!firestoreEventDetails as firestoreEventDetail" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1 loading" style="height: 370px;"></div>
   </div>
 </section>
