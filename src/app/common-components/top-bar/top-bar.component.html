@@ -1,7 +1,7 @@
 <header id="site-top-bar" class="mdc-top-app-bar mdc-top-app-bar--fixed">
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon--unbounded mobile-only">menu</button>
+      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button mobile-only">menu</button>
       <a class="mdc-top-app-bar__title" [routerLink]="['/']">
         <img class="gdgbaguio" src="{{gdgbaguio_logo}}" alt="gdgbaguio">
       </a>
@@ -111,7 +111,8 @@
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
       <div *ngIf="auth.user$ | async as user; else showSignInButton">
-        <button id="account-button" class="mdc-icon-button mdc-icon-button--on google-account-icon-button mdc-top-app-bar__action-item--unbounded"
+        <button id="account-button"
+          class="mdc-icon-button mdc-icon-button--on google-account-icon-button mdc-top-app-bar__action-item--unbounded"
           aria-label="Google account" aria-pressed="true">
           <img src="{{user.photoURL}}" class="mdc-icon-button__icon" />
           <img src="{{user.photoURL}}" class="mdc-icon-button__icon mdc-icon-button__icon--on" />
@@ -149,3 +150,25 @@
     </section>
   </div>
 </header>
+<aside id="site-mdc-drawer" class="mdc-drawer mdc-drawer--modal">
+  <div class="mdc-drawer__content">
+    <nav class="mdc-list">
+      <button
+        class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button close-navigation-icon mobile-only">close</button>
+      <a class="" href="/">
+        <img class="gdgbaguio" src="{{gdgbaguio_logo}}" alt="gdgbaguio">
+      </a>
+      <!-- mdc-list-item--activated -->
+      <a class="mdc-list-item" href="/community">
+        <span class="mdc-list-item__text">Community</span>
+      </a>
+      <a class="mdc-list-item" href="/events">
+        <span class="mdc-list-item__text">Events</span>
+      </a>
+      <a class="mdc-list-item" href="/team">
+        <span class="mdc-list-item__text">Team</span>
+      </a>
+    </nav>
+  </div>
+</aside>
+<div class="mdc-drawer-scrim"></div>

@@ -254,6 +254,16 @@ footer a {
   @include mdc-theme-prop(color, $mdc-theme-on-secondary);
 }
 
+.mdc-top-app-bar__navigation-icon {
+  color: inherit !important;
+}
+
+.close-navigation-icon {
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0 10px;
+}
+
 .google-account-icon-button {
   padding: 4px;
   height: 40px;
@@ -426,8 +436,13 @@ footer {
     width: auto !important;
   }
 
-  .mdc-top-app-bar__navigation-icon--unbounded {
-    margin-right: 10px;
+  .mdc-top-app-bar__navigation-icon {
+    padding-left: 0;
+  }
+
+  #site-mdc-drawer {
+    top: 0;
+    width: 80%;
   }
 
   #signin-button {

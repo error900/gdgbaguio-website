@@ -1,0 +1,29 @@
+.application-row {
+  margin-top: 48px;
+  padding: 40px !important;
+}
+
+.text-field-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-field-container .mdc-text-field,
+.text-field-container .mdc-text-field-helper-line {
+  margin-bottom: 10px;
+}
+
+.application-header-container {
+  display: flex;
+}
+
+.application-header-container img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 575px) {
+  .application-header-container {
+    display: block !important;
+  }
+}

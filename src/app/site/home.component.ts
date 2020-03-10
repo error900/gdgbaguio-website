@@ -26,18 +26,21 @@ export class HomeComponent implements OnInit {
   firestorePastEvents: event[];
   
   gdg_baguio_banner = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/3.jpg';
-  activities_img = '../../assets/images/activities/google-codelabs.png';
+  talks = '../../assets/images/activities/talks.png';
+  codelabs = '../../assets/images/activities/codelabs.png';
+  roadshow = '../../assets/images/activities/roadshow.png';
+  live_viewing = '../../assets/images/activities/live-viewing.png';
 
-  android_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/Android-01.png';
-  angular_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/Angular-01.png';
-  cloud_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/Cloud-01.png';
-  firebase_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/Firebase-01.png';
-  golang_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/GL-01.png';
-  gsuite_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/GSuite-01.png';
-  kotlin_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/Kotlin-01.png';
-  md_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/MD-01.png';
-  wtm_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/Women Techmakers-01.png';
-  cardboard_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/VR-01.png';
+  android_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/android.png';
+  angular_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/angular.png';
+  cloud_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/cloud.png';
+  firebase_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/firebase.png';
+  golang_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/go.png';
+  gsuite_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/gsuite.png';
+  kotlin_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/kotlin.png';
+  md_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/mdc.png';
+  wtm_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/wtm.png';
+  cardboard_logo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/google-products/vr.png';
 
   womentechmakers_ambassador_photo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/account-photo/kim.jpg';
   wtm = '../../assets/images/wtm-logo-horiz-rgb.svg';

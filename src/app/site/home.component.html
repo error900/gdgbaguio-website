@@ -38,7 +38,7 @@
         <div class="what-we-do-content">
           <div class="what-we-do-item">
             <div class="item-logo">
-              <img src="{{activities_img}}" alt="">
+              <img src="{{talks}}" alt="">
             </div>
             <div class="item-text-container text-align-center">
               <h3 class="item-header">Talks</h3>
@@ -52,7 +52,7 @@
         <div class="what-we-do-content">
           <div class="what-we-do-item">
             <div class="item-logo">
-              <img src="{{activities_img}}" alt="">
+              <img src="{{codelabs}}" alt="">
             </div>
             <div class="item-text-container text-align-center">
               <h3 class="item-header">Codelabs</h3>
@@ -66,7 +66,7 @@
         <div class="what-we-do-content">
           <div class="what-we-do-item">
             <div class="item-logo">
-              <img src="{{activities_img}}" alt="">
+              <img src="{{roadshow}}" alt="">
             </div>
             <div class="item-text-container text-align-center">
               <h3 class="item-header">Roadshows</h3>
@@ -80,7 +80,7 @@
         <div class="what-we-do-content">
           <div class="what-we-do-item">
             <div class="item-logo">
-              <img src="{{activities_img}}" alt="">
+              <img src="{{live_viewing}}" alt="">
             </div>
             <div class="item-text-container text-align-center">
               <h3 class="item-header">Live Viewing Parties</h3>
@@ -93,46 +93,6 @@
   </div>
 </section>
 <section class="landing-row events-landing-row background-white">
-  <div class="mdc-layout-grid">
-    <div class="mdc-layout-grid__cell">
-      <h1 class="mdc-typography--headline4 row-heading">Today</h1>
-    </div>
-    <div class="mdc-layout-grid__inner planned-events-row">
-      <div
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
-        <img src="https://i.giphy.com/media/lJuKVbIA2dYqc/giphy.webp" alt="featured photo">
-      </div>
-      <div
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
-        <h1 class="mdc-typography--headline5"><a href="events/firestoreOngoingEvents.id">firestoreOngoingEvents.name</a>
-        </h1>
-        <div class="location desktop-only">
-          <i class="material-icons mdc-button__icon">location_on</i>
-          <div>
-            <span>firestoreOngoingEvents.venue.name</span> <br>
-            <span>firestoreOngoingEvents.venue.address_1</span>
-          </div>
-        </div>
-        <div class="event-date desktop-only"><i class="material-icons mdc-button__icon">calendar_today</i>
-          <span>firestoreOngoingEvents.local_date</span></div>
-        <div class="event-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis incidunt laborum adipisci veritatis porro,
-          deleniti magnam distinctio eum ipsa. Reprehenderit nulla sapiente itaque labore sint dignissimos nesciunt
-          fugit neque aliquam!
-        </div>
-        <div class="meetup-event-link">
-          <a href="firestoreOngoingEvents.link" target="_blank" class="mdc-button mdc-button--unelevated">
-            <span class="mdc-button__ripple"></span> Register now</a>
-          <a href="firestoreOngoingEvents.link" target="_blank" class="mdc-button mdc-button--unelevated">
-            <span class="mdc-button__ripple"></span> Join the waitlist</a>
-          <a href="events/firestoreOngoingEvents.id" class="mdc-button mdc-card__action mdc-card__action--button">
-            <span class="mdc-button__ripple"></span>
-            <i class="material-icons mdc-button__icon">more_horiz</i> <span class="mdc-button__label">Read
-              more</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
   <div *ngIf="firestoreOngoingEvents && ongoingEvents_count!=0" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Today</h1>
@@ -174,7 +134,9 @@
   <div *ngIf="firestoreUpcomingEvents" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Events</h1>
+      <button class="mdc-button"> <span class="mdc-button__ripple"></span> View all</button>
     </div>
+
     <div class="mdc-layout-grid__inner">
       <div *ngFor="let firestoreUpcomingEvent of firestoreUpcomingEvents"
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
@@ -232,8 +194,8 @@
           maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
         </p>
         <br>
-        <button class="mdc-button mdc-button--unelevated button-lg"> <span class="mdc-button__ripple"></span> Become a
-          Speaker</button>
+        <a href="application/speaker" class="mdc-button mdc-button--unelevated button-lg"> <span class="mdc-button__ripple"></span> Become a
+          Speaker</a>
       </div>
     </div>
   </div>
@@ -248,9 +210,9 @@
           <br>
           <p>Join the global conversation of women in technology.</p>
           <br>
-          <button class="mdc-button mdc-button--unelevated wtm-button button-lg"> <span
+          <a href="application/wtm" class="mdc-button mdc-button--unelevated wtm-button button-lg"> <span
               class="mdc-button__ripple"></span> Apply to
-            join</button>
+            join</a>
         </div>
       </div>
       <div
@@ -274,10 +236,10 @@
       </div>
       <div
         class="mdc-layout-grid__cell mdc-layout-grid__cell--align-middle mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
-        <button class="mdc-button mdc-button--unelevated volunteer-button button-lg"> <span
+        <a href="application/volunteer" class="mdc-button mdc-button--unelevated volunteer-button button-lg"> <span
             class="mdc-button__ripple"></span>
           Become a
-          Volunteer</button>
+          Volunteer</a>
       </div>
     </div>
   </div>

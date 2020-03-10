@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
     this.router.events.subscribe(
       event => {
         if (event instanceof NavigationStart) {
-          this.url = event.url
+          this.url = event.url;
           console.log('ROUTE', this.url)
         }
         if (this.url.search('dashboard') == -1) {
@@ -28,6 +28,9 @@ export class AppComponent {
         }
         if (this.url.search('community') == 1) {
           this.showFooter = false;
+        }
+        if ((this.url.search('application') == 1 && this.url.search('sponsor') == -1) && (this.url.search('application') == 1 && this.url.search('speaker') == -1) && (this.url.search('application') == 1 && this.url.search('volunteer') == -1) && (this.url.search('application') == 1 && this.url.search('wtm') == -1)) {
+          this.router.navigate(['error404']);
         }
       }
     );

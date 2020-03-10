@@ -49,14 +49,14 @@
 // .what-we-do-content {}
 
 .item-logo {
-  height: 100px;
-  width: 100px;
-  margin: 0 auto 20px;
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
 }
 
 .item-logo img {
-  height: 100px;
-  width: 100px;
+  height: auto;
+  width: auto;
 }
 
 .item-header {
@@ -73,6 +73,11 @@
 
 .google-technologies-item .item-text-container {
   flex: 2;
+}
+
+.google-technologies-item>.item-logo>img {
+  height: 50px !important;
+  width: 50px !important;
 }
 
 .events-landing-row {

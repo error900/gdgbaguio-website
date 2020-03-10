@@ -10,6 +10,7 @@ import { CommunityModule } from './community/community.module';
 import { EventsModule } from './events/events.module';
 import { EventDetailsModule } from './events/event-details/event-details.module';
 import { TeamModule } from './team/team.module';
+import { ApplicationFormModule } from './application-form/application-form.module';
 import { Error400Module } from './error404/error400.module';
 
 import { SiteComponent } from './site.component';
@@ -28,6 +29,7 @@ import { SiteComponent } from './site.component';
     EventsModule,
     EventDetailsModule,
     TeamModule,
+    ApplicationFormModule,
     Error400Module
   ],
   exports: [
