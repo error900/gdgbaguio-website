@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../../core/services/authentication.service';
+import { MeetupAuthService } from 'src/app/core/services/meetup-auth.service';
 import { EventsService } from '../../../core/services/events.service';
 import { MeetupService } from '../../../core/services/meetup.service';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { draftEvent, plannedEvent, FirebaseEvent, FirebaseEventInterface, FirebaseEventHost, eventInfo } from 'src/app/core/model/events.model';
+import { oauthResponse } from 'src/app/core/model/meetup-oauth2.model';
 
 import { MDCDialog } from '@material/dialog';
+import { User } from 'src/app/core/model/user.model';
 
 @Component({
   selector: 'meetup-events-dashboard',
@@ -33,34 +35,39 @@ export class EventsDashboardComponent implements OnInit {
   meetupUpcomingEvents: FirebaseEventInterface[];
 
   eventDetails: eventInfo;
-
   eventids: string[];
 
-  constructor(public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService, private firestoreService: FirestoreService) {
-    // constructor(public meetupService: MeetupService, private eventService: EventsService) {
-  }
+  meetupoauthResponse: oauthResponse;
+  currentUser: User;
+
+  constructor(public meetupOAuth: MeetupAuthService, public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService, private firestoreService: FirestoreService) { }
 
   ngOnInit() {
+    this.allowMeetupApplication();
+
     // MEETUP
     this.getPlannedEvents(); // meetup events
     this.getDratGDGEvents(); // meetup events
-    this.getFirebaseEvents(); // merge meetup events to firestore
+    // this.getFirebaseEvents(); // merge meetup events to firestore
 
-    console.log(this.meetupService.attendanceTaking(0, 0, 'status'));
+    // console.log(this.meetupService.attendanceTaking(0, 0, 'status'));
+  }
 
-    // const dialog = new MDCDialog(document.querySelector('#draft-view-dialog'));
-    // // const list = new MDCList(document.querySelector('.#draft-view-dialog .mdc-list'));
+  allowMeetupApplication() {
+    this.checkMeetupSignin(this.currentUser);
 
-    // dialog.listen('MDCDialog:opened', () => {
-    //   // list.layout();
-    // });
+    // this.auth.user$.subscribe(
+    //   currentUser => {
+    //     this.currentUser = currentUser;
+    //     this.checkMeetupSignin(this.currentUser);
+    //   }
+    // );
+  }
 
-    // const buttonEl2 = document.querySelector('#draft-view-button');
-    // buttonEl2.addEventListener('click', (event) => {
-    //   dialog.open();
-    //   console.log('DRAFT BUTTON');
-    // });
-
+  checkMeetupSignin(currentUser: User) {
+    if (!(currentUser.meetupSignin)) {
+      this.meetupOAuth.getAuthorizationToken();
+    }
   }
 
   // MEETUP

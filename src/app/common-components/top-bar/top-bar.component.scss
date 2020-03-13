@@ -143,6 +143,9 @@ a#community-menu-surface-icon i {
   cursor: pointer;
 }
 
-@media screen and (max-width: 575px) {
-  
+#site-mdc-drawer .mdc-list-item {
+  border-bottom: 1px solid #dadce0;
+  padding-left: 20px;
 }
+
+@media screen and (max-width: 575px) {}

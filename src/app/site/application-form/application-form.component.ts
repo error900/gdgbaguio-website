@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { map } from 'rxjs/operators';
+import { FirebaseGoogleTechInterface } from 'src/app/core/model/events.model';
 
 @Component({
   selector: 'app-application-form',
@@ -11,12 +13,38 @@ export class ApplicationFormComponent implements OnInit {
   application_type: string;
   wtm_logo = '../../assets/images/wtm-logo-horiz-rgb.svg';
   wtm = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/wtm.png';
+  google_techs: FirebaseGoogleTechInterface[];
 
   constructor(private firestoreService: FirestoreService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.application_type = this.route.snapshot.params.type;
-    const i = <HTMLInputElement>document.querySelector('#applicantion-type');
-    i.value = this.application_type;
+    if (this.application_type == 'sponsor' || this.application_type == 'wtm' || this.application_type == 'volunteer') {
+      const i = <HTMLInputElement>document.querySelector('#applicantion-type');
+      i.value = this.application_type;
+    } else {
+      console.log('this.getGoogleTechs();', this.getGoogleTechs());
+      console.log('APPLICATION FORM');
+    }
+
   }
+
+  getGoogleTechs() {
+    this.firestoreService.getFirestoreGoogleTechs().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(
+          c => ({
+            key: c.payload.doc.id, ...c.payload.doc.data()
+          })
+        )
+      )
+    ).subscribe(
+      google_techs => {
+        this.google_techs = google_techs;
+        console.log('google_techs', this.google_techs);
+
+      }
+    )
+  }
+
 }

@@ -117,8 +117,10 @@
           <img src="{{user.photoURL}}" class="mdc-icon-button__icon" />
           <img src="{{user.photoURL}}" class="mdc-icon-button__icon mdc-icon-button__icon--on" />
         </button>
+        <button id="signout-button" class="mdc-button mdc-button--outlined desktop-only" (click)="auth.signOut()">
+          <span class="mdc-button__ripple"></span> Sign out</button>
         <div class="mdc-menu-surface--anchor">
-          <div id="account-mdc-menu" *ngIf="auth.user$ | async as user" class="mdc-menu mdc-menu-surface">
+          <div id="account-mdc-menu" class="mdc-menu mdc-menu-surface">
             <div class="menu-container">
               <div class="account-photo">
                 <img src="{{user.photoURL}}" alt="Account Photo">
@@ -159,6 +161,9 @@
         <img class="gdgbaguio" src="{{gdgbaguio_logo}}" alt="gdgbaguio">
       </a>
       <!-- mdc-list-item--activated -->
+      <a class="mdc-list-item" href="/">
+        <span class="mdc-list-item__text">About</span>
+      </a>
       <a class="mdc-list-item" href="/community">
         <span class="mdc-list-item__text">Community</span>
       </a>
@@ -167,6 +172,9 @@
       </a>
       <a class="mdc-list-item" href="/team">
         <span class="mdc-list-item__text">Team</span>
+      </a>
+      <a *ngIf="auth.user$ | async as user" class="mdc-list-item" (click)="auth.signOut()">
+        <span class="mdc-list-item__text">Log out</span>
       </a>
     </nav>
   </div>

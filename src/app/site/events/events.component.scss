@@ -1,10 +1,12 @@
-.events-landing-row {
-  margin-top: 48px;
+.events-landing-row,
+.event-details-landing-row {
+  margin-top: 45px;
 }
 
 .events-landing-row,
 .past-events-landing-row,
-.recent-events-landing-row {
+.recent-events-landing-row,
+.event-details-landing-row {
   padding-top: 40px;
   padding-bottom: 40px;
 }
@@ -98,4 +100,7 @@
 @media screen and (max-width: 767px) {}
 
 @media screen and (max-width: 575px) {
+  .event-details-landing-row {
+    padding-top: 45px;
+  }
 }

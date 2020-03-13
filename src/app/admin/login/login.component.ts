@@ -15,27 +15,28 @@ import { MDCRipple } from '@material/ripple';
 })
 export class LoginComponent implements OnInit {
   user$: Observable<User>;
+  currentUser
 
-  constructor(public auth: AuthenticationService, private router: Router) {}
+  constructor(public auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    if (this.auth.user$ != null) {
+    this.checkAdminUser();
+  }
+
+  checkAdminUser() {
+    if (this.auth.currentUser != null && this.auth.currentUser.admin == true && this.auth.currentUser.meetupSignin == true) {
       this.router.navigate(['/dashboard/meetup-events']);
+
     } else {
       this.router.navigate(['/login']);
     }
+  }
 
-    // TEXT FIELDS
-    const textFields = Array.from(document.querySelectorAll('.mdc-text-field'));
-    for (const textField of textFields) {
-      MDCTextField.attachTo(textField);
-    }
-
-    // BUTTONS
-    const buttons = Array.from(document.querySelectorAll('.mdc-button'));
-    for (const button of buttons) {
-      MDCRipple.attachTo(button);
-    }
+  resetFields() {
+    const email = <HTMLButtonElement>document.querySelector('#email-address-field');
+    const password = <HTMLButtonElement>document.querySelector('#password-input');
+    email.value = '';
+    password.value = '';
   }
 
 }

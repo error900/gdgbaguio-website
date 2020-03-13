@@ -1,7 +1,7 @@
 .community-row {
   position: absolute;
   height: 90%;
-  top: 48px;
+  top: 49px;
 }
 
 .community-row .mdc-layout-grid:first-child {
@@ -49,7 +49,7 @@
 }
 
 .community-video-content p {
-  font-size: 18px;
+  font-size: 1.6em;
 }
 
 .empowerment-landing-row {
@@ -65,11 +65,18 @@
 }
 
 .empowerment-landing-row .row-heading {
-  margin: 50px 0;
+  margin: 50px auto;
+  background: #2196f3;
+  width: fit-content;
+  padding: 12px;
+  border-radius: 50%;
+  line-height: 0;
 }
 
-.empowerment-landing-row .row-heading:first-child {
-  padding: 40px 0;
+.empowerment-landing-row .row-heading i {
+  font-size: 1.5em;
+  color: #fff;
+  line-height: 1em;
 }
 
 .gdgbaguio-community-banner {
@@ -99,6 +106,11 @@
 @media screen and (max-width: 575px) {
   .community-video-content {
     padding: 200px 16px 0 16px !important;
+  }
+
+  .empowerment-landing-row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .empowerment-row-item h1 {

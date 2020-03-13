@@ -73,7 +73,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "gdgbaguio:build",
-            "host": "10.87.249.165"
+            "host": "localhost"
           },
           "configurations": {
             "production": {

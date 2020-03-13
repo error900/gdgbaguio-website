@@ -128,6 +128,16 @@ export class FirebaseEventHost {
   }[];
 }
 
+export class FirebaseGoogleTech {
+  name: string;
+  url: string;
+}
+
+export interface FirebaseGoogleTechInterface {
+  name: string,
+  url: string,
+}
+
 export interface eventInfo {
   id: string;
   name: string;

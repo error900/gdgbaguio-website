@@ -7,43 +7,55 @@
       <div class="mdc-layout-grid__cell"></div>
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--align-middle">
         <div class="mdc-text-field mdc-text-field--outlined">
-          <input class="mdc-text-field__input first-name-input" id="first-name-input">
+          <input class="mdc-text-field__input email-address-field" type="email" id="email-address-field">
           <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
             <div class="mdc-notched-outline__notch">
-              <label for="first-name-input" class="mdc-floating-label">Email</label>
+              <label for="email-address-field" class="mdc-floating-label">Email</label>
             </div>
             <div class="mdc-notched-outline__trailing"></div>
           </div>
         </div>
         <div class="mdc-text-field mdc-text-field--outlined">
-          <input class="mdc-text-field__input last-name-input" type="password" id="last-name-input">
+          <input class="mdc-text-field__input password-input" type="password" id="password-input">
           <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
             <div class="mdc-notched-outline__notch">
-              <label for="last-name-input" class="mdc-floating-label">Password</label>
+              <label for="password-input" class="mdc-floating-label">Password</label>
             </div>
             <div class="mdc-notched-outline__trailing"></div>
           </div>
         </div>
         <div class="button-container">
-          <button id="admin-reset-button" class="mdc-button"> <span class="mdc-button__ripple"></span> Reset</button>
+          <button id="admin-reset-button" class="mdc-button" (click)=resetFields()> <span
+              class="mdc-button__ripple"></span> Reset</button>
           <button id="admin-login-button" class="mdc-button mdc-button--unelevated greet-button"> <span
               class="mdc-button__ripple"></span> Login</button>
         </div>
-        <div *ngIf="auth.user$ | async as user"></div>
+        <p class="or-divider">OR</p>
         <div class="button-container">
-          <!-- <ng-template #login> -->
+          <!-- <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&amp;redirect_uri=https://secure.meetup.com/ties/google/&amp;response_type=code&amp;state=returnUri%3Dhttps%253A%252F%252Fwww.meetup.com%252F&amp;client_id=855636443875-pmqkjkrj33pvp0t1ghecgp4f3l746856.apps.googleusercontent.com&amp;access_type=offline"
+            id="google-signin-button" class="mdc-button mdc-button--outlined">
+            <span class="mdc-button__ripple"></span> Sign in with google</a> -->
           <button id="google-signin-button" (click)=auth.googleAdminLogin() class="mdc-button mdc-button--outlined">
             <span class="mdc-button__ripple"></span> Sign in with google</button>
-          <!-- </ng-template> -->
         </div>
-        <div class="mdc-typography mdc-typography--overline greet-message"></div>
+
+        <!-- <div *ngIf="auth.user$ | async as user"></div>
+        <p class="or-divider">OR</p>
+        <div class="button-container">
+          <button id="google-signin-button" (click)=auth.googleAdminLogin() class="mdc-button mdc-button--outlined">
+            <span class="mdc-button__ripple"></span> Sign in with google</button>
+        </div> -->
       </div>
-      <div class="mdc-layout-grid__cell"></div>
     </div>
     <div class="mdc-layout-grid__cell text-align-center">
-      <a [routerLink]="['/']">go back</a>
+      <button class="mdc-button" [routerLink]="['']">
+        <div class="mdc-button__ripple"></div>
+        <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_right_alt</i>
+        <span class="mdc-button__label desktop-only">Google Developers Group Baguio</span>
+        <span class="mdc-button__label mobile-only">GDG Baguio</span>
+      </button>
     </div>
   </div>
 </section>

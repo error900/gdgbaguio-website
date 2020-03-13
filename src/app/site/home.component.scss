@@ -1,7 +1,7 @@
 @import './events/events.component.scss';
 
 .about-landing-row {
-  margin-top: 48px;
+  margin-top: 45px;
   padding-top: 75px;
   padding-bottom: 0;
   background: linear-gradient(45deg, rgba(0, 0, 0, 0.65), transparent);
@@ -25,7 +25,7 @@
   position: absolute;
   width: 100%;
   left: 0;
-  top: 48px;
+  top: 49px;
   z-index: -1;
 }
 
@@ -76,6 +76,8 @@
 }
 
 .google-technologies-item>.item-logo>img {
+  display: block;
+  margin: auto;
   height: 50px !important;
   width: 50px !important;
 }
@@ -100,6 +102,10 @@
 
 .recent-event-description {
   font-size: 16px !important;
+}
+
+.meet-the-team>p {
+  font-size: 18px;
 }
 
 .background-dark h2,
@@ -134,5 +140,14 @@
 @media screen and (max-width: 575px) {
   .button-lg {
     width: 100%;
+  }
+
+  .wtm-ambassador-photo img {
+    height: 200px;
+    margin: 20px 0;
+  }
+
+  button.request-speaker-button {
+    font-size: 14px !important;
   }
 }

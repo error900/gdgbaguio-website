@@ -14,6 +14,7 @@ import { User } from 'src/app/core/model/user.model';
 })
 export class AuthenticationService {
   user$: Observable<User>;
+  currentUser: User;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -30,6 +31,12 @@ export class AuthenticationService {
         }
       })
     );
+
+    this.user$.subscribe(
+      currentUser => {
+        this.currentUser = currentUser
+      }
+    )
   }
 
   async googleLogin() {
@@ -42,10 +49,10 @@ export class AuthenticationService {
   async googleAdminLogin() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
+    this.meetupSignIn();
 
     // return (this.updateUserData(credential.user), this.router.navigate(['/']));
     return (this.updateUserData(credential.user), this.router.navigate(['/dashboard/meetup-events']));
-    // return this.updateUserData(credential.user);
   }
 
   async signOut() {
@@ -61,9 +68,32 @@ export class AuthenticationService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
+      photoURL: user.photoURL,
+      admin: false,
+      meetupSignin: false
     };
 
     return userRef.set(data, { merge: true });
+  }
+
+  meetupSignIn() {
+    var width = 500,
+      height = 350,
+      top = (screen.height - height) / 2,
+      left = (screen.width - width) / 2;
+    var meetuploginWindow = window.open(
+      "https://accounts.google.com/o/oauth2/auth?scope=email%20profile&redirect_uri=https://secure.meetup.com/ties/google/&response_type=code&state=returnUri%3Dhttps%253A%252F%252Fwww.meetup.com%252F&client_id=855636443875-pmqkjkrj33pvp0t1ghecgp4f3l746856.apps.googleusercontent.com&access_type=offline",
+      "Meetup",
+      ["height=", height, ",width=", width,
+        ",top=", top, ",left=", left].join('')
+    );
+    // meetuploginWindow.close();
+    var openedMeetuploginWindow = window.open('', 'Meetup');
+    // openedMeetuploginWindow.alert('ASDGFJASGDFJHSGDF');
+    setTimeout(function () {
+      openedMeetuploginWindow.close();
+    }, 3000);
+    // openedMeetuploginWindow.addEventListener('load', event => {
+    // });
   }
 }

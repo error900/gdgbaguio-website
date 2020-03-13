@@ -2,36 +2,151 @@
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell mobile-only">
       <h1 *ngIf="application_type == 'sponsor'" class="mdc-typography--headline4 row-heading">Become a Sponsor</h1>
-      <h1 *ngIf="application_type == 'speaker'" class="mdc-typography--headline4 row-heading">Become a Speaker</h1>
+      <h1 *ngIf="application_type == 'speaker'" class="mdc-typography--headline4 row-heading">Request Speakers</h1>
       <h1 *ngIf="application_type == 'volunteer'" class="mdc-typography--headline4 row-heading">Become a Volunteer</h1>
       <div *ngIf="application_type == 'wtm'" class="application-header-container">
         <img src="{{wtm_logo}}" alt="">
         <h2 class="mdc-typography--headline4">Join the movement</h2>
       </div>
     </div>
-    <div class="mdc-layout-grid__inner">
+    <div *ngIf="application_type == 'speaker'" class="mdc-layout-grid__inner">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 desktop-only">Request Speakers</h2>
+        <p>Thank you for your interest in having an event with Google Developer Group (GDG) Baguio. GDG Baguio is a
+          community of developers passionate about technology, particularly Google developer technologies.</p>
+        <p>Kindly fill-up the form at least two weeks before the event. We would be sending an email to confirm
+          our availability and discuss further. Please reply back to us as early as possible to schedule your event
+          and
+          plan accordingly.</p>
+        <p>Thank you so much!</p>
+      </div>
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="text-field-container">
+          <input type="hidden" id="sr-applicantion-type">
+          <div class="mdc-text-field">
+            <input class="mdc-text-field__input" type="email" id="sr-applicant-email" required>
+            <div class="mdc-line-ripple"></div>
+            <label for="sr-applicant-email" class="mdc-floating-label">Email Address</label>
+          </div>
+          <div class="mdc-text-field">
+            <input class="mdc-text-field__input" id="sr-applicant-event-name" required>
+            <div class="mdc-line-ripple"></div>
+            <label for="sr-applicant-event-name" class="mdc-floating-label">Event Name</label>
+          </div>
+          <div class="mdc-text-field">
+            <input class="mdc-text-field__input" id="sr-applicant-event-location" required>
+            <div class="mdc-line-ripple"></div>
+            <label for="sr-applicant-event-location" class="mdc-floating-label">Event Location</label>
+          </div>
+          <div class="mdc-text-field text-field mdc-text-field--textarea">
+            <div class="mdc-text-field-character-counter">0 / 500</div><textarea id="event-description-textarea-2d"
+              class="mdc-text-field__input" maxlength="500" required></textarea>
+            <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch"><label class="mdc-floating-label"
+                  for="event-description-textarea-2d">
+                  Event Description</label></div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+          <!-- <div class="mdc-text-field-helper-line">
+            <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg"
+              id="event-description-textarea-2d-helper-text">Helper Text</p>
+          </div> -->
+          <div class="mdc-text-field">
+            <input class="mdc-text-field__input" id="sr-applicant-target-audience" required>
+            <div class="mdc-line-ripple"></div>
+            <label for="sr-applicant-target-audience" class="mdc-floating-label">Target Audience</label>
+          </div>
+          <div class="mdc-text-field">
+            <input class="mdc-text-field__input" pattern="-?[0-9]*(\.[0-9]+)?" id="sr-applicant-target-number"
+              maxlength="3" aria-describedby="applicant-mobile-number-helper-text" required>
+            <div class="mdc-line-ripple"></div>
+            <label for="sr-applicant-target-number" class="mdc-floating-label">Target Number of Audience</label>
+          </div>
+          <div class="mdc-text-field-helper-line">
+            <!-- <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg"
+              id="applicant-mobile-number-helper-text">Helper Text</p> -->
+            <div class="mdc-text-field-character-counter">0 / 3</div>
+          </div>
+          <div *ngFor="let google_tech of google_techs" class="mdc-form-field">
+            <div class="mdc-checkbox">
+              <input type="checkbox" class="mdc-checkbox__native-control" id="{{google_tech.key}}-checkbox" />
+              <div class="mdc-checkbox__background">
+                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                  <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                </svg>
+                <div class="mdc-checkbox__mixedmark"></div>
+              </div>
+              <div class="mdc-checkbox__ripple"></div>
+            </div>
+            <label for="{{google_tech.key}}-checkbox">{{google_tech.name}} <a *ngIf="google_tech.url != ''" href="{{google_tech.url}}"
+                target="_blank">visit website <i class="material-icons mdc-button__icon"
+                  aria-hidden="true">link</i></a></label>
+          </div>
+
+
+        </div>
+
+        <button href="application/speaker" class="mdc-button mdc-button--unelevated"> <span
+            class="mdc-button__ripple"></span> Submit</button>
+      </div>
+    </div>
+    <div *ngIf="application_type == 'sponsor' || application_type == 'volunteer' || application_type == 'wtm'"
+      class="mdc-layout-grid__inner">
+      <div *ngIf="application_type == 'sponsor'"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 desktop-only">Sponsorship</h2>
+        <p>To learn more about sponsorships, please email us at gdgbaguio@gmail.com or answer the form in the link
+          below.
+        </p>
+      </div>
+      <div *ngIf="application_type == 'volunteer'"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 desktop-only">Become a Volunteer</h2>
+        <p>Google Developer Group Baguio is opening a new initiative of group of volunteers. We are currently looking
+          for:</p>
+        <ul>
+          <li>Active, hyper volunteer and aspiring leaders of the future.</li>
+          <li>Anyone uses any Google technologies or apps.</li>
+          <li>Anyone who wants to share their knowledge about Google technologies</li>
+          <li>Anyone interested to learn more about Google technologies</li>
+        </ul>
+      </div>
+      <div *ngIf="application_type == 'wtm'"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="application-header-container">
+          <img src="{{wtm}}" alt="" class="desktop-only">
+          <h2 class="mdc-typography--headline4 desktop-only">Join the movement</h2>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
+          maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
+        </p>
+      </div>
       <div
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="text-field-container">
           <input type="hidden" id="applicantion-type">
           <div class="mdc-text-field">
-            <input class="mdc-text-field__input" id="applicant-full-name">
+            <input class="mdc-text-field__input" id="applicant-full-name" required>
             <div class="mdc-line-ripple"></div>
             <label for="applicant-full-name" class="mdc-floating-label">Full Name</label>
           </div>
           <div class="mdc-text-field">
-            <input class="mdc-text-field__input" id="applicant-company-school">
+            <input class="mdc-text-field__input" id="applicant-company-school" required>
             <div class="mdc-line-ripple"></div>
             <label for="applicant-company-school" class="mdc-floating-label">Company / School</label>
           </div>
           <div class="mdc-text-field">
-            <input class="mdc-text-field__input" id="applicant-position-profession">
+            <input class="mdc-text-field__input" id="applicant-position-profession" required>
             <div class="mdc-line-ripple"></div>
             <label for="applicant-position-profession" class="mdc-floating-label">Position / Profession</label>
           </div>
           <div class="mdc-text-field">
-            <input class="mdc-text-field__input" id="applicant-mobile-number" maxlength="11"
-              aria-describedby="applicant-mobile-number-helper-text">
+            <input class="mdc-text-field__input" pattern="-?[0-9]*(\.[0-9]+)?" id="applicant-mobile-number"
+              maxlength="11" aria-describedby="applicant-mobile-number-helper-text" required>
             <div class="mdc-line-ripple"></div>
             <label for="applicant-mobile-number" class="mdc-floating-label">Mobile Number</label>
           </div>
@@ -41,7 +156,7 @@
             <div class="mdc-text-field-character-counter">0 / 11</div>
           </div>
           <div class="mdc-text-field">
-            <input class="mdc-text-field__input" id="applicant-email">
+            <input class="mdc-text-field__input" type="email" id="applicant-email" required>
             <div class="mdc-line-ripple"></div>
             <label for="applicant-email" class="mdc-floating-label">Email Address</label>
           </div>
@@ -63,37 +178,6 @@
 
         <button href="application/speaker" class="mdc-button mdc-button--unelevated"> <span
             class="mdc-button__ripple"></span> Submit</button>
-      </div>
-      <div *ngIf="application_type == 'sponsor'"
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
-        <h2 class="mdc-typography--headline4 desktop-only">Sponsorship</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
-          maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
-        </p>
-      </div>
-      <div *ngIf="application_type == 'speaker'"
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
-        <h2 class="mdc-typography--headline4 desktop-only">Become a Speaker</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
-          maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
-        </p>
-      </div>
-      <div *ngIf="application_type == 'volunteer'"
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
-        <h2 class="mdc-typography--headline4 desktop-only">Become a Volunteer</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
-          maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
-        </p>
-      </div>
-      <div *ngIf="application_type == 'wtm'"
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
-        <div class="application-header-container">
-          <img src="{{wtm}}" alt="">
-          <h2 class="mdc-typography--headline4 desktop-only">Join the movement</h2>
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
-          maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
-        </p>
       </div>
     </div>
   </div>

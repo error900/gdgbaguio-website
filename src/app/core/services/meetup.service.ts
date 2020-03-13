@@ -14,21 +14,17 @@ import {
   FirebaseEventInterface
 } from '../model/events.model';
 
-import { MeetupAuthService } from './meetup-auth.service';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'a4c8f42439806d48f874ebe10908f1c2'
-  })
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Content-Type': 'application/json',
+//     'Authorization': 'a4c8f42439806d48f874ebe10908f1c2'
+//   })
+// };
 
 @Injectable({
   providedIn: 'root'
 })
 export class MeetupService {
-  oauthResponse: MeetupAuthService;
-  access_token = '&access_token=bfe2bcd58e13abcbfbeb4999f8053083&';
 
   constructor(private http: HttpClient) { }
 
@@ -75,9 +71,9 @@ export class MeetupService {
         catchError(this.handleError)
       );
   }
-  
+
   siteMeetupEventDetails(event_id: string): Observable<eventInfo> {
-    return this.http.get<eventInfo>(conf.event + '/' + event_id + meetupApiURL.eventDetailsParams + this.access_token)
+    return this.http.get<eventInfo>(conf.event + '/' + event_id + meetupApiURL.eventDetailsParams)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -85,7 +81,7 @@ export class MeetupService {
   }
 
   dashboardDraftMeetupEvents(): Observable<draftEvent[]> {
-    return this.http.get<draftEvent[]>(meetupApiURL.eventDraft + this.access_token)
+    return this.http.get<draftEvent[]>(meetupApiURL.eventDraft)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -94,10 +90,10 @@ export class MeetupService {
 
   meetupRSVP(event_id: string): Observable<memberRSVP[]> {
     return this.http.get<memberRSVP[]>(conf.event + '/' + event_id + meetupApiURL.memberRSVP)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
   }
 
   // POST
