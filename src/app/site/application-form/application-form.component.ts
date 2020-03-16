@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { map } from 'rxjs/operators';
 import { FirebaseGoogleTechInterface } from 'src/app/core/model/events.model';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-application-form',
@@ -19,8 +20,13 @@ export class ApplicationFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.application_type = this.route.snapshot.params.type;
+  }
+
+  ngAfterViewInit() {
     if (this.application_type == 'sponsor' || this.application_type == 'wtm' || this.application_type == 'volunteer') {
-      const i = <HTMLInputElement>document.querySelector('#applicantion-type');
+      const i = <HTMLInputElement>document.getElementById('applicantion-type');
+      console.log('i', i);
+
       i.value = this.application_type;
     } else {
       console.log('this.getGoogleTechs();', this.getGoogleTechs());
@@ -45,6 +51,22 @@ export class ApplicationFormComponent implements OnInit {
 
       }
     )
+  }
+
+  applicationFormValidation() {
+    const greetMessageEl = document.querySelector('.greet-message');
+    const greetButton = document.querySelector('.greet-button');
+    greetButton.addEventListener('click', () => {
+      const firstNameInput = (<HTMLInputElement>document.querySelector('.first-name-input')).value;
+      const lastNameInput = (<HTMLInputElement>document.querySelector('.last-name-input')).value;
+      let name;
+      if (firstNameInput || lastNameInput) {
+        name = firstNameInput + ' ' + lastNameInput;
+      } else {
+        name = 'Anonymous';
+      }
+      greetMessageEl.textContent = `Hello, ${name}!`;
+    });
   }
 
 }

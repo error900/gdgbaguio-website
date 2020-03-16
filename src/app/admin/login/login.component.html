@@ -37,14 +37,14 @@
           <!-- <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&amp;redirect_uri=https://secure.meetup.com/ties/google/&amp;response_type=code&amp;state=returnUri%3Dhttps%253A%252F%252Fwww.meetup.com%252F&amp;client_id=855636443875-pmqkjkrj33pvp0t1ghecgp4f3l746856.apps.googleusercontent.com&amp;access_type=offline"
             id="google-signin-button" class="mdc-button mdc-button--outlined">
             <span class="mdc-button__ripple"></span> Sign in with google</a> -->
-          <button id="google-signin-button" (click)=auth.googleAdminLogin() class="mdc-button mdc-button--outlined">
+          <button id="google-signin-button" (click)=auth.adminUserGoogleLogin() class="mdc-button mdc-button--outlined">
             <span class="mdc-button__ripple"></span> Sign in with google</button>
         </div>
 
         <!-- <div *ngIf="auth.user$ | async as user"></div>
         <p class="or-divider">OR</p>
         <div class="button-container">
-          <button id="google-signin-button" (click)=auth.googleAdminLogin() class="mdc-button mdc-button--outlined">
+          <button id="google-signin-button" (click)=auth.adminUserGoogleLogin() class="mdc-button mdc-button--outlined">
             <span class="mdc-button__ripple"></span> Sign in with google</button>
         </div> -->
       </div>

@@ -11,7 +11,6 @@ import { User } from 'src/app/core/model/user.model';
   providedIn: 'root'
 })
 export class MeetupAuthService {
-  oauthResponse: oauthResponse;
   oauthToken: any;
   token_type: any;
   oauthTokenRefresh: any;
@@ -43,6 +42,13 @@ export class MeetupAuthService {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`google-accounts/${uid}`);
     return userRef.update({
       meetupSignin: true
+    });
+  }
+
+  updateUserMeetupSignout(uid) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`google-accounts/${uid}`);
+    return userRef.update({
+      meetupSignin: false
     });
   }
 

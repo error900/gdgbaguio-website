@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 
-import { MDCLinearProgress } from '@material/linear-progress';
-import { MeetupAuthService } from './core/services/meetup-auth.service';
 import { AuthenticationService } from './core/services/authentication.service';
 import { User } from './core/model/user.model';
+import { MeetupAuthService } from './core/services/meetup-auth.service';
+import { oauthResponse } from 'src/app/core/model/meetup-oauth2.model';
+
+import { MDCLinearProgress } from '@material/linear-progress';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +28,9 @@ export class AppComponent {
           this.url = event.url;
           console.log('ROUTE', this.url)
         }
+
         this.setOAuthToken();
+
         if (this.url.search('dashboard') == -1) {
           this.showSiteTopBar = true;
           this.showFooter = true;
@@ -54,13 +58,24 @@ export class AppComponent {
   }
 
   setOAuthToken() {
-    if (this.url.search('oauth') == 1) {
-      if (sessionStorage['access_token'] == null) {
+    if (this.url.search('oauth') === 1) {
+      if (localStorage.getItem('access_token') === null) {
         this.auth.user$.subscribe(
           currentUser => {
             this.currentUser = currentUser;
+            let params = {} as oauthResponse;
+            var hash = window.location.hash.substring(1);
+            var prop = hash.split('&');
+            for (var i = 0; i < prop.length; i++) {
+              var pair = prop[i].split('=');
+              params[pair[0]] = decodeURIComponent(pair[1]);
+            }
+            console.log(params);
+
+            localStorage.setItem('access_token', params.access_token)
             this.meetupOAuth.updateUserMeetupSignin(this.currentUser.uid);
-            
+            this.router.navigate(['/dashboard/meetup-events']);
+
           }
         );
       }
@@ -79,4 +94,5 @@ export class AppComponent {
       }
     });
   }
+
 }

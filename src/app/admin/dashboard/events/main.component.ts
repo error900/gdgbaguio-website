@@ -6,7 +6,6 @@ import { EventsService } from '../../../core/services/events.service';
 import { MeetupService } from '../../../core/services/meetup.service';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { draftEvent, plannedEvent, FirebaseEvent, FirebaseEventInterface, FirebaseEventHost, eventInfo } from 'src/app/core/model/events.model';
-import { oauthResponse } from 'src/app/core/model/meetup-oauth2.model';
 
 import { MDCDialog } from '@material/dialog';
 import { User } from 'src/app/core/model/user.model';
@@ -37,13 +36,10 @@ export class EventsDashboardComponent implements OnInit {
   eventDetails: eventInfo;
   eventids: string[];
 
-  meetupoauthResponse: oauthResponse;
-  currentUser: User;
-
   constructor(public meetupOAuth: MeetupAuthService, public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService, private firestoreService: FirestoreService) { }
 
   ngOnInit() {
-    this.allowMeetupApplication();
+    this.checkMeetupSignin(this.auth.currentUser);
 
     // MEETUP
     this.getPlannedEvents(); // meetup events
@@ -53,20 +49,9 @@ export class EventsDashboardComponent implements OnInit {
     // console.log(this.meetupService.attendanceTaking(0, 0, 'status'));
   }
 
-  allowMeetupApplication() {
-    this.checkMeetupSignin(this.currentUser);
-
-    // this.auth.user$.subscribe(
-    //   currentUser => {
-    //     this.currentUser = currentUser;
-    //     this.checkMeetupSignin(this.currentUser);
-    //   }
-    // );
-  }
-
   checkMeetupSignin(currentUser: User) {
     if (!(currentUser.meetupSignin)) {
-      this.meetupOAuth.getAuthorizationToken();
+      // this.meetupOAuth.getAuthorizationToken();  
     }
   }
 

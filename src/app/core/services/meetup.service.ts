@@ -104,23 +104,6 @@ export class MeetupService {
     return url;
   }
 
-  // getAccessToken(code: string) {
-
-  //   const payload = new HttpParams()
-  //     .append('grant_type', 'authorization_code')
-  //     .append('code', code)
-  //     .append('redirect_uri', 'http://localhost:4200/oauth/callback')
-  //     .append('client_id', 'api');
-
-  //   this.http.post('http://192.168.10.10:3000/oauth/access_token', payload, {
-  //     headers: {
-  //       'Content-Type': 'application/x-www-form-urlencoded'
-  //     }
-  //   }).subscribe(response => {
-  //     this.oauthResponse = response;
-  //   });
-  // }
-
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

@@ -15,7 +15,6 @@ import { MDCRipple } from '@material/ripple';
 })
 export class LoginComponent implements OnInit {
   user$: Observable<User>;
-  currentUser
 
   constructor(public auth: AuthenticationService, private router: Router) { }
 

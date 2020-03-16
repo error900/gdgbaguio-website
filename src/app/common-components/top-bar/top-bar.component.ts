@@ -30,7 +30,22 @@ export class TopBarComponent implements OnInit {
     this.initializeMDCcomponents();
   }
 
-  async initializeMDCcomponents() {
+  // ngAfterViewChecked() {
+  //   // ACCOUNT ICON BUTTON
+  //   const accountIconButton = <HTMLButtonElement>document.querySelector('#account-button');
+  //   console.log('ACCOUNT ICON BUTTON', accountIconButton);
+  //   const accountMenu = <HTMLDivElement>document.querySelector('#account-mdc-menu');
+  //   console.log('ACCOUNT DIV', accountMenu);
+  //   const accounMDCMenu = new mdc.menu.MDCMenu(accountMenu);
+  //   console.log('accounMDCMenu', accounMDCMenu);
+  //   accountIconButton.addEventListener('click', (event) => {
+  //     accounMDCMenu.open = !accounMDCMenu.open;
+  //     accounMDCMenu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
+  //     accounMDCMenu.setAnchorElement(accountIconButton);
+  //   });
+  // }
+
+  initializeMDCcomponents() {
     window.onload = () => {
       /** Initialize MDC Web components. */
       // Instantiation
@@ -80,19 +95,6 @@ export class TopBarComponent implements OnInit {
       // const HTMLANchorripple = [].map.call(<HTMLAnchorElement>document.querySelector('.mdc-button'), function (el) {
       //   return new MDCRipple(el);
       // });
-
-      // ACCOUNT ICON BUTTON
-      const accountIconButton = <HTMLButtonElement>document.querySelector('#account-button');
-      console.log('ACCOUNT ICON BUTTON', accountIconButton);
-      const accountMenu = <HTMLDivElement>document.querySelector('#account-mdc-menu');
-      console.log('ACCOUNT DIV', accountMenu);
-      const accounMDCMenu = new mdc.menu.MDCMenu(accountMenu);
-      console.log('accounMDCMenu', accounMDCMenu);
-      accountIconButton.addEventListener('click', (event) => {
-        accounMDCMenu.open = !accounMDCMenu.open;
-        accounMDCMenu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
-        accounMDCMenu.setAnchorElement(accountIconButton);
-      });
 
       // const rootEl = document.querySelector('.root');
       const communityLink = document.querySelector('#community-menu-surface-link');
