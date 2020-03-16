@@ -14,8 +14,6 @@ import { MDCTextField } from '@material/textfield';
 })
 export class TopBarComponent implements OnInit {
   gdgbaguio_logo = '../../assets/images/gdgbaguio-logo.png';
-  // showSignInbutton: boolean;
-  // c: any;
   usr: User;
 
   constructor(public auth: AuthenticationService) {
@@ -30,23 +28,37 @@ export class TopBarComponent implements OnInit {
     this.initializeMDCcomponents();
   }
 
-  // ngAfterViewChecked() {
-  //   // ACCOUNT ICON BUTTON
-  //   const accountIconButton = <HTMLButtonElement>document.querySelector('#account-button');
-  //   console.log('ACCOUNT ICON BUTTON', accountIconButton);
-  //   const accountMenu = <HTMLDivElement>document.querySelector('#account-mdc-menu');
-  //   console.log('ACCOUNT DIV', accountMenu);
-  //   const accounMDCMenu = new mdc.menu.MDCMenu(accountMenu);
-  //   console.log('accounMDCMenu', accounMDCMenu);
-  //   accountIconButton.addEventListener('click', (event) => {
-  //     accounMDCMenu.open = !accounMDCMenu.open;
-  //     accounMDCMenu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
-  //     accounMDCMenu.setAnchorElement(accountIconButton);
-  //   });
-  // }
+  ngAfterViewChecked() {
+    // // ACCOUNT ICON BUTTON
+    // const accountIconButton = <HTMLButtonElement>document.querySelector('#account-button');
+    // // console.log('ACCOUNT ICON BUTTON', accountIconButton);
+    // const accountMenu = <HTMLDivElement>document.querySelector('#account-mdc-menu');
+    // // console.log('ACCOUNT DIV', accountMenu);
+    // const accounMDCMenu = new mdc.menu.MDCMenu(accountMenu);
+    // // console.log('accounMDCMenu', accounMDCMenu);
+    // accountIconButton.addEventListener('click', (event) => {
+    //   accounMDCMenu.open = !accounMDCMenu.open;
+    //   accounMDCMenu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
+    //   accounMDCMenu.setAnchorElement(accountIconButton);
+    // });
+  }
 
   initializeMDCcomponents() {
     window.onload = () => {
+      // ACCOUNT ICON BUTTON
+      const accountIconButton = <HTMLButtonElement>document.querySelector('#account-button');
+      // console.log('ACCOUNT ICON BUTTON', accountIconButton);
+      const accountMenu = <HTMLDivElement>document.querySelector('#account-mdc-menu');
+      // console.log('ACCOUNT DIV', accountMenu);
+      const accounMDCMenu = new mdc.menu.MDCMenu(accountMenu);
+      // console.log('accounMDCMenu', accounMDCMenu);
+      accountIconButton.addEventListener('click', (event) => {
+        accounMDCMenu.open = !accounMDCMenu.open;
+        accounMDCMenu.setAnchorCorner(mdc.menu.Corner.BOTTOM_LEFT);
+        accounMDCMenu.setAnchorElement(accountIconButton);
+      });
+
+
       /** Initialize MDC Web components. */
       // Instantiation
       // RIPPLE

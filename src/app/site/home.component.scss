@@ -37,7 +37,7 @@
   background-image: url('https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/3.jpg');
   height: 100%;
   background-attachment: fixed;
-  background-position: center;
+  background-position-y: -210px;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -138,6 +138,10 @@
 }
 
 @media screen and (max-width: 575px) {
+  .gdgbaguio-about-banner {
+    background-position: center;
+  }
+  
   .button-lg {
     width: 100%;
   }

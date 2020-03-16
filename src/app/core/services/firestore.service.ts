@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { FirebaseEvent, FirebaseEventHost, FirebaseGoogleTech } from '../model/events.model';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,17 @@ export class FirestoreService {
   private eventsCollectionPath = '/events';
   private hostsCollectionPath = '/hosts';
   private googleTechCollectionPath = '/google-technologies';
+  private adminAccountsCollectionPath = '/admin-accounts';
   eventRef: AngularFirestoreCollection<FirebaseEvent> = null;
   hostRef: AngularFirestoreCollection<FirebaseEventHost> = null;
   techRef: AngularFirestoreCollection<FirebaseGoogleTech> = null;
+  adminRef: AngularFirestoreCollection<User> = null;
 
   constructor(private db: AngularFirestore) {
     this.eventRef = db.collection(this.eventsCollectionPath);
     this.hostRef = db.collection(this.hostsCollectionPath);
     this.techRef = db.collection(this.googleTechCollectionPath);
+    this.adminRef = db.collection(this.adminAccountsCollectionPath);
   }
 
   mergeMeetupEventsToFirestore(event: FirebaseEvent): void {
@@ -48,5 +52,9 @@ export class FirestoreService {
 
   getFirestoreGoogleTechs(): AngularFirestoreCollection<FirebaseGoogleTech> {
     return this.techRef;
+  }
+
+  getAdminUser(uid: string): AngularFirestoreDocument<User> {
+    return this.adminRef.doc<User>(uid);
   }
 }

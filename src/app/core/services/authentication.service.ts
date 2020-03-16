@@ -5,11 +5,11 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
+import { MeetupAuthService } from './meetup-auth.service';
+import { FirestoreService } from './firestore.service';
+import { User } from 'src/app/core/model/user.model';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { User } from 'src/app/core/model/user.model';
-import { MeetupAuthService } from './meetup-auth.service';
-import { doesNotReject } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +17,20 @@ import { doesNotReject } from 'assert';
 export class AuthenticationService {
   user$: Observable<User>;
   currentUser: User;
-  adminUser: User;
+  adminUser: any;
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-    private meetupOAuth: MeetupAuthService
+    private meetupOAuth: MeetupAuthService,
+    private firestoreService: FirestoreService
   ) {
     // Get auth data, then get firestore user document || null
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`google-accounts/${user.uid}`).valueChanges()
+          return this.afs.doc<User>(`google-accounts/${user.uid}`).get()
         } else {
           return of(null)
         }
@@ -81,11 +82,16 @@ export class AuthenticationService {
 
     localStorage.setItem('uid', user.uid);
     localStorage.setItem('photoURL', user.photoURL);
+    // localStorage.setItem('email', user.email);
+    // localStorage.setItem('displayName', user.displayName);
+    // localStorage.setItem('admin', user.admin);
 
     return userRef.set(data, { merge: true });
   }
 
   private updateAdminUserData(user) {
+    localStorage.setItem('uid', user.uid);
+    localStorage.setItem('photoURL', user.photoURL);
     // Sets user data to firestore on login
     const adminRef: AngularFirestoreDocument<User> = this.afs.doc(`admin-accounts/${user.uid}`);
     const data = {
@@ -100,20 +106,29 @@ export class AuthenticationService {
     adminRef.get().subscribe(
       adminUser => {
         if (adminUser.exists) {
-          localStorage.setItem('uid', user.uid);
-          localStorage.setItem('photoURL', user.photoURL);
-          var done = this.meetupSignIn();
-          if (done) {
-            this.router.navigate(['/dashboard/meetup-events']);
-          } else {
-
-          }
-
-          return adminRef.update({
-            photoURL: user.photoURL,
-          });
+          return (adminRef.update({ photoURL: user.photoURL }), this.checkAdminUser(user.uid));
         } else {
-          return adminRef.set(data, { merge: true });
+          localStorage.clear();
+          return (adminRef.set(data, { merge: true }), this.router.navigate(['/signin-check', 'denied']));
+        }
+      }
+    )
+  }
+
+  checkAdminUser(uid: string) {
+    this.firestoreService.getAdminUser(uid).get().subscribe(
+      adminUser => {
+        this.adminUser = adminUser.data();
+
+        if (this.adminUser.admin == true && this.adminUser.meetupSignin == true) {
+          this.router.navigate(['/dashboard/meetup-events']);
+        } else if (this.adminUser.admin == true && this.adminUser.meetupSignin == false) {
+          // var done = this.meetupSignIn();
+          // if (done) {
+          this.meetupOAuth.getAuthorizationToken();
+          // }
+        } else {
+          this.router.navigate(['/signin-check', 'denied']);
         }
       }
     )
@@ -121,25 +136,30 @@ export class AuthenticationService {
 
   meetupSignIn() {
     try {
-      // var gdgWindow = window.self;
-      // var meetupWindow = window.open("https://accounts.google.com/o/oauth2/auth?scope=email%20profile&redirect_uri=https://secure.meetup.com/ties/google/&response_type=code&state=returnUri%3Dhttps%253A%252F%252Fwww.meetup.com%252F&client_id=855636443875-pmqkjkrj33pvp0t1ghecgp4f3l746856.apps.googleusercontent.com&access_type=offline", '_blank');
-      // gdgWindow.window.alert('sdgfdshfgsdf');
-      // gdgWindow.window.focus();
-
       var width = 500,
         height = 350,
         top = (screen.height - height) / 2,
         left = (screen.width - width) / 2;
       var meetuploginWindow = window.open(
         "https://accounts.google.com/o/oauth2/auth?scope=email%20profile&redirect_uri=https://secure.meetup.com/ties/google/&response_type=code&state=returnUri%3Dhttps%253A%252F%252Fwww.meetup.com%252F&client_id=855636443875-pmqkjkrj33pvp0t1ghecgp4f3l746856.apps.googleusercontent.com&access_type=offline",
-        "Meetup",
+        "MEETUP",
         ["height=", height, ",width=", width,
           ",top=", top, ",left=", left].join('')
       );
-      meetuploginWindow.window.focus();
-      setTimeout(function () {
-        meetuploginWindow.close();
-      }, 3000);
+
+      // var openedMeetuploginWindow = window.open('', 'MEETUP');
+      var request = new Request(meetuploginWindow.location.href);
+      fetch(request).then(function (response) {
+        // console.log('response.status', response.status); // returns 200
+        meetuploginWindow.alert('response.status' + response.status);
+      });
+
+      // // meetuploginWindow.window.focus();
+      // meetuploginWindow.onload = () => {
+      //   // setTimeout(function () {
+      //   meetuploginWindow.close();
+      //   // }, 3000);
+      // }
 
       return true;
       // var openedMeetuploginWindow = window.open('', 'Meetup');

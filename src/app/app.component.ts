@@ -71,11 +71,9 @@ export class AppComponent {
               params[pair[0]] = decodeURIComponent(pair[1]);
             }
             console.log(params);
-
             localStorage.setItem('access_token', params.access_token)
-            this.meetupOAuth.updateUserMeetupSignin(this.currentUser.uid);
+            this.meetupOAuth.updateAdminUserMeetupSignin(this.currentUser.uid);
             this.router.navigate(['/dashboard/meetup-events']);
-
           }
         );
       }

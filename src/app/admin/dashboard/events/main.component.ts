@@ -39,20 +39,12 @@ export class EventsDashboardComponent implements OnInit {
   constructor(public meetupOAuth: MeetupAuthService, public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService, private firestoreService: FirestoreService) { }
 
   ngOnInit() {
-    this.checkMeetupSignin(this.auth.currentUser);
-
     // MEETUP
     this.getPlannedEvents(); // meetup events
     this.getDratGDGEvents(); // meetup events
     // this.getFirebaseEvents(); // merge meetup events to firestore
 
     // console.log(this.meetupService.attendanceTaking(0, 0, 'status'));
-  }
-
-  checkMeetupSignin(currentUser: User) {
-    if (!(currentUser.meetupSignin)) {
-      // this.meetupOAuth.getAuthorizationToken();  
-    }
   }
 
   // MEETUP

@@ -45,6 +45,13 @@ export class MeetupAuthService {
     });
   }
 
+  updateAdminUserMeetupSignin(uid) {
+    const adminRef: AngularFirestoreDocument<User> = this.afs.doc(`admin-accounts/${uid}`);
+    return adminRef.update({
+      meetupSignin: true
+    });
+  }
+
   updateUserMeetupSignout(uid) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`google-accounts/${uid}`);
     return userRef.update({

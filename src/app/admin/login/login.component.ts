@@ -5,9 +5,6 @@ import { User } from 'src/app/core/model/user.model';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { MDCTextField } from '@material/textfield';
-import { MDCRipple } from '@material/ripple';
-
 @Component({
   selector: 'site-login',
   templateUrl: './login.component.html',
@@ -19,13 +16,14 @@ export class LoginComponent implements OnInit {
   constructor(public auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    this.checkAdminUser();
+    this.accessCheck();
   }
 
-  checkAdminUser() {
-    if (this.auth.currentUser != null && this.auth.currentUser.admin == true && this.auth.currentUser.meetupSignin == true) {
-      this.router.navigate(['/dashboard/meetup-events']);
+  accessCheck() {
+    var user_id = localStorage.getItem('uid');
 
+    if (user_id != null || user_id != undefined) {
+      this.auth.checkAdminUser(user_id);
     } else {
       this.router.navigate(['/login']);
     }

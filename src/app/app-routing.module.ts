@@ -9,6 +9,7 @@ import { TeamComponent } from './site/team/team.component';
 import { ApplicationFormComponent } from './site/application-form/application-form.component';
 import { Error404Component } from './site/error404/error404.component';
 import { LoginComponent } from './admin/login/login.component';
+import { AdminCheckComponent } from './admin/common-components/admin-check/admin-check.component';
 import { EventsDashboardComponent } from './admin/dashboard/events/main.component';
 import { AttendanceDashboardComponent } from './admin/dashboard/attendance/main.component';
 
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'application/:type', component: ApplicationFormComponent },
   { path: 'dashboard/users', component: ListUserComponent },
   { path: 'dashboard/adduser', component: CreateUserComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent }, 
+  { path: 'signin-check/:access_status', component: AdminCheckComponent, canActivate: [AuthenticationGuard] }, 
   { path: 'dashboard/meetup-events', component: EventsDashboardComponent, canActivate: [AuthenticationGuard] },
   { path: 'dashboard/meetup-attendance', component: AttendanceDashboardComponent },
 
