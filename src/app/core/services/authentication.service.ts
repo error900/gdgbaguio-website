@@ -6,7 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 import { MeetupAuthService } from './meetup-auth.service';
-import { FirestoreService } from './firestore.service';
+import { FirestoreAccountsService } from './firestore-accounts.service';
 import { User } from 'src/app/core/model/user.model';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -24,7 +24,7 @@ export class AuthenticationService {
     private afs: AngularFirestore,
     private router: Router,
     private meetupOAuth: MeetupAuthService,
-    private firestoreService: FirestoreService
+    private firestoreAccountsService: FirestoreAccountsService
   ) {
     // Get auth data, then get firestore user document || null
     this.user$ = this.afAuth.authState.pipe(
@@ -82,9 +82,6 @@ export class AuthenticationService {
 
     localStorage.setItem('uid', user.uid);
     localStorage.setItem('photoURL', user.photoURL);
-    // localStorage.setItem('email', user.email);
-    // localStorage.setItem('displayName', user.displayName);
-    // localStorage.setItem('admin', user.admin);
 
     return userRef.set(data, { merge: true });
   }
@@ -116,7 +113,7 @@ export class AuthenticationService {
   }
 
   checkAdminUser(uid: string) {
-    this.firestoreService.getAdminUser(uid).get().subscribe(
+    this.firestoreAccountsService.getAdminUser(uid).get().subscribe(
       adminUser => {
         this.adminUser = adminUser.data();
 

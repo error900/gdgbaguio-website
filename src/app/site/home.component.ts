@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FirestoreService } from '../core/services/firestore.service';
+import { FirestoreEventsService } from '../core/services/firestore-events.service';
 import { FirebaseEventInterface, event } from '../core/model/events.model';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../core/services/authentication.service';
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
   womentechmakers_ambassador_photo = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/account-photo/kim.jpg';
   wtm = '../../assets/images/wtm-logo-horiz-rgb.svg';
 
-  constructor(public auth: AuthenticationService, private firestoreService: FirestoreService, private sanitizer: DomSanitizer) { }
+  constructor(public auth: AuthenticationService, private firestoreService: FirestoreEventsService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.FirestoreMeetupEvents();

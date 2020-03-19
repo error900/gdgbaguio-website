@@ -7,6 +7,7 @@ import { EventsComponent } from './site/events/events.component';
 import { EventDetailsComponent } from './site/events/event-details/event-details.component';
 import { TeamComponent } from './site/team/team.component';
 import { ApplicationFormComponent } from './site/application-form/application-form.component';
+import { ApplicationSubmitComponent } from './site/application-form/application-submit/application-submit.component';
 import { Error404Component } from './site/error404/error404.component';
 import { LoginComponent } from './admin/login/login.component';
 import { AdminCheckComponent } from './admin/common-components/admin-check/admin-check.component';
@@ -25,10 +26,11 @@ const routes: Routes = [
   { path: 'events/:eventId', component: EventDetailsComponent },
   { path: 'team', component: TeamComponent },
   { path: 'application/:type', component: ApplicationFormComponent },
+  { path: 'application-submit/:type', component: ApplicationSubmitComponent },
   { path: 'dashboard/users', component: ListUserComponent },
   { path: 'dashboard/adduser', component: CreateUserComponent },
-  { path: 'login', component: LoginComponent }, 
-  { path: 'signin-check/:access_status', component: AdminCheckComponent, canActivate: [AuthenticationGuard] }, 
+  { path: 'login', component: LoginComponent },
+  { path: 'signin-check/:access_status', component: AdminCheckComponent, canActivate: [AuthenticationGuard] },
   { path: 'dashboard/meetup-events', component: EventsDashboardComponent, canActivate: [AuthenticationGuard] },
   { path: 'dashboard/meetup-attendance', component: AttendanceDashboardComponent },
 

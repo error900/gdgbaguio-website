@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MeetupService } from 'src/app/core/services/meetup.service';
 import { eventInfo, FirebaseEvent } from '../../../core/model/events.model';
 import { ActivatedRoute } from '@angular/router';
-import { FirestoreService } from 'src/app/core/services/firestore.service';
-import { map } from 'rxjs/operators';
+import { FirestoreEventsService } from 'src/app/core/services/firestore-events.service';
 
 @Component({
   selector: 'site-event-details',
@@ -18,7 +17,7 @@ export class EventDetailsComponent implements OnInit {
   showRegisterButton = false;
   showWaitlistButton = false;
 
-  constructor(private meetupService: MeetupService, private firestoreService: FirestoreService, private route: ActivatedRoute) { }
+  constructor(private meetupService: MeetupService, private firestoreService: FirestoreEventsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.eventid = this.route.snapshot.params.eventId;

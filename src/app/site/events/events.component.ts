@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MeetupService } from '../../core/services/meetup.service';
-import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { FirestoreEventsService } from 'src/app/core/services/firestore-events.service';
 import { plannedEvent, recentEvent, pastEvent, FirebaseEventInterface, event } from '../../core/model/events.model';
 import { meetupApiURL } from 'src/app/core/config/meetup-api-url';
 import { map } from 'rxjs/operators';
@@ -34,7 +34,7 @@ export class EventsComponent implements OnInit {
   firestoreRecentEvents: event[];
   firestorePastEvents: event[];
 
-  constructor(private meetupService: MeetupService, private firestoreService: FirestoreService) { }
+  constructor(private meetupService: MeetupService, private firestoreService: FirestoreEventsService) { }
 
   ngOnInit() {
     // this.getPlannedGDGEvents();

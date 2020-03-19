@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../../core/services/authentication.ser
 import { MeetupAuthService } from 'src/app/core/services/meetup-auth.service';
 import { EventsService } from '../../../core/services/events.service';
 import { MeetupService } from '../../../core/services/meetup.service';
-import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { FirestoreEventsService } from 'src/app/core/services/firestore-events.service';
 import { draftEvent, plannedEvent, FirebaseEvent, FirebaseEventInterface, FirebaseEventHost, eventInfo } from 'src/app/core/model/events.model';
 
 import { MDCDialog } from '@material/dialog';
@@ -36,7 +36,7 @@ export class EventsDashboardComponent implements OnInit {
   eventDetails: eventInfo;
   eventids: string[];
 
-  constructor(public meetupOAuth: MeetupAuthService, public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService, private firestoreService: FirestoreService) { }
+  constructor(public meetupOAuth: MeetupAuthService, public auth: AuthenticationService, private meetupService: MeetupService, private eventService: EventsService, private firestoreService: FirestoreEventsService) { }
 
   ngOnInit() {
     // MEETUP

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { FirebaseGoogleTechInterface } from 'src/app/core/model/events.model';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { FirestoreApplicationService } from 'src/app/core/services/firestore-application.service';
+import { GroupForm, SpeakerRequestForm } from 'src/app/core/model/application-form.model';
+import { StringifyOptions } from 'querystring';
 
 @Component({
   selector: 'app-application-form',
@@ -12,31 +13,26 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ApplicationFormComponent implements OnInit {
   application_type: string;
-  wtm_logo = '../../assets/images/wtm-logo-horiz-rgb.svg';
-  wtm = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/wtm.png';
+  groupForm: GroupForm;
+  speakerRequestForm: SpeakerRequestForm = new SpeakerRequestForm();
   google_techs: FirebaseGoogleTechInterface[];
 
-  constructor(private firestoreService: FirestoreService, private route: ActivatedRoute) { }
+  wtm_logo = '../../assets/images/wtm-logo-horiz-rgb.svg';
+  wtm = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/wtm.png';
+
+  constructor(private firestoreApplicationService: FirestoreApplicationService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.application_type = this.route.snapshot.params.type;
+    console.log('this.application_type', this.application_type);
   }
 
   ngAfterViewInit() {
-    if (this.application_type == 'sponsor' || this.application_type == 'wtm' || this.application_type == 'volunteer') {
-      const i = <HTMLInputElement>document.getElementById('applicantion-type');
-      console.log('i', i);
-
-      i.value = this.application_type;
-    } else {
-      console.log('this.getGoogleTechs();', this.getGoogleTechs());
-      console.log('APPLICATION FORM');
-    }
-
+    this.applicationFormValidation();
   }
 
   getGoogleTechs() {
-    this.firestoreService.getFirestoreGoogleTechs().snapshotChanges().pipe(
+    this.firestoreApplicationService.getFirestoreGoogleTechs().snapshotChanges().pipe(
       map(changes =>
         changes.map(
           c => ({
@@ -54,19 +50,76 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   applicationFormValidation() {
-    const greetMessageEl = document.querySelector('.greet-message');
-    const greetButton = document.querySelector('.greet-button');
-    greetButton.addEventListener('click', () => {
-      const firstNameInput = (<HTMLInputElement>document.querySelector('.first-name-input')).value;
-      const lastNameInput = (<HTMLInputElement>document.querySelector('.last-name-input')).value;
-      let name;
-      if (firstNameInput || lastNameInput) {
-        name = firstNameInput + ' ' + lastNameInput;
-      } else {
-        name = 'Anonymous';
-      }
-      greetMessageEl.textContent = `Hello, ${name}!`;
-    });
+    if (this.application_type == 'sponsor' || this.application_type == 'wtm' || this.application_type == 'volunteer') {
+      const application_submit = <HTMLButtonElement>document.getElementById('application-submit-button');
+      const application_type_input = <HTMLInputElement>document.getElementById('application-type');
+      application_type_input.value = this.application_type;
+
+      const inputFieldSelector = '#group-application-form .text-field-container .mdc-text-field input';
+      const textareaSelector = '#group-application-form .text-field-container .mdc-text-field textarea';
+
+      [document.querySelectorAll<HTMLInputElement>(inputFieldSelector), document.querySelectorAll<HTMLTextAreaElement>(textareaSelector)].forEach(list => {
+        list.forEach(element => {
+          element.addEventListener('keyup', event => {
+            var empty = false;
+            [document.querySelectorAll<HTMLInputElement>(inputFieldSelector), document.querySelectorAll<HTMLTextAreaElement>(textareaSelector)].forEach(list => {
+              list.forEach(element => {
+                console.log('element', element);
+                if (element.value == '') {
+                  empty = true;
+                }
+                if (empty) {
+                  application_submit.setAttribute('disabled', 'disabled');
+                } else {
+                  application_submit.removeAttribute('disabled')
+                }
+              });
+            });
+          });
+        });
+      });
+
+    } else if (this.application_type == 'speaker') {
+      const sr_application_type_input = <HTMLInputElement>document.getElementById('sr-application-type');
+      const request_speaker_submit = <HTMLButtonElement>document.getElementById('request-speaker-submit-button');
+
+      sr_application_type_input.value = this.application_type;
+      console.log('this.getGoogleTechs();', this.getGoogleTechs());
+    }
+  }
+
+  saveGroupApplication() {
+    const full_name = <HTMLInputElement>document.getElementById('applicant-full-name');
+    const company_school = <HTMLInputElement>document.getElementById('applicant-company-school');
+    const position_profession = <HTMLInputElement>document.getElementById('applicant-position-profession');
+    const mobile_number = <HTMLInputElement>document.getElementById('applicant-mobile-number');
+    const email = <HTMLInputElement>document.getElementById('applicant-email');
+    const message = <HTMLTextAreaElement>document.getElementById('applicant-message');
+
+
+    this.groupForm.type = this.application_type;
+    this.groupForm.fullName = full_name.value;
+    this.groupForm.companyORschool = company_school.value;
+    this.groupForm.positionORprofession = position_profession.value;
+    this.groupForm.mobileNumber = Number(mobile_number.value);
+    this.groupForm.email = email.value;
+    this.groupForm.message = message.value;
+
+    this.firestoreApplicationService.createGroupApplication(this.groupForm);
+  }
+
+  saveSpeakerRequestApplication() {
+    this.firestoreApplicationService.createSpeakerRequestApplication(this.speakerRequestForm);
+  }
+
+  onSubmit(type) {
+    if (type == "wtm" || type == "volunteer" || type == "sponsor") {
+      this.saveGroupApplication();
+      this.router.navigate(['/application-submit', this.application_type]);
+    } else if (type == "request") {
+      this.saveSpeakerRequestApplication();
+    }
+
   }
 
 }

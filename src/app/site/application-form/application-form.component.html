@@ -21,10 +21,10 @@
           plan accordingly.</p>
         <p>Thank you so much!</p>
       </div>
-      <div
+      <div id="request-application-form"
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="text-field-container">
-          <input type="hidden" id="sr-applicantion-type">
+          <input type="hidden" id="sr-application-type">
           <div class="mdc-text-field">
             <input class="mdc-text-field__input" type="email" id="sr-applicant-email" required>
             <div class="mdc-line-ripple"></div>
@@ -67,8 +67,6 @@
             <label for="sr-applicant-target-number" class="mdc-floating-label">Target Number of Audience</label>
           </div>
           <div class="mdc-text-field-helper-line">
-            <!-- <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg"
-              id="applicant-mobile-number-helper-text">Helper Text</p> -->
             <div class="mdc-text-field-character-counter">0 / 3</div>
           </div>
           <div *ngFor="let google_tech of google_techs" class="mdc-form-field">
@@ -82,15 +80,13 @@
               </div>
               <div class="mdc-checkbox__ripple"></div>
             </div>
-            <label for="{{google_tech.key}}-checkbox">{{google_tech.name}} <a *ngIf="google_tech.url != ''" href="{{google_tech.url}}"
-                target="_blank">visit website <i class="material-icons mdc-button__icon"
+            <label for="{{google_tech.key}}-checkbox">{{google_tech.name}} <a *ngIf="google_tech.url != ''"
+                href="{{google_tech.url}}" target="_blank">visit website <i class="material-icons mdc-button__icon"
                   aria-hidden="true">link</i></a></label>
           </div>
-
-
         </div>
 
-        <button href="application/speaker" class="mdc-button mdc-button--unelevated"> <span
+        <button id="request-speaker-submit-button" class="mdc-button mdc-button--unelevated" disabled> <span
             class="mdc-button__ripple"></span> Submit</button>
       </div>
     </div>
@@ -125,10 +121,11 @@
           maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
         </p>
       </div>
-      <div
+      <div id="group-application-form"
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
+        <!-- <form id="group-application-form" (ngSubmit)='onSubmit(application_type)'> -->
         <div class="text-field-container">
-          <input type="hidden" id="applicantion-type">
+          <input type="hidden" id="application-type">
           <div class="mdc-text-field">
             <input class="mdc-text-field__input" id="applicant-full-name" required>
             <div class="mdc-line-ripple"></div>
@@ -151,8 +148,6 @@
             <label for="applicant-mobile-number" class="mdc-floating-label">Mobile Number</label>
           </div>
           <div class="mdc-text-field-helper-line">
-            <!-- <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg"
-              id="applicant-mobile-number-helper-text">Helper Text</p> -->
             <div class="mdc-text-field-character-counter">0 / 11</div>
           </div>
           <div class="mdc-text-field">
@@ -161,11 +156,11 @@
             <label for="applicant-email" class="mdc-floating-label">Email Address</label>
           </div>
           <div class="mdc-text-field text-field mdc-text-field--textarea">
-            <div class="mdc-text-field-character-counter">0 / 250</div><textarea id="textarea-2d"
+            <div class="mdc-text-field-character-counter">0 / 250</div><textarea id="applicant-message"
               class="mdc-text-field__input" maxlength="250" required></textarea>
             <div class="mdc-notched-outline mdc-notched-outline--upgraded">
               <div class="mdc-notched-outline__leading"></div>
-              <div class="mdc-notched-outline__notch"><label class="mdc-floating-label" for="textarea-2d">
+              <div class="mdc-notched-outline__notch"><label class="mdc-floating-label" for="applicant-message">
                   Message</label></div>
               <div class="mdc-notched-outline__trailing"></div>
             </div>
@@ -176,8 +171,9 @@
           </div>
         </div>
 
-        <button href="application/speaker" class="mdc-button mdc-button--unelevated"> <span
+        <button id="application-submit-button" (click)="onSubmit(application_type)" class="mdc-button mdc-button--unelevated" disabled> <span
             class="mdc-button__ripple"></span> Submit</button>
+        <!-- </form> -->
       </div>
     </div>
   </div>
