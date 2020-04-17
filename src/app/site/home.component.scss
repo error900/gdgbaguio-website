@@ -1,7 +1,7 @@
 @import './events/events.component.scss';
 
 .about-landing-row {
-  margin-top: 45px;
+  margin-top: 47px;
   padding-top: 75px;
   padding-bottom: 0;
   background: linear-gradient(45deg, rgba(0, 0, 0, 0.65), transparent);
@@ -15,10 +15,6 @@
 .about-landing-row-content h1,
 .about-landing-row-content div div p {
   color: #fff !important;
-}
-
-.about-landing-row-content div div p {
-  font-size: 18px;
 }
 
 .about-landing-row-background .mdc-layout-grid__cell {
@@ -86,6 +82,15 @@
   margin-top: 0 !important;
 }
 
+.events {
+  display: flex;
+
+  h1 {
+    flex: 1;
+  }
+}
+
+
 .mdc-card {
   border-radius: 8px;
   border: 1px solid #dadce0;
@@ -97,15 +102,23 @@
 }
 
 .event-name {
-  font-size: 26px !important;
+  font-size: 1.6em !important;
 }
 
 .recent-event-description {
   font-size: 16px !important;
 }
 
-.meet-the-team>p {
+.mdc-card__action-buttons a {
+  margin-right: 15px;
+}
+
+.about-landing-row-content div div p,
+.meet-the-team p,
+.wtm p,
+.volunteer-row div div div p {
   font-size: 18px;
+  line-height: 1.3em;
 }
 
 .background-dark h2,
@@ -123,10 +136,6 @@
   height: 66px;
 }
 
-.wtm p {
-  font-size: 20px;
-}
-
 .wtm-ambassador-photo {
   width: fit-content;
   margin: 0 auto;
@@ -141,9 +150,15 @@
   .gdgbaguio-about-banner {
     background-position: center;
   }
-  
+
   .button-lg {
     width: 100%;
+  }
+
+  .mdc-card__action-buttons a {
+    font-size: 1em !important;
+    padding: 1.5em 2.5em !important;
+    line-height: 0em !important;
   }
 
   .wtm-ambassador-photo img {

@@ -4,15 +4,15 @@
       <h1 *ngIf="application_type == 'sponsor'" class="mdc-typography--headline4 row-heading">Become a Sponsor</h1>
       <h1 *ngIf="application_type == 'speaker'" class="mdc-typography--headline4 row-heading">Request Speakers</h1>
       <h1 *ngIf="application_type == 'volunteer'" class="mdc-typography--headline4 row-heading">Become a Volunteer</h1>
-      <div *ngIf="application_type == 'wtm'" class="application-header-container">
+      <div *ngIf="application_type == 'wtm'" class="application-header-container row-heading">
         <img src="{{wtm_logo}}" alt="">
-        <h2 class="mdc-typography--headline4">Join the movement</h2>
+        <h2 class="mdc-typography--headline4 desktop-only">Join the movement</h2>
       </div>
     </div>
     <div *ngIf="application_type == 'speaker'" class="mdc-layout-grid__inner">
       <div
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-        <h2 class="mdc-typography--headline4 desktop-only">Request Speakers</h2>
+        <h2 class="mdc-typography--headline4 row-heading desktop-only">Request Speakers</h2>
         <p>Thank you for your interest in having an event with Google Developer Group (GDG) Baguio. GDG Baguio is a
           community of developers passionate about technology, particularly Google developer technologies.</p>
         <p>Kindly fill-up the form at least two weeks before the event. We would be sending an email to confirm
@@ -86,39 +86,40 @@
           </div>
         </div>
 
-        <button id="request-speaker-submit-button" class="mdc-button mdc-button--unelevated" disabled> <span
+        <button id="request-speaker-submit-button" (click)="onSubmit(application_type)" class="mdc-button mdc-button--unelevated" disabled> <span
             class="mdc-button__ripple"></span> Submit</button>
       </div>
     </div>
     <div *ngIf="application_type == 'sponsor' || application_type == 'volunteer' || application_type == 'wtm'"
       class="mdc-layout-grid__inner">
       <div *ngIf="application_type == 'sponsor'"
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
-        <h2 class="mdc-typography--headline4 desktop-only">Sponsorship</h2>
-        <p>To learn more about sponsorships, please email us at gdgbaguio@gmail.com or answer the form in the link
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layut-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 application-form-heading desktop-only">Sponsorship</h2>
+        <p class="application-form-description">To learn more about sponsorships, please email us at gdgbaguio@gmail.com or answer the form in the link
           below.
         </p>
       </div>
       <div *ngIf="application_type == 'volunteer'"
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
-        <h2 class="mdc-typography--headline4 desktop-only">Become a Volunteer</h2>
-        <p>Google Developer Group Baguio is opening a new initiative of group of volunteers. We are currently looking
+        <h2 class="mdc-typography--headline4 application-form-heading desktop-only">Become a Volunteer</h2>
+        <p class="application-form-description">Google Developer Group Baguio is opening a new initiative of group of volunteers. We are currently looking
           for:</p>
-        <ul>
-          <li>Active, hyper volunteer and aspiring leaders of the future.</li>
-          <li>Anyone uses any Google technologies or apps.</li>
-          <li>Anyone who wants to share their knowledge about Google technologies</li>
-          <li>Anyone interested to learn more about Google technologies</li>
+        <ul class="application-form-description">
+          <li>Passionate and goal driven volunteers with a propensity in learning google technologies and developing
+            apps.</li>
+          <li>Aspiring leaders of the future.</li>
         </ul>
       </div>
       <div *ngIf="application_type == 'wtm'"
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
         <div class="application-header-container">
           <img src="{{wtm}}" alt="" class="desktop-only">
-          <h2 class="mdc-typography--headline4 desktop-only">Join the movement</h2>
+          <h2 class="mdc-typography--headline4 application-form-heading desktop-only">Join the movement</h2>
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa culpa explicabo amet blanditiis neque at
-          maiores a magnam sed deleniti nam earum accusamus obcaecati, iusto quibusdam impedit, delectus perspiciatis?
+        <p class="application-form-description">WTM Baguio aims to bridge the gender gap and increase equality in tech by providing the community an
+          opportunity to meet individuals with the same drive and passion in tech; networking and exposing them to
+          opportunities through engagement with different field leading speakers on diverse topics focusing on personal
+          and professional advancement along with social issues.
         </p>
       </div>
       <div id="group-application-form"
@@ -171,8 +172,8 @@
           </div>
         </div>
 
-        <button id="application-submit-button" (click)="onSubmit(application_type)" class="mdc-button mdc-button--unelevated" disabled> <span
-            class="mdc-button__ripple"></span> Submit</button>
+        <button id="application-submit-button" (click)="onSubmit(application_type)"
+          class="mdc-button mdc-button--unelevated" disabled> <span class="mdc-button__ripple"></span> Submit</button>
         <!-- </form> -->
       </div>
     </div>

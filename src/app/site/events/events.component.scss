@@ -1,6 +1,6 @@
 .events-landing-row,
 .event-details-landing-row {
-  margin-top: 45px;
+  margin-top: 47px;
 }
 
 .events-landing-row,
@@ -29,8 +29,8 @@
 }
 
 .recent-event-description {
-  height: 120px;
-  max-height: 120px;
+  height: 85px;
+  max-height: 85px;
   overflow: hidden;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.03), transparent);
   border-bottom: 1px solid #dadce0;
@@ -41,7 +41,7 @@
 }
 
 .meetup-event-link>a {
-  margin-right: 5px;
+  margin-right: 15px;
 }
 
 .event-date,
@@ -102,5 +102,11 @@
 @media screen and (max-width: 575px) {
   .event-details-landing-row {
     padding-top: 45px;
+  }
+
+  .meetup-event-link>a {
+    font-size: 1em !important;
+    padding: 1.5em 2.5em !important;
+    line-height: 0em !important;
   }
 }

@@ -11,6 +11,7 @@ import { EventsModule } from './events/events.module';
 import { EventDetailsModule } from './events/event-details/event-details.module';
 import { TeamModule } from './team/team.module';
 import { ApplicationFormModule } from './application-form/application-form.module';
+import { ApplicationSubmitModule } from './application-form/application-submit/application-submit.module';
 import { Error400Module } from './error404/error400.module';
 
 import { SiteComponent } from './site.component';
@@ -30,6 +31,7 @@ import { SiteComponent } from './site.component';
     EventDetailsModule,
     TeamModule,
     ApplicationFormModule,
+    ApplicationSubmitModule,
     Error400Module
   ],
   exports: [

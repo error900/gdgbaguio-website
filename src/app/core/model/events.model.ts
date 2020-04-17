@@ -62,6 +62,7 @@ export interface event {
     city: string,
     localized_country_name: string,
   },
+  description: string,
   link: string,
 }
 

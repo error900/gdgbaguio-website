@@ -1,2 +1,45 @@
-<p>application-submit works!</p>
-<p>{{application_type}}</p>
+<section class="landing-row application-row">
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell mobile-only">
+      <h1
+        *ngIf="application_type == 'sponsor' || application_type == 'speaker' || application_type == 'volunteer' || application_type == 'volunteer'"
+        class="mdc-typography--headline4 row-heading">Thank you for your support!</h1>
+      <h1 *ngIf="application_type == 'error'" class="mdc-typography--headline4 row-heading">Something went wrong.</h1>
+    </div>
+    <div class="mdc-layout-grid__inner">
+      <div *ngIf="application_type == 'speaker'"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 desktop-only">Thank you for your support!</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa eligendi autem ratione asperiores porro,
+          explicabo quisquam optio quod natus, facere iste culpa dolorum! Facilis distinctio deleniti, dolore adipisci
+          ut reprehenderit?</p>
+      </div>
+      <div *ngIf="application_type == 'sponsor'"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 desktop-only">Thank you for your support!</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa eligendi autem ratione asperiores porro,
+          explicabo quisquam optio quod natus, facere iste culpa dolorum! Facilis distinctio deleniti, dolore adipisci
+          ut reprehenderit?</p>
+      </div>
+      <div *ngIf="application_type == 'volunteer'"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 desktop-only">Thank you for your support!</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa eligendi autem ratione asperiores porro,
+          explicabo quisquam optio quod natus, facere iste culpa dolorum! Facilis distinctio deleniti, dolore adipisci
+          ut reprehenderit?</p>
+      </div>
+      <div *ngIf="application_type == 'wtm'"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 desktop-only">Thank you for your support!</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa eligendi autem ratione asperiores porro,
+          explicabo quisquam optio quod natus, facere iste culpa dolorum! Facilis distinctio deleniti, dolore adipisci
+          ut reprehenderit?</p>
+      </div>
+      <div *ngIf="application_type == 'error'"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline4 desktop-only">Something went wrong.</h2>
+        <p>There was an unexpected error. Please try again later.</p>
+      </div>
+    </div>
+  </div>
+</section>

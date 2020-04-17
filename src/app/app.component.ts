@@ -45,7 +45,13 @@ export class AppComponent {
         if (this.url.search('community') == 1) {
           this.showFooter = false;
         }
-        if ((this.url.search('application') == 1 && this.url.search('sponsor') == -1) && (this.url.search('application') == 1 && this.url.search('speaker') == -1) && (this.url.search('application') == 1 && this.url.search('volunteer') == -1) && (this.url.search('application') == 1 && this.url.search('wtm') == -1)) {
+        if (
+          (this.url.search('application') == 1 && this.url.search('sponsor') == -1) &&
+          (this.url.search('application') == 1 && this.url.search('speaker') == -1) &&
+          (this.url.search('application') == 1 && this.url.search('volunteer') == -1) &&
+          (this.url.search('application') == 1 && this.url.search('wtm') == -1) &&
+          (this.url.search('application') == 1 && this.url.search('error') == -1)
+        ) {
           this.router.navigate(['error404']);
         }
       }

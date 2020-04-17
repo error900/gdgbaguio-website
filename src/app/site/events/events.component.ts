@@ -65,7 +65,6 @@ export class EventsComponent implements OnInit {
         this.upcomingEvents_count = this.firestoreUpcomingEvents.length;
         this.firestorePastEvents = this.getPastMeetupEvents(this.firestoreEvents);
         this.firestoreRecentEvents = this.getRecentMeetupEvents(this.firestorePastEvents);
-
       }
     );
   }
@@ -120,6 +119,7 @@ export class EventsComponent implements OnInit {
     var obj = {} as event;
     for (let index = 0; index < 3; index++) {
       obj = arr[index];
+      obj.description = arr[index].description.slice(0, 100).concat(' ...');
       recentEvents.push(obj);
     }
     return recentEvents;

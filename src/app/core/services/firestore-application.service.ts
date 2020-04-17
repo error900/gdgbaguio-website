@@ -8,7 +8,7 @@ import { GroupForm, SpeakerRequestForm } from '../model/application-form.model';
 })
 export class FirestoreApplicationService {
   private googleTechCollectionPath = '/google-technologies';
-  private groupFormCollectionPath = '/group-application';
+  private groupFormCollectionPath = '/group-applications';
   private requestSpeakerFormCollectionPath = '/speaker-request';
   techRef: AngularFirestoreCollection<FirebaseGoogleTech> = null;
   groupFormRef: AngularFirestoreCollection<GroupForm> = null;

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   firestoreUpcomingEvents: event[];
   firestoreRecentEvents: event[];
   firestorePastEvents: event[];
-  
+
   gdg_baguio_banner = 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/community-photo/3.jpg';
   talks = '../../assets/images/activities/talks.png';
   codelabs = '../../assets/images/activities/codelabs.png';
@@ -93,6 +93,7 @@ export class HomeComponent implements OnInit {
         obj.yes_rsvp_count = arr[index].yes_rsvp_count;
         obj.venue = arr[index].venue;
         obj.link = arr[index].link;
+        obj.description = arr[index].description.slice(0, 150).concat(' ...');
         ongoingEvents.push(obj);
       }
     }
@@ -113,6 +114,7 @@ export class HomeComponent implements OnInit {
         obj.yes_rsvp_count = arr[index].yes_rsvp_count;
         obj.venue = arr[index].venue;
         obj.link = arr[index].link;
+        obj.description = arr[index].description.slice(0, 150).concat(' ...');
         upcomingEvents.push(obj);
         if (!(arr[index].rsvp_limit >= arr[index].yes_rsvp_count)) {
           this.showWaitlistButton = true;
