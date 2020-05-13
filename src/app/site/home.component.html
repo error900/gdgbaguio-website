@@ -9,7 +9,7 @@
     <h1 class="mdc-typography--headline3 row-heading">what we're about</h1>
     <div class="mdc-layout-grid__inner">
       <div
-        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-mobile">
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-mobile">
         <p>GDG Baguio is a group of diverse developers who are very much interested in learning and experimenting on
           different and powerful Google Technologies. We are spreading our love and support for Google Technologies by
           conducting different events, seminars, and codelabs to help fellow developers kickstart their journey in
@@ -131,7 +131,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="firestoreUpcomingEvents" class="mdc-layout-grid">
+  <div *ngIf="ongoingEvents_count != 0 || upcomingEvents_count != 0" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell events">
       <h1 class="mdc-typography--headline4 row-heading">Events</h1>
       <a href="/events" class="mdc-button"> <span class="mdc-button__ripple"></span> View all</a>
@@ -173,9 +173,12 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!firestoreUpcomingEvents && !firestoreOngoingEvents" class="mdc-layout-grid">
-    <div class="mdc-layout-grid__cell">
+  <div *ngIf="ongoingEvents_count == 0 && upcomingEvents_count == 0" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell events">
       <h1 class="mdc-typography--headline4 row-heading">Events</h1>
+      <a href="/events" class="mdc-button"> <span class="mdc-button__ripple"></span> View all</a>
+    </div>
+    <div class="mdc-layout-grid__cell">
       <p>No ongoing or upcoming events</p>
     </div>
   </div>
@@ -213,7 +216,8 @@
         <div class="wtm">
           <img src="{{wtm}}" alt="">
           <br>
-          <p>Women Techmakers Baguio <br> Join the movement and together let’s create a new narrative for our industry.</p>
+          <p>Women Techmakers Baguio <br> Join the movement and together let’s create a new narrative for our industry.
+          </p>
           <br>
           <a href="application/wtm" class="mdc-button mdc-button--unelevated wtm-button button-lg"> <span
               class="mdc-button__ripple"></span> Apply to

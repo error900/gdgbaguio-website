@@ -107,6 +107,9 @@
         <div class="nav-link">
           <a [routerLink]="['/team']">Team</a>
         </div>
+        <!-- <div class="nav-link">
+          <a class="covid19-nav-link" [routerLink]="['/covid-19']">COVID-19</a>
+        </div> -->
       </div>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
@@ -173,6 +176,9 @@
       <a class="mdc-list-item" href="/team">
         <span class="mdc-list-item__text">Team</span>
       </a>
+      <!-- <a class="mdc-list-item covid19-nav-link" href="/covid-19">
+        <span class="mdc-list-item__text">COVID-19</span>
+      </a> -->
       <a *ngIf="auth.user$ | async as user" class="mdc-list-item" (click)="auth.signOut()">
         <span class="mdc-list-item__text">Log out</span>
       </a>

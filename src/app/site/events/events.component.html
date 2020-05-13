@@ -1,6 +1,6 @@
 <!-- <site-top-bar></site-top-bar> -->
 <section class="landing-row events-landing-row background-grey">
-  <div *ngIf="firestoreOngoingEvents && ongoingEvents_count!=0" class="mdc-layout-grid">
+  <div *ngIf="firestoreOngoingEvents && ongoingEvents_count != 0" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Ongoing events</h1>
     </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="firestoreUpcomingEvents" class="mdc-layout-grid">
+  <div *ngIf="firestoreUpcomingEvents && upcomingEvents_count != 0" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Upcoming events</h1>
     </div>
@@ -74,7 +74,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!firestoreUpcomingEvents && !firestoreOngoingEvents" class="mdc-layout-grid">
+  <div *ngIf="ongoingEvents_count == 0 && upcomingEvents_count == 0" class="mdc-layout-grid">
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Upcoming events</h1>
       <p>No ongoing or upcoming events</p>

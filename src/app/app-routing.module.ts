@@ -6,6 +6,7 @@ import { CommunityComponent } from './site/community/community.component';
 import { EventsComponent } from './site/events/events.component';
 import { EventDetailsComponent } from './site/events/event-details/event-details.component';
 import { TeamComponent } from './site/team/team.component';
+import { Covid19Component } from './site/covid19/covid19.component';
 import { ApplicationFormComponent } from './site/application-form/application-form.component';
 import { ApplicationSubmitComponent } from './site/application-form/application-submit/application-submit.component';
 import { Error404Component } from './site/error404/error404.component';
@@ -16,7 +17,6 @@ import { AttendanceDashboardComponent } from './admin/dashboard/attendance/main.
 
 import { ListUserComponent } from './user/list-user/list-user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
-
 import { AuthenticationGuard } from './core/guard/authentication.guard';
 
 const routes: Routes = [
@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent },
   { path: 'events/:eventId', component: EventDetailsComponent },
   { path: 'team', component: TeamComponent },
+  { path: 'covid-19', component: Covid19Component },
   { path: 'application/:type', component: ApplicationFormComponent },
   { path: 'application-submit/:type', component: ApplicationSubmitComponent },
   { path: 'dashboard/users', component: ListUserComponent },

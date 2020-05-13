@@ -1,0 +1,30 @@
+.card__primary,
+.card__secondary {
+  padding: 1em 1.3em;
+}
+
+.card__title {
+  font-weight: 500;
+}
+
+.card__primary {
+  border-bottom: 1px solid #dadce0;
+}
+
+.mdc-select__anchor,
+.mdc-select__menu {
+  width: 100%;
+  ;
+}
+
+.mdc-select__menu {
+  max-height: 200px !important;
+}
+
+.mdc-list-item__text {
+  padding-left: 20px;
+}
+
+.mdc-select--with-leading-icon .mdc-select__selected-text {
+  padding-left: 60px;
+}

@@ -36,40 +36,39 @@ $mdc-theme-error: #b00020;
 $mdc-theme-on-primary: #ffffff;
 $mdc-theme-on-secondary: #000000;
 
-@import 'material-components-web/material-components-web';
-@import "@material/theme/mixins";
+// @import 'material-components-web/material-components-web';
 
-// @import "@material/button/mdc-button";
-// @import '@material/card/mdc-card';
-// // @import '@material/chips/mdc-chips';
-// // @import '@material/data-table/mdc-data-table';
-// @import '@material/dialog/mdc-dialog';
-// @import '@material/drawer/mdc-drawer';
-// @import '@material/fab/mdc-fab';
-// // @import '@material/floating-label/mdc-floating-label';
-// // @import '@material/form-field/mdc-form-field';
-// @import '@material/icon-button/mdc-icon-button';
-// @import '@material/layout-grid/mdc-layout-grid';
-// // @import '@material/line-ripple/mdc-line-ripple';
-// // @import '@material/linear-progress/mdc-linear-progress';
-// @import '@material/list/mdc-list';
-// @import '@material/menu/mdc-menu';
-// @import '@material/menu-surface/mdc-menu-surface';
-// // @import '@material/radio/mdc-radio';
-// @import '@material/ripple/mdc-ripple';
-// // @import '@material/select/mdc-select';
-// // @import '@material/slider/mdc-slider';
-// // @import '@material/snackbar/mdc-snackbar';
-// // @import '@material/switch/mdc-switch';
-// // @import '@material/tab/mdc-tab';
-// // @import '@material/tab-bar/mdc-tab-bar';
-// // @import '@material/tab-indicator/mdc-tab-indicator';
-// // @import '@material/tab-scroller/mdc-tab-scroller';
-// @import '@material/textfield/mdc-text-field';
-// @import '@material/theme/mdc-theme';
-// @import '@material/top-app-bar/mdc-top-app-bar';
-// // @import '@material/touch-target/mdc-touch-target';
-// @import '@material/typography/mdc-typography';
+@import "@material/button/mdc-button";
+@import '@material/card/mdc-card';
+// @import '@material/chips/mdc-chips';
+@import '@material/data-table/mdc-data-table';
+@import '@material/dialog/mdc-dialog';
+@import '@material/drawer/mdc-drawer';
+@import '@material/fab/mdc-fab';
+@import '@material/floating-label/mdc-floating-label';
+@import '@material/form-field/mdc-form-field';
+@import '@material/icon-button/mdc-icon-button';
+@import '@material/layout-grid/mdc-layout-grid';
+@import '@material/line-ripple/mdc-line-ripple';
+@import '@material/linear-progress/mdc-linear-progress';
+@import '@material/list/mdc-list';
+@import '@material/menu/mdc-menu';
+@import '@material/menu-surface/mdc-menu-surface';
+// @import '@material/radio/mdc-radio';
+@import '@material/ripple/mdc-ripple';
+@import '@material/select/mdc-select';
+// @import '@material/slider/mdc-slider';
+// @import '@material/snackbar/mdc-snackbar';
+// @import '@material/switch/mdc-switch';
+// @import '@material/tab/mdc-tab';
+// @import '@material/tab-bar/mdc-tab-bar';
+// @import '@material/tab-indicator/mdc-tab-indicator';
+// @import '@material/tab-scroller/mdc-tab-scroller';
+@import '@material/textfield/mdc-text-field';
+@import '@material/theme/mdc-theme';
+@import '@material/top-app-bar/mdc-top-app-bar';
+// @import '@material/touch-target/mdc-touch-target';
+@import '@material/typography/mdc-typography';
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -462,7 +461,7 @@ footer {
   }
 
   .about-landing-row-content div div p {
-    font-size: 14px !important;
+    font-size: 16px !important;
   }
 
   // .what-we-do-landing-row {

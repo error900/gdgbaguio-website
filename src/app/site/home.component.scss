@@ -1,7 +1,7 @@
 @import './events/events.component.scss';
 
 .about-landing-row {
-  margin-top: 47px;
+  // margin-top: 47px;
   padding-top: 75px;
   padding-bottom: 0;
   background: linear-gradient(45deg, rgba(0, 0, 0, 0.65), transparent);
@@ -42,7 +42,9 @@
   padding: 45px 60px !important;
 }
 
-// .what-we-do-content {}
+.mdc-layout-grid__cell .mdc-typography--headline4 {
+  padding-bottom: 30px;
+}
 
 .item-logo {
   height: 50px;
@@ -90,7 +92,6 @@
   }
 }
 
-
 .mdc-card {
   border-radius: 8px;
   border: 1px solid #dadce0;
@@ -117,7 +118,7 @@
 .meet-the-team p,
 .wtm p,
 .volunteer-row div div div p {
-  font-size: 18px;
+  font-size: 23px;
   line-height: 1.3em;
 }
 
@@ -147,6 +148,11 @@
 }
 
 @media screen and (max-width: 575px) {
+
+  .about-landing-row {
+    margin-top: 47px;
+  }
+
   .gdgbaguio-about-banner {
     background-position: center;
   }
