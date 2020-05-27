@@ -25,6 +25,7 @@ export class FirebaseEvent {
   featured_photo: {
     highres_link: string;
   };
+  is_online_event: boolean;
 }
 
 export interface FirebaseEventInterface {
@@ -46,7 +47,8 @@ export interface FirebaseEventInterface {
   description: string,
   featured_photo: {
     highres_link: string,
-  }
+  },
+  is_online_event: boolean
 }
 
 export interface event {
@@ -64,6 +66,7 @@ export interface event {
   },
   description: string,
   link: string,
+  is_online_event: boolean
 }
 
 // MEETUP

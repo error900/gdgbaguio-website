@@ -63,9 +63,9 @@ export class MeetupService {
       );
   }
 
-  meetupEvent(): Observable<FirebaseEventInterface[]> {
+  meetupEvent(event_status: string): Observable<FirebaseEventInterface[]> {
     const datetime = this.getDate();
-    return this.http.get<FirebaseEventInterface[]>(conf.event + meetupApiURL.events + '&has_ended=false') //'&status=past' 
+    return this.http.get<FirebaseEventInterface[]>(conf.event + meetupApiURL.events + event_status) //'&status=past'  '&has_ended=false'
       .pipe(
         retry(1),
         catchError(this.handleError)

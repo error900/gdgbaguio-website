@@ -119,7 +119,7 @@ export class EventsComponent implements OnInit {
     var obj = {} as event;
     for (let index = 0; index < 3; index++) {
       obj = arr[index];
-      obj.description = arr[index].description.slice(0, 100).concat(' ...');
+      obj.description = arr[index].description.slice(0, 80).concat(' ...');
       recentEvents.push(obj);
     }
     return recentEvents;

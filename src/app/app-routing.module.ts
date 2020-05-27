@@ -32,7 +32,8 @@ const routes: Routes = [
   { path: 'dashboard/adduser', component: CreateUserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signin-check/:access_status', component: AdminCheckComponent, canActivate: [AuthenticationGuard] },
-  { path: 'dashboard/meetup-events', component: EventsDashboardComponent, canActivate: [AuthenticationGuard] },
+  // { path: 'dashboard/meetup-events', component: EventsDashboardComponent, canActivate: [AuthenticationGuard] },
+  { path: 'dashboard/meetup-events', component: EventsDashboardComponent },
   { path: 'dashboard/meetup-attendance', component: AttendanceDashboardComponent },
 
   // otherwise redirect to 404 page /

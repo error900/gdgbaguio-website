@@ -6,10 +6,10 @@
     </div>
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
-        <div>
+        <div class="event-details-featured-photo">
           <img src="{{firestoreEventDetail.featured_photo.highres_link}}" alt="featured photo">
         </div>
-        <div class="location">
+        <div *ngIf="firestoreEventDetail.is_online_event == false" class="location">
           <i class="material-icons mdc-button__icon">location_on</i>
           <div>
             <span>{{firestoreEventDetail.venue.name}}</span> <br>
@@ -17,15 +17,24 @@
               {{firestoreEventDetail.venue.localized_country_name}}</span>
           </div>
         </div>
+        <div *ngIf="firestoreEventDetail.is_online_event == true" class="location">
+          <i class="material-icons mdc-button__icon">location_on</i>
+          <div>
+            <span>{{firestoreEventDetail.venue.name}}</span> <br>
+          </div>
+        </div>
         <div class="event-date"><i class="material-icons mdc-button__icon">calendar_today</i>
           <span>{{firestoreEventDetail.local_date}}</span></div>
       </div>
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7">
         <div [innerHTML]="firestoreEventDetail.description"></div>
-        <div *ngIf="firestoreEventDetail.status=='upcoming' || firestoreEventDetail.status=='ongoing'" class="meetup-event-link">
-          <a *ngIf="showRegisterButton" href="{{firestoreEventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+        <div *ngIf="firestoreEventDetail.status=='upcoming' || firestoreEventDetail.status=='ongoing'"
+          class="meetup-event-link">
+          <a *ngIf="showRegisterButton" href="{{firestoreEventDetail.link}}" target="_blank"
+            class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
-          <a *ngIf="showWaitlistButton" href="{{firestoreEventDetail.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+          <a *ngIf="showWaitlistButton" href="{{firestoreEventDetail.link}}" target="_blank"
+            class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Join the waitlist</a>
         </div>
         <div *ngIf="firestoreEventDetail.status=='past'" class="meetup-event-link">
@@ -33,10 +42,12 @@
             <span class="mdc-button__ripple"></span> Meetup</a>
         </div>
       </div>
-      <div *ngIf="firestoreEventHosts as firestoreEventHost" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
+      <div *ngIf="firestoreEventHosts as firestoreEventHost"
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
         <h1 class="mdc-typography--headline5 row-heading">Coorganizers</h1>
         <div class=" mdc-layout-grid__inner">
-          <div *ngFor="let event_host of firestoreEventHost.event_hosts" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+          <div *ngFor="let event_host of firestoreEventHost.event_hosts"
+            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
             <div class="coorganizer">
               <div class="member-info">
                 <div [ngStyle]="{'background-image': 'url(' + event_host.photo.thumb_link + ')'}" class="member-photo">

@@ -18,7 +18,13 @@
   padding-right: 0;
 }
 
-.event-details-landing-row {}
+.event-description-column {
+  margin-left: 10%;
+}
+
+.event-details-featured-photo {
+  margin-bottom: 16px;
+}
 
 #events-mdc-data-table {
   width: 100%;
@@ -28,9 +34,14 @@
   color: #1a73e8;
 }
 
+.recent-event-title {
+  text-transform: uppercase;
+}
+
 .recent-event-description {
   height: 85px;
   max-height: 85px;
+  font-size: 18px;
   overflow: hidden;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.03), transparent);
   border-bottom: 1px solid #dadce0;
@@ -62,7 +73,7 @@
 
 .event-description {
   margin-top: 10px;
-  height: 96px;
+  height: 98px;
   overflow-y: hidden;
 
   p {
@@ -102,6 +113,10 @@
 @media screen and (max-width: 575px) {
   .event-details-landing-row {
     padding-top: 45px;
+  }
+
+  .event-description-column {
+    margin-left: 0;
   }
 
   .meetup-event-link>a {

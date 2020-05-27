@@ -33,6 +33,9 @@ export class EventsDashboardComponent implements OnInit {
   meetupOngoingEvents: FirebaseEventInterface[];
   meetupUpcomingEvents: FirebaseEventInterface[];
 
+  meetupPastEventStatus = '&status=past';
+  meetupPlannedEventStatus = '&has_ended=false';
+
   eventDetails: eventInfo;
   eventids: string[];
 
@@ -42,7 +45,8 @@ export class EventsDashboardComponent implements OnInit {
     // MEETUP
     this.getPlannedEvents(); // meetup events
     this.getDratGDGEvents(); // meetup events
-    // this.getFirebaseEvents(); // merge meetup events to firestore
+    this.mergePlannedMeetupEventsToFirestore(); // merge planned meetup events to firestore
+    // this.getFirebaseEvents(); // merge all meetup events to firestore
 
     // console.log(this.meetupService.attendanceTaking(0, 0, 'status'));
   }
@@ -64,7 +68,7 @@ export class EventsDashboardComponent implements OnInit {
           this.upcomingEvents = this.getUpcomingEvents(this.plannedEvents).reverse(),
           this.upcomingEvents_count = this.upcomingEvents.length,
           console.log('UPCOMING', this.upcomingEvents),
-          console.log('UPCOMING', this.upcomingEvents_count)
+          console.log('UPCOMING', this.upcomingEvents_count)          
         )
       );
   }
@@ -111,6 +115,19 @@ export class EventsDashboardComponent implements OnInit {
       );
   }
 
+  mergePlannedMeetupEventsToFirestore() {
+    this.meetupService.meetupEvent(this.meetupPlannedEventStatus)
+      .subscribe(
+        meetupEvents => (
+          this.meetupEvents = meetupEvents,
+          console.log('MEETUP: Planned events', this.meetupEvents),
+          this.eventids = this.fixMissingProperties(this.meetupEvents),
+          console.log('MEETUP: Event IDs', this.eventids),
+          this.getMeetupEventHosts(this.eventids)
+        )
+      );
+  }
+
   getFirebaseEvents() {
     let venue = {
       slu: {
@@ -139,7 +156,7 @@ export class EventsDashboardComponent implements OnInit {
       }
     }
 
-    this.meetupService.meetupEvent()
+    this.meetupService.meetupEvent(this.meetupPastEventStatus)
       .subscribe(
         meetupEvents => (
           this.meetupEvents = meetupEvents,
@@ -152,7 +169,7 @@ export class EventsDashboardComponent implements OnInit {
           // this.meetupEvents[8].venue = venue.slu,
           // this.meetupEvents.reverse(),
           console.log('FINAL', this.meetupEvents),
-          this.eventids = this.getMeetupEvents(this.meetupEvents),
+          this.eventids = this.fixMissingProperties(this.meetupEvents),
           console.log('IDS', this.eventids),
           this.getMeetupEventHosts(this.eventids)
         )
@@ -161,7 +178,7 @@ export class EventsDashboardComponent implements OnInit {
 
   // FIREBASE
 
-  getMeetupEvents(arr: FirebaseEventInterface[]) {
+  fixMissingProperties(arr: FirebaseEventInterface[]) {
     let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' };
     var obj = {} as FirebaseEvent;
     var ids = [];

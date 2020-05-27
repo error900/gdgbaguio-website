@@ -303,9 +303,9 @@ footer a {
 }
 
 .meetup-card-background {
-  background-image: url('https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg');
-  background-size: 150px;
-  background-position-y: 38%;
+  // background-image: url('https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg');
+  background-size: cover;
+  // background-position-y: 38%;
 }
 
 .meetup-card-event-title {
