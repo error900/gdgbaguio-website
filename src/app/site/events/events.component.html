@@ -32,7 +32,7 @@
           <span>{{firestoreOngoingEvent.local_date}}</span></div>
         <div class="event-description" [innerHTML]="firestoreOngoingEvent.description"></div>
         <div class="meetup-event-link">
-          <a href="{{firestoreOngoingEvent.how_to_find_us}}" target="_blank"
+          <a *ngIf="firestoreOngoingEvent.is_online_event" href="{{firestoreOngoingEvent.how_to_find_us}}" target="_blank"
             class="mdc-button mdc-button--unelevated youtube-stream-button-live">
             <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
             Stream</a>
@@ -83,7 +83,7 @@
           <span>{{firestoreUpcomingEvent.local_date}}</span></div>
         <div class="event-description" [innerHTML]="firestoreUpcomingEvent.description"></div>
         <div class="meetup-event-link">
-          <a href="{{firestoreUpcomingEvent.how_to_find_us}}" target="_blank"
+          <a *ngIf="firestoreUpcomingEvent.is_online_event" href="{{firestoreUpcomingEvent.how_to_find_us}}" target="_blank"
             class="mdc-button mdc-button--unelevated youtube-stream-button">
             <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
             Stream</a>

@@ -97,33 +97,36 @@
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Today</h1>
     </div>
-    <div *ngFor="let firestoreOngoingEvents of firestoreOngoingEvents"
-      class="mdc-layout-grid__inner planned-events-row">
+    <div *ngFor="let firestoreOngoingEvent of firestoreOngoingEvents" class="mdc-layout-grid__inner planned-events-row">
       <div
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
-        <img src="{{firestoreOngoingEvents.featured_photo.highres_link}}" alt="featured photo">
+        <img src="{{firestoreOngoingEvent.featured_photo.highres_link}}" alt="featured photo">
       </div>
       <div
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
         <h1 class="mdc-typography--headline5"><a
-            href="events/{{firestoreOngoingEvents.id}}">{{firestoreOngoingEvents.name}}</a></h1>
+            href="events/{{firestoreOngoingEvent.id}}">{{firestoreOngoingEvent.name}}</a></h1>
         <div class="location desktop-only">
           <i class="material-icons mdc-button__icon">location_on</i>
           <div>
-            <span>{{firestoreOngoingEvents.venue.name}}</span> <br>
-            <span>{{firestoreOngoingEvents.venue.address_1}} {{firestoreOngoingEvents.venue.city}},
-              {{firestoreOngoingEvents.venue.localized_country_name}}</span>
+            <span>{{firestoreOngoingEvent.venue.name}}</span> <br>
+            <span>{{firestoreOngoingEvent.venue.address_1}} {{firestoreOngoingEvent.venue.city}},
+              {{firestoreOngoingEvent.venue.localized_country_name}}</span>
           </div>
         </div>
         <div class="event-date desktop-only"><i class="material-icons mdc-button__icon">calendar_today</i>
-          <span>{{firestoreOngoingEvents.local_date}}</span></div>
-        <div class="event-description" [innerHTML]="firestoreOngoingEvents.description"></div>
+          <span>{{firestoreOngoingEvent.local_date}}</span></div>
+        <div class="event-description" [innerHTML]="firestoreOngoingEvent.description"></div>
         <div class="meetup-event-link">
-          <a href="{{firestoreOngoingEvents.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+          <a *ngIf="firestoreOngoingEvent.is_online_event" href="{{firestoreOngoingEvent.how_to_find_us}}"
+            target="_blank" class="mdc-button mdc-button--unelevated youtube-stream-button-live">
+            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
+            Stream</a>
+          <a href="{{firestoreOngoingEvent.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
-          <a href="{{firestoreOngoingEvents.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+          <a href="{{firestoreOngoingEvent.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Join the waitlist</a>
-          <a href="events/{{firestoreOngoingEvents.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
+          <a href="events/{{firestoreOngoingEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
             <span class="mdc-button__ripple"></span>
             <!-- <i class="material-icons mdc-button__icon">more_horiz</i> -->
             <span class="mdc-button__label">Read
@@ -156,10 +159,15 @@
           <!-- </div> -->
           <div class="mdc-card__actions">
             <div class="mdc-card__action-buttons">
-              <a *ngIf="showRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+              <a *ngIf="firestoreUpcomingEvent.is_online_event" href="{{firestoreUpcomingEvent.how_to_find_us}}"
+                target="_blank" class="mdc-button mdc-button--unelevated youtube-stream-button">
+                <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i>
+                YouTube
+                Stream</a>
+              <a *ngIf="upcomingEventShowRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
                 class="mdc-button mdc-button--unelevated">
                 <span class="mdc-button__ripple"></span> Register now</a>
-              <a *ngIf="showWaitlistButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+              <a *ngIf="upcomingEventShowWaitlistButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
                 class="mdc-button mdc-button--unelevated">
                 <span class="mdc-button__ripple"></span> Join the waitlist</a>
               <a href="events/{{firestoreUpcomingEvent.id}}"

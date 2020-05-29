@@ -17,8 +17,10 @@ export class HomeComponent implements OnInit {
   recentEvents_count = 0;
   pastEvents_count = 0;
 
-  showRegisterButton = false;
-  showWaitlistButton = false;
+  ongoingEventShowRegisterButton: boolean;
+  ongoingEventShowWaitlistButton: boolean;
+  upcomingEventShowRegisterButton: boolean;
+  upcomingEventShowWaitlistButton: boolean;
 
   firestoreEvents: FirebaseEventInterface[];
   firestoreOngoingEvents: event[];
@@ -94,7 +96,16 @@ export class HomeComponent implements OnInit {
         obj.venue = arr[index].venue;
         obj.link = arr[index].link;
         obj.description = arr[index].description.slice(0, 150).concat(' ...');
+
         ongoingEvents.push(obj);
+
+        if (arr[index].rsvp_limit < arr[index].yes_rsvp_count || (arr[index].rsvp_limit == 0 && arr[index].yes_rsvp_count == 0)) {
+          this.ongoingEventShowRegisterButton = true;
+          this.ongoingEventShowWaitlistButton = false;
+        } else if (arr[index].rsvp_limit == arr[index].yes_rsvp_count && !(arr[index].rsvp_limit == 0 && arr[index].yes_rsvp_count == 0)) {
+          this.ongoingEventShowRegisterButton = false;
+          this.ongoingEventShowWaitlistButton = true;
+        }
       }
     }
     return ongoingEvents;
@@ -115,11 +126,15 @@ export class HomeComponent implements OnInit {
         obj.venue = arr[index].venue;
         obj.link = arr[index].link;
         obj.description = arr[index].description.slice(0, 150).concat(' ...');
+
         upcomingEvents.push(obj);
-        if (!(arr[index].rsvp_limit >= arr[index].yes_rsvp_count)) {
-          this.showWaitlistButton = true;
-        } else {
-          this.showRegisterButton = true;
+
+        if (arr[index].rsvp_limit < arr[index].yes_rsvp_count || (arr[index].rsvp_limit == 0 && arr[index].yes_rsvp_count == 0)) {
+          this.upcomingEventShowRegisterButton = true;
+          this.upcomingEventShowWaitlistButton = false;
+        } else if (arr[index].rsvp_limit == arr[index].yes_rsvp_count && !(arr[index].rsvp_limit == 0 && arr[index].yes_rsvp_count == 0)) {
+          this.upcomingEventShowRegisterButton = false;
+          this.upcomingEventShowWaitlistButton = true;
         }
       }
     }
