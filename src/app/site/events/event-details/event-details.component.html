@@ -30,6 +30,10 @@
         <div [innerHTML]="firestoreEventDetail.description"></div>
         <div *ngIf="firestoreEventDetail.status=='upcoming' || firestoreEventDetail.status=='ongoing'"
           class="meetup-event-link">
+          <a *ngIf="firestoreEventDetail.is_online_event" href="{{firestoreEventDetail.how_to_find_us}}" target="_blank"
+            class="mdc-button mdc-button--unelevated youtube-stream-button-live">
+            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
+            Stream</a>
           <a *ngIf="showRegisterButton" href="{{firestoreEventDetail.link}}" target="_blank"
             class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>

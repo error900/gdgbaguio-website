@@ -25,8 +25,10 @@ export class EventsComponent implements OnInit {
   recentEvents_count = 0;
   pastEvents_count = 0;
 
-  showRegisterButton = false;
-  showWaitlistButton = false;
+  ongoingEventShowRegisterButton: boolean;
+  ongoingEventShowWaitlistButton: boolean;
+  upcomingEventShowRegisterButton: boolean;
+  upcomingEventShowWaitlistButton: boolean;
 
   firestoreEvents: FirebaseEventInterface[];
   firestoreOngoingEvents: event[];
@@ -83,7 +85,16 @@ export class EventsComponent implements OnInit {
         obj.yes_rsvp_count = arr[index].yes_rsvp_count;
         obj.venue = arr[index].venue;
         obj.link = arr[index].link;
+
         ongoingEvents.push(obj);
+
+        if (arr[index].rsvp_limit < arr[index].yes_rsvp_count || (arr[index].rsvp_limit == 0 && arr[index].yes_rsvp_count == 0)) {
+          this.ongoingEventShowRegisterButton = true;
+          this.ongoingEventShowWaitlistButton = false;
+        } else if (arr[index].rsvp_limit == arr[index].yes_rsvp_count && !(arr[index].rsvp_limit == 0 && arr[index].yes_rsvp_count == 0)) {
+          this.ongoingEventShowRegisterButton = false;
+          this.ongoingEventShowWaitlistButton = true;
+        }
       }
     }
     return ongoingEvents;
@@ -98,16 +109,20 @@ export class EventsComponent implements OnInit {
         obj.id = arr[index].id;
         obj.name = arr[index].name;
         obj.local_date = arr[index].local_date;
-        obj.rsvp_limit = arr[index].rsvp_limit;
         obj.waitlist_count = arr[index].waitlist_count;
         obj.yes_rsvp_count = arr[index].yes_rsvp_count;
         obj.venue = arr[index].venue;
         obj.link = arr[index].link;
+        obj.rsvp_limit = arr[index].rsvp_limit;
+
         upcomingEvents.push(obj);
-        if (!(arr[index].rsvp_limit >= arr[index].yes_rsvp_count)) {
-          this.showWaitlistButton = true;
-        } else {
-          this.showRegisterButton = true;
+
+        if (arr[index].rsvp_limit < arr[index].yes_rsvp_count || (arr[index].rsvp_limit == 0 && arr[index].yes_rsvp_count == 0)) {
+          this.upcomingEventShowRegisterButton = true;
+          this.upcomingEventShowWaitlistButton = false;
+        } else if (arr[index].rsvp_limit == arr[index].yes_rsvp_count && !(arr[index].rsvp_limit == 0 && arr[index].yes_rsvp_count == 0)) {
+          this.upcomingEventShowRegisterButton = false;
+          this.upcomingEventShowWaitlistButton = true;
         }
       }
     }
@@ -189,9 +204,9 @@ export class EventsComponent implements OnInit {
         obj.featured_photo = featured_photo_placeholder
       }
       if (!(obj.rsvp_limit >= obj.yes_rsvp_count)) {
-        this.showWaitlistButton = true;
+        this.upcomingEventShowWaitlistButton = true;
       } else {
-        this.showRegisterButton = true;
+        this.upcomingEventShowRegisterButton = true;
       }
       if (obj.status == 'upcoming') {
         upcomingEvents.push(obj);

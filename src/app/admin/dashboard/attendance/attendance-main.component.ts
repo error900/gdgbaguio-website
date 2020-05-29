@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MeetupService } from 'src/app/core/services/meetup.service';
-import { memberRSVP } from 'src/app/core/model/events.model';
+import { eventRSVP } from 'src/app/core/model/events.model';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'meetup-attendance-dashboard',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  templateUrl: './attendance-main.component.html',
+  styleUrls: ['./attendance-main.component.scss']
 })
 export class AttendanceDashboardComponent implements OnInit {
-  rsvps: memberRSVP[];
-  eventid = '264398711';
+  rsvps: eventRSVP[];
+  eventid = '270862672';
   rsvp_count = 0;
 
   constructor(private meetupService: MeetupService) { }
@@ -31,8 +31,8 @@ export class AttendanceDashboardComponent implements OnInit {
       );
   }
 
-  addPhotoPlaceholder(arr: memberRSVP[]) {
-    var obj = {} as memberRSVP;
+  addPhotoPlaceholder(arr: eventRSVP[]) {
+    var obj = {} as eventRSVP;
     let rsvps = [];
     let photo_link_placeholder = {
       photo_link: 'https://raw.githubusercontent.com/error900/gdg-baguio-team/master/account-photo/van.jpg'

@@ -12,8 +12,8 @@ import { User } from 'src/app/core/model/user.model';
 
 @Component({
   selector: 'meetup-events-dashboard',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  templateUrl: './events-main.component.html',
+  styleUrls: ['./events-main.component.scss']
 })
 export class EventsDashboardComponent implements OnInit {
   events: any;
@@ -68,7 +68,7 @@ export class EventsDashboardComponent implements OnInit {
           this.upcomingEvents = this.getUpcomingEvents(this.plannedEvents).reverse(),
           this.upcomingEvents_count = this.upcomingEvents.length,
           console.log('UPCOMING', this.upcomingEvents),
-          console.log('UPCOMING', this.upcomingEvents_count)          
+          console.log('UPCOMING', this.upcomingEvents_count)
         )
       );
   }
@@ -192,8 +192,14 @@ export class EventsDashboardComponent implements OnInit {
       if (!obj.hasOwnProperty('manual_attendance_count')) {
         obj.manual_attendance_count = 0;
       }
+      if (!obj.hasOwnProperty('rsvp_limit')) {
+        obj.rsvp_limit = 0;
+      }
       if (!obj.hasOwnProperty('description')) {
         obj.description = 'No description';
+      }
+      if (!obj.hasOwnProperty('how_to_find_us')) {
+        obj.how_to_find_us = 'No information'
       }
       ids.push(arr[index].id);
       this.firestoreService.mergeMeetupEventsToFirestore(obj);

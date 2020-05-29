@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigModule } from './core/config/config.module';
 // Modules
 import { TopBarModule } from './common-components/top-bar/top-bar.module';
+import { DashboardTopBarModule } from './admin/common-components/dashboard-top-bar/dashboard-top-bar.module';
 import { SiteModule } from './site/site.module';
 import { FooterModule } from './common-components/footer/footer.module';
 
@@ -22,11 +23,12 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     ConfigModule,
     TopBarModule,
+    DashboardTopBarModule,
     SiteModule,
     FooterModule,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 
 }

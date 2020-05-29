@@ -4,12 +4,13 @@
     <div class="mdc-layout-grid__cell">
       <h1 class="mdc-typography--headline4 row-heading">Ongoing events</h1>
     </div>
-    <div *ngFor="let firestoreOngoingEvent of firestoreOngoingEvents"
-      class="mdc-layout-grid__inner planned-events-row">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <div *ngFor="let firestoreOngoingEvent of firestoreOngoingEvents" class="mdc-layout-grid__inner planned-events-row">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <img src="{{firestoreOngoingEvent.featured_photo.highres_link}}" alt="featured photo">
       </div>
-      <div class="mdc-layout-grid__cell event-description-column mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+      <div
+        class="mdc-layout-grid__cell event-description-column mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <h1 class="mdc-typography--headline5"><a
             href="events/{{firestoreOngoingEvent.id}}">{{firestoreOngoingEvent.name}}</a></h1>
         <div *ngIf="firestoreOngoingEvent.is_online_event == false" class="location desktop-only">
@@ -24,15 +25,22 @@
           <i class="material-icons mdc-button__icon">location_on</i>
           <div>
             <span>{{firestoreOngoingEvent.venue.name}}</span> <br>
+            <span>{{firestoreOngoingEvent.how_to_find_us}}</span>
           </div>
         </div>
         <div class="event-date desktop-only"><i class="material-icons mdc-button__icon">calendar_today</i>
           <span>{{firestoreOngoingEvent.local_date}}</span></div>
         <div class="event-description" [innerHTML]="firestoreOngoingEvent.description"></div>
         <div class="meetup-event-link">
-          <a href="{{firestoreOngoingEvent.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+          <a href="{{firestoreOngoingEvent.how_to_find_us}}" target="_blank"
+            class="mdc-button mdc-button--unelevated youtube-stream-button-live">
+            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
+            Stream</a>
+          <a *ngIf="ongoingEventShowRegisterButton" href="{{firestoreOngoingEvent.link}}" target="_blank"
+            class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
-          <a href="{{firestoreOngoingEvent.link}}" target="_blank" class="mdc-button mdc-button--unelevated">
+          <a *ngIf="ongoingEventShowWaitlistButton" href="{{firestoreOngoingEvent.link}}" target="_blank"
+            class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Join the waitlist</a>
           <a href="events/{{firestoreOngoingEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
             <span class="mdc-button__ripple"></span>
@@ -49,10 +57,12 @@
     </div>
     <div *ngFor="let firestoreUpcomingEvent of firestoreUpcomingEvents"
       class="mdc-layout-grid__inner planned-events-row">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+      <div
+        class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <img src="{{firestoreUpcomingEvent.featured_photo.highres_link}}" alt="featured photo">
       </div>
-      <div class="mdc-layout-grid__cell event-description-column mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+      <div
+        class="mdc-layout-grid__cell event-description-column mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
         <h1 class="mdc-typography--headline5"><a
             href="events/{{firestoreUpcomingEvent.id}}">{{firestoreUpcomingEvent.name}}</a></h1>
         <div *ngIf="firestoreUpcomingEvent.is_online_event == false" class="location desktop-only">
@@ -63,7 +73,7 @@
               {{firestoreUpcomingEvent.venue.localized_country_name}}</span>
           </div>
         </div>
-        <div *ngIf="firestoreUpcomingEvent.is_online_event == true" class="location desktop-only">
+        <div *ngIf="firestoreUpcomingEvent.is_online_event == true" class="location">
           <i class="material-icons mdc-button__icon">location_on</i>
           <div>
             <span>{{firestoreUpcomingEvent.venue.name}}</span> <br>
@@ -73,10 +83,14 @@
           <span>{{firestoreUpcomingEvent.local_date}}</span></div>
         <div class="event-description" [innerHTML]="firestoreUpcomingEvent.description"></div>
         <div class="meetup-event-link">
-          <a *ngIf="showRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+          <a href="{{firestoreUpcomingEvent.how_to_find_us}}" target="_blank"
+            class="mdc-button mdc-button--unelevated youtube-stream-button">
+            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
+            Stream</a>
+          <a *ngIf="upcomingEventShowRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
             class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
-          <a *ngIf="showWaitlistButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
+          <a *ngIf="upcomingEventShowWaitlistButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
             class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Join the waitlist</a>
           <a href="events/{{firestoreUpcomingEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
@@ -110,7 +124,8 @@
             [ngStyle]="{'background-image': 'url(' + firestoreRecentEvent.featured_photo.highres_link + ')'}">
             <div class="mdc-card__media-content card__media-content">
               <div class="card__primary">
-                <h2 class="card__title mdc-typography mdc-typography--headline6 recent-event-title">{{firestoreRecentEvent.name}}</h2>
+                <h2 class="card__title mdc-typography mdc-typography--headline6 recent-event-title">
+                  {{firestoreRecentEvent.name}}</h2>
                 <h3 class="card__subtitle mdc-typography mdc-typography--subtitle2">{{firestoreRecentEvent.local_date}}
                 </h3>
               </div>

@@ -26,6 +26,7 @@ export class FirebaseEvent {
     highres_link: string;
   };
   is_online_event: boolean;
+  how_to_find_us: string;
 }
 
 export interface FirebaseEventInterface {
@@ -48,7 +49,8 @@ export interface FirebaseEventInterface {
   featured_photo: {
     highres_link: string,
   },
-  is_online_event: boolean
+  is_online_event: boolean,
+  how_to_find_us: string
 }
 
 export interface event {
@@ -189,7 +191,7 @@ export interface draftEvent {
   description
 }
 
-export interface memberRSVP {
+export interface eventRSVP {
   member: {
     id: string,
     name: string,
@@ -198,6 +200,21 @@ export interface memberRSVP {
     }
   },
   status: string
+}
+
+export interface rsvpListItem {
+  created: number,
+  response: string,
+  member: {
+    id: number,
+    name: string,
+    photo: {
+      photo_link: string
+    },
+    event_context: {
+      host: boolean
+    }
+  }
 }
 
 export interface memberAttendance {

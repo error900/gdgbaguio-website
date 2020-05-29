@@ -14,8 +14,9 @@ import { MDCLinearProgress } from '@material/linear-progress';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  showSiteTopBar = true;
-  showFooter = true;
+  showSiteTopBar: boolean;
+  showDashboardTopBar: boolean;
+  showFooter: boolean;
   url: any;
   linearProgress: any;
   currentUser: User;
@@ -34,17 +35,23 @@ export class AppComponent {
         if (this.url.search('dashboard') == -1) {
           this.showSiteTopBar = true;
           this.showFooter = true;
+          this.showDashboardTopBar = false;
         } else {
           this.showSiteTopBar = false;
           this.showFooter = false;
+          this.showDashboardTopBar = true;
         }
+
         if (this.url.search('login') == 1) {
           this.showSiteTopBar = false;
           this.showFooter = false;
+          this.showDashboardTopBar = false;
         }
+
         if (this.url.search('community') == 1) {
           this.showFooter = false;
         }
+
         if (
           (this.url.search('application') == 1 && this.url.search('sponsor') == -1) &&
           (this.url.search('application') == 1 && this.url.search('speaker') == -1) &&

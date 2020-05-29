@@ -12,8 +12,8 @@ import { ApplicationSubmitComponent } from './site/application-form/application-
 import { Error404Component } from './site/error404/error404.component';
 import { LoginComponent } from './admin/login/login.component';
 import { AdminCheckComponent } from './admin/common-components/admin-check/admin-check.component';
-import { EventsDashboardComponent } from './admin/dashboard/events/main.component';
-import { AttendanceDashboardComponent } from './admin/dashboard/attendance/main.component';
+import { EventsDashboardComponent } from './admin/dashboard/events/events-main.component';
+import { AttendanceDashboardComponent } from './admin/dashboard/attendance/attendance-main.component';
 
 import { ListUserComponent } from './user/list-user/list-user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';

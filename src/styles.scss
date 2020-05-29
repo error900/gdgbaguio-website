@@ -40,7 +40,7 @@ $mdc-theme-on-secondary: #000000;
 
 @import "@material/button/mdc-button";
 @import '@material/card/mdc-card';
-// @import '@material/chips/mdc-chips';
+@import '@material/chips/mdc-chips';
 @import '@material/data-table/mdc-data-table';
 @import '@material/dialog/mdc-dialog';
 @import '@material/drawer/mdc-drawer';
@@ -411,6 +411,11 @@ footer {
 
 .mobile-only {
   display: none;
+}
+
+.horizontal-divider {
+  margin: 28px 0;
+  border-top: 1px solid #dadce0;
 }
 
 /* Responsive Styles */

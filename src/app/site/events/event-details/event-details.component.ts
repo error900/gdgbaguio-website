@@ -14,6 +14,7 @@ export class EventDetailsComponent implements OnInit {
   firestoreEventDetails: any;
   firestoreEventHosts: any;
   eventid: string;
+
   showRegisterButton = false;
   showWaitlistButton = false;
 
@@ -31,7 +32,12 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(
         firestoreEventDetails => {
           this.firestoreEventDetails = firestoreEventDetails.data();
-          (this.firestoreEventDetails.rsvp_limit >= this.firestoreEventDetails.yes_rsvp_count) ? this.showRegisterButton = true : this.showWaitlistButton = true;
+          // (this.firestoreEventDetails.rsvp_limit <= this.firestoreEventDetails.yes_rsvp_count) ? this.showRegisterButton = true : this.showWaitlistButton = true;
+          (this.firestoreEventDetails.rsvp_limit < this.firestoreEventDetails.yes_rsvp_count || (this.firestoreEventDetails.rsvp_limit == 0 && this.firestoreEventDetails.yes_rsvp_count == 0))
+            ? this.showRegisterButton = true :
+            ((this.firestoreEventDetails.rsvp_limit == this.firestoreEventDetails.yes_rsvp_count && !(this.firestoreEventDetails.rsvp_limit == 0 && this.firestoreEventDetails.yes_rsvp_count == 0))
+              ? this.showWaitlistButton = true : console.log('none'));
+          // (condition) ? (true block) : ((condition2) ? (true block2) : (else block2))
           console.log('this.firestoreEventDetails', firestoreEventDetails.data());
         }
       );
@@ -52,7 +58,7 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(
         eventDetails => (
           this.eventDetails = eventDetails,
-          (this.eventDetails.rsvp_limit >= this.eventDetails.yes_rsvp_count) ? this.showRegisterButton = true : this.showWaitlistButton = true,
+          (this.eventDetails.rsvp_limit <= this.eventDetails.yes_rsvp_count) ? this.showRegisterButton = true : this.showWaitlistButton = true,
           console.log(this.eventDetails)
 
         )

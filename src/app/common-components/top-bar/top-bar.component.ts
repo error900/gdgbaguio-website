@@ -3,6 +3,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { User } from 'src/app/core/model/user.model';
 
+import { AppComponent } from 'src/app/app.component';
 import * as mdc from 'material-components-web';
 import { MDCRipple } from '@material/ripple';
 import { MDCTextField } from '@material/textfield';
@@ -16,7 +17,7 @@ export class TopBarComponent implements OnInit {
   gdgbaguio_logo = '../../assets/images/gdgbaguio-logo.png';
   usr: User;
 
-  constructor(public auth: AuthenticationService) {
+  constructor(public auth: AuthenticationService, private app: AppComponent) {
     this.auth.user$.subscribe(
       user => {
         this.usr = user;
@@ -25,7 +26,9 @@ export class TopBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initializeMDCcomponents();
+    if (this.app.showSiteTopBar && this.app.showFooter) {
+      this.initializeMDCcomponents();
+    }
   }
 
   ngAfterViewChecked() {

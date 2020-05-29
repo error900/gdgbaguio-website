@@ -10,8 +10,9 @@ import {
   pastEvent,
   draftEvent,
   eventInfo,
-  memberRSVP,
-  FirebaseEventInterface
+  eventRSVP,
+  FirebaseEventInterface,
+  rsvpListItem
 } from '../model/events.model';
 
 // const httpOptions = {
@@ -88,8 +89,16 @@ export class MeetupService {
       );
   }
 
-  meetupRSVP(event_id: string): Observable<memberRSVP[]> {
-    return this.http.get<memberRSVP[]>(conf.event + '/' + event_id + meetupApiURL.memberRSVP)
+  meetupRSVP(event_id: string): Observable<eventRSVP[]> {
+    return this.http.get<eventRSVP[]>(conf.event + '/' + event_id + meetupApiURL.eventRSVP)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  rsvpList(event_id: string): Observable<rsvpListItem[]> {
+    return this.http.get<rsvpListItem[]>(conf.event + '/' + event_id + meetupApiURL.rsvpList)
       .pipe(
         retry(1),
         catchError(this.handleError)
