@@ -97,7 +97,7 @@ export class MeetupService {
       );
   }
 
-  rsvpList(event_id: string): Observable<rsvpListItem[]> {
+  rsvpList(event_id: number): Observable<rsvpListItem[]> {
     return this.http.get<rsvpListItem[]>(conf.event + '/' + event_id + meetupApiURL.rsvpList)
       .pipe(
         retry(1),

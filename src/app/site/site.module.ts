@@ -6,6 +6,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { LoginModule } from '../admin/login/login.module';
 import { EventsMainModule } from '../admin/dashboard/events/events-main.module';
 import { AttendanceMainModule } from '../admin/dashboard/attendance/attendance-main.module';
+import { RandomizerModule } from '../admin/dashboard/randomizer/randomizer.module';
+
 import { HomeModule } from './home.module';
 import { CommunityModule } from './community/community.module';
 import { EventsModule } from './events/events.module';
@@ -28,6 +30,7 @@ import { SiteComponent } from './site.component';
     LoginModule,
     EventsMainModule,
     AttendanceMainModule,
+    RandomizerModule,
     HomeModule,
     CommunityModule,
     EventsModule,

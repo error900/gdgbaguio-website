@@ -45,7 +45,7 @@ export class EventsDashboardComponent implements OnInit {
     // MEETUP
     this.getPlannedEvents(); // meetup events
     this.getDratGDGEvents(); // meetup events
-    this.mergePlannedMeetupEventsToFirestore(); // merge planned meetup events to firestore
+    // this.mergePlannedMeetupEventsToFirestore(); // merge planned meetup events to firestore
     // this.getFirebaseEvents(); // merge all meetup events to firestore
 
     // console.log(this.meetupService.attendanceTaking(0, 0, 'status'));
@@ -71,16 +71,20 @@ export class EventsDashboardComponent implements OnInit {
           console.log('UPCOMING', this.upcomingEvents_count)
         )
       );
+    return this.plannedEvents;
   }
 
   getOngoingEvents(arr: plannedEvent[]) {
-    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' }
+    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.jpg' }
     let ongoingEvents = [];
     var obj = {} as plannedEvent;
     for (let index = 0; index < arr.length; index++) {
       obj = arr[index];
       if (!obj.hasOwnProperty('featured_photo')) {
         obj.featured_photo = featured_photo_placeholder
+      }
+      if (!obj.hasOwnProperty('rsvp_limit')) {
+        obj.rsvp_limit = 0
       }
       if (obj.status == 'ongoing') {
         ongoingEvents.push(obj);
@@ -90,13 +94,16 @@ export class EventsDashboardComponent implements OnInit {
   }
 
   getUpcomingEvents(arr: plannedEvent[]) {
-    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' }
+    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.jpg' }
     let upcomingEvents = [];
     var obj = {} as plannedEvent;
     for (let index = 0; index < arr.length; index++) {
       obj = arr[index];
       if (!obj.hasOwnProperty('featured_photo')) {
         obj.featured_photo = featured_photo_placeholder
+      }
+      if (!obj.hasOwnProperty('rsvp_limit')) {
+        obj.rsvp_limit = 0
       }
       if (obj.status == 'upcoming') {
         upcomingEvents.push(obj);
@@ -179,7 +186,7 @@ export class EventsDashboardComponent implements OnInit {
   // FIREBASE
 
   fixMissingProperties(arr: FirebaseEventInterface[]) {
-    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' };
+    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.jpg' };
     var obj = {} as FirebaseEvent;
     var ids = [];
 

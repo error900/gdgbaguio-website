@@ -1,0 +1,36 @@
+<section class="landing-row events-landing-row">
+  <div class="mdc-layout-grid content">
+    <div class="mdc-layout-grid__cell content__container">
+      <h1 class="mdc-typography--headline3 row-heading content__container__text">Hello</h1>
+    </div>
+  </div>
+
+</section>
+<section class="landing-row events-landing-row">
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__cell">
+      <button id="random-button" class="mdc-button mdc-button--raised"> <span class="mdc-button__ripple"></span> Random</button>
+      <button class="mdc-button mdc-button--unelevated"> <span class="mdc-button__ripple btn-lg"></span> Random</button>
+      <button class="mdc-button mdc-button--outlined"> <span class="mdc-button__ripple"></span> Done</button>
+    </div>
+  </div>
+</section>
+<section class="landing-row events-landing-row">
+  <div class="mdc-layout-grid__cell">
+
+    <ul>
+      <li *ngFor="let rsvp of rsvplist" class="content__container__list__item">
+        <ng-container *ngIf="!rsvp.member.event_context.host && rsvp.response == 'yes'">
+          <!-- <span class="mdc-list-item__graphic rsvp-avatar" aria-hidden="true"
+            [ngStyle]="{'background-image': 'url(' + rsvp.member.photo.photo_link + ')'}">
+          </span> -->
+          {{rsvp.member.name}}
+        </ng-container>
+        <ng-container *ngIf="rsvp.member.event_context.host && rsvp.response == 'yes'">
+
+        </ng-container>
+
+      </li>
+    </ul>
+  </div>
+</section>

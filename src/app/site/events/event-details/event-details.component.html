@@ -32,8 +32,7 @@
           class="meetup-event-link">
           <a *ngIf="firestoreEventDetail.is_online_event" href="{{firestoreEventDetail.how_to_find_us}}" target="_blank"
             class="mdc-button mdc-button--unelevated youtube-stream-button-live">
-            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
-            Stream</a>
+            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> Watch Session</a>
           <a *ngIf="showRegisterButton" href="{{firestoreEventDetail.link}}" target="_blank"
             class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
@@ -42,6 +41,10 @@
             <span class="mdc-button__ripple"></span> Join the waitlist</a>
         </div>
         <div *ngIf="firestoreEventDetail.status=='past'" class="meetup-event-link">
+          <a *ngIf="firestoreEventDetail.is_online_event" href="{{firestoreEventDetail.how_to_find_us}}" target="_blank"
+            class="mdc-button mdc-button--unelevated youtube-stream-button">
+            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> Watch
+            Session</a>
           <a href="{{firestoreEventDetail.link}}" target="_blank" class="mdc-button mdc-button--outlined">
             <span class="mdc-button__ripple"></span> Meetup</a>
         </div>

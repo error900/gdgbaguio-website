@@ -179,7 +179,7 @@ export class EventsComponent implements OnInit {
   }
 
   getOngoingEvents(arr: plannedEvent[]) {
-    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' }
+    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.jpg' }
     let ongoingEvents = [];
     var obj = {} as plannedEvent;
     for (let index = 0; index < arr.length; index++) {
@@ -195,7 +195,7 @@ export class EventsComponent implements OnInit {
   }
 
   getUpcomingEvents(arr: plannedEvent[]) {
-    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.png' }
+    let featured_photo_placeholder = { highres_link: '/assets/images/meetup-logo.jpg' }
     let upcomingEvents = [];
     var obj = {} as plannedEvent;
     for (let index = 0; index < arr.length; index++) {

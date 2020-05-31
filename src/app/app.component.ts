@@ -52,6 +52,13 @@ export class AppComponent {
           this.showFooter = false;
         }
 
+        if (this.url.search('randomizer') == 1) {
+          this.showSiteTopBar = false;
+          this.showFooter = false;
+        }
+
+        
+
         if (
           (this.url.search('application') == 1 && this.url.search('sponsor') == -1) &&
           (this.url.search('application') == 1 && this.url.search('speaker') == -1) &&

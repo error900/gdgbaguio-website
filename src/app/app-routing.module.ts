@@ -19,6 +19,8 @@ import { ListUserComponent } from './user/list-user/list-user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { AuthenticationGuard } from './core/guard/authentication.guard';
 
+import { RandomizerComponent } from './admin/dashboard/randomizer/randomizer.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'community', component: CommunityComponent },
@@ -35,6 +37,8 @@ const routes: Routes = [
   // { path: 'dashboard/meetup-events', component: EventsDashboardComponent, canActivate: [AuthenticationGuard] },
   { path: 'dashboard/meetup-events', component: EventsDashboardComponent },
   { path: 'dashboard/meetup-attendance', component: AttendanceDashboardComponent },
+
+  { path: 'randomizer/sSvUWUPZ3gbPxP8X52tDFZk18165jSAEyE5MrWJQrJ9IWL1CXIOpkp2l2KFZI7p2yYgPjmdXx9gd15sZ5kfyhDvmALUEvf3bzVqJUFn3KhhYsmCZ89XRswDTktfmb8RK', component: RandomizerComponent },
 
   // otherwise redirect to 404 page /
   { path: '**', component: Error404Component }

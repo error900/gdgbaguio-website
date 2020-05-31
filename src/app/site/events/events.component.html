@@ -32,10 +32,10 @@
           <span>{{firestoreOngoingEvent.local_date}}</span></div>
         <div class="event-description" [innerHTML]="firestoreOngoingEvent.description"></div>
         <div class="meetup-event-link">
-          <a *ngIf="firestoreOngoingEvent.is_online_event" href="{{firestoreOngoingEvent.how_to_find_us}}" target="_blank"
-            class="mdc-button mdc-button--unelevated youtube-stream-button-live">
-            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
-            Stream</a>
+          <a *ngIf="firestoreOngoingEvent.is_online_event" href="{{firestoreOngoingEvent.how_to_find_us}}"
+            target="_blank" class="mdc-button mdc-button--unelevated youtube-stream-button-live">
+            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> Watch
+            Session</a>
           <a *ngIf="ongoingEventShowRegisterButton" href="{{firestoreOngoingEvent.link}}" target="_blank"
             class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
@@ -83,10 +83,10 @@
           <span>{{firestoreUpcomingEvent.local_date}}</span></div>
         <div class="event-description" [innerHTML]="firestoreUpcomingEvent.description"></div>
         <div class="meetup-event-link">
-          <a *ngIf="firestoreUpcomingEvent.is_online_event" href="{{firestoreUpcomingEvent.how_to_find_us}}" target="_blank"
-            class="mdc-button mdc-button--unelevated youtube-stream-button">
-            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> YouTube
-            Stream</a>
+          <a *ngIf="firestoreUpcomingEvent.is_online_event" href="{{firestoreUpcomingEvent.how_to_find_us}}"
+            target="_blank" class="mdc-button mdc-button--unelevated youtube-stream-button">
+            <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i> Watch
+            Session</a>
           <a *ngIf="upcomingEventShowRegisterButton" href="{{firestoreUpcomingEvent.link}}" target="_blank"
             class="mdc-button mdc-button--unelevated">
             <span class="mdc-button__ripple"></span> Register now</a>
@@ -118,25 +118,27 @@
     <div class="mdc-layout-grid__inner">
       <div *ngFor="let firestoreRecentEvent of firestoreRecentEvents"
         class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-        <div class="mdc-card">
-          <!-- <div class="mdc-card__primary-action" tabindex="0"> -->
-          <div class="mdc-card__media mdc-card__media--16-9 meetup-card-background"
-            [ngStyle]="{'background-image': 'url(' + firestoreRecentEvent.featured_photo.highres_link + ')'}">
-            <div class="mdc-card__media-content card__media-content">
-              <div class="card__primary">
-                <h2 class="card__title mdc-typography mdc-typography--headline6 recent-event-title">
-                  {{firestoreRecentEvent.name}}</h2>
-                <h3 class="card__subtitle mdc-typography mdc-typography--subtitle2">{{firestoreRecentEvent.local_date}}
-                </h3>
-              </div>
+        <div class="mdc-card recent-event-card">
+          <div class="mdc-card__primary-action" tabindex="0">
+            <div class="mdc-card__media mdc-card__media--16-9"
+              [ngStyle]="{'background-image': 'url(' + firestoreRecentEvent.featured_photo.highres_link + ')'}">
             </div>
-          </div>
-          <!-- </div> -->
-          <div [innerHTML]="firestoreRecentEvent.description"
-            class="card__secondary mdc-typography mdc-typography--body2 recent-event-description">
+            <div class="card__primary">
+              <h2 class="card__title mdc-typography mdc-typography--headline6 recent-event-title">
+                <a href="events/{{firestoreRecentEvent.id}}">{{firestoreRecentEvent.name}}</a>
+              </h2>
+              <h3 class="card__subtitle mdc-typography mdc-typography--subtitle2">{{firestoreRecentEvent.local_date}}
+              </h3>
+            </div>
+            <div [innerHTML]="firestoreRecentEvent.description"
+              class="card__secondary mdc-typography mdc-typography--body2 recent-event-description"></div>
           </div>
           <div class="mdc-card__actions">
             <div class="mdc-card__action-buttons">
+              <a *ngIf="firestoreRecentEvent.is_online_event" href="{{firestoreRecentEvent.how_to_find_us}}"
+                target="_blank" class="mdc-button mdc-button--unelevated youtube-stream-button">
+                <span class="mdc-button__ripple"></span> <i class="material-icons mdc-button__icon">view_stream</i>
+                Watch Session</a>
               <a href="events/{{firestoreRecentEvent.id}}" class="mdc-button mdc-card__action mdc-card__action--button">
                 <span class="mdc-button__ripple"></span>
                 <!-- <i class="material-icons mdc-button__icon">more_horiz</i> -->
@@ -179,7 +181,12 @@
               <td class="mdc-data-table__cell"><a href="events/{{firestorePastEvents.id}}"
                   class="events-mdc-data-table__row">{{firestorePastEvents.name}}</a></td>
               <td class="mdc-data-table__cell">{{firestorePastEvents.venue.name}}</td>
-              <td class="mdc-data-table__cell mdc-data-table-cell-height-56dp">{{firestorePastEvents.venue.address_1}}
+              <td *ngIf="firestorePastEvents.is_online_event"
+                class="mdc-data-table__cell mdc-data-table-cell-height-56dp">
+                <a href="{{firestorePastEvents.how_to_find_us}}">Watch Session</a>
+              </td>
+              <td *ngIf="!firestorePastEvents.is_online_event"
+                class="mdc-data-table__cell mdc-data-table-cell-height-56dp">{{firestorePastEvents.venue.address_1}}
               </td>
             </tr>
           </tbody>

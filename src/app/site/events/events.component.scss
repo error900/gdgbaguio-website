@@ -34,14 +34,26 @@
   color: #1a73e8;
 }
 
+.recent-event-card {
+  .mdc-card__primary-action {
+
+    .card__primary {
+      max-height: 86px;
+      min-height: 86px;
+    }
+    .card__secondary {
+      max-height: 56px;
+      min-height: 56px;
+    }
+  }
+}
+
 .recent-event-title {
   text-transform: uppercase;
 }
 
 .recent-event-description {
-  height: 85px;
-  max-height: 85px;
-  font-size: 18px;
+  // font-size: 16px;
   overflow: hidden;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.03), transparent);
   border-bottom: 1px solid #dadce0;
